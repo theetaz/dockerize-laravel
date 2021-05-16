@@ -1,0 +1,2 @@
+//CRYPTO
+export const SET_CRYPTO_DATA = 'SET_CRYPTO_DATA';
