@@ -1,3 +1,3 @@
-# Vuexy - Vuejs, React, HTML & Laravel Admin Dashboard Template
+# The coin hunt project
 
-**Vuexy – Vuejs, React, HTML & Laravel Admin Dashboard Template** – is the most developer friendly & highly customizable Admin Dashboard Template based on Bootstrap 4, Bootstrap Vue & Reactstrap.
+*this project is based on vue js and laravel API** – advance crypto currency and token tracking web site.
