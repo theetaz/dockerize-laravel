@@ -27,12 +27,26 @@ const router = new VueRouter({
     {
       path: '/details/:hash',
       name: 'details',
-      component: () => import('@/views/crypto/CryptoDetails'),
+      component: () => import('@/views/crypto/CryptoDetails.vue'),
       meta: {
         pageTitle: 'Crypto Details Page',
         breadcrumb: [
           {
             text: 'Crypto Details',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/add-coin',
+      name: 'add-coin',
+      component: () => import('@/views/crypto/AddCoin.vue'),
+      meta: {
+        pageTitle: 'Add coin page',
+        breadcrumb: [
+          {
+            text: 'Add coin page',
             active: true,
           },
         ],

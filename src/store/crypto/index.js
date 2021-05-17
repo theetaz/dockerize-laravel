@@ -3,6 +3,8 @@ import API from '@/services/api';
 export default {
   state: {
     cryptoData: [],
+    cryptoDataPromoted: [],
+    cryptoDataTodayBest: [],
     clientIP: null,
     coin: null
   },
@@ -12,6 +14,12 @@ export default {
   mutations: {
     SET_CRYPTO_DATA(state, cryptoData) {
       state.cryptoData = cryptoData;
+    },
+    SET_CRYPTO_DATA_PROMOTED(state, cryptoData) {
+      state.cryptoDataPromoted = cryptoData;
+    },
+    SET_CRYPTO_DATA_TODAY_BEST(state, cryptoData) {
+      state.cryptoDataTodayBest = cryptoData;
     },
     SET_COIN_DATA(state, coinData) {
       state.coin = coinData;
@@ -46,7 +54,48 @@ export default {
           }
         });
       });
-
+    },
+    FETCH_PROMOTED_CRYPTO_DATA({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        API.get("coins/promoted", {
+          params: {
+            per_page: 20,
+            direction: "DESC",
+            sort_key: "vote_count",
+            ip_address: state.clientIP,
+            page: 1
+          }
+        }).then((response) => {
+          if (response) {
+            let payload = response.data.payload;
+            commit('SET_CRYPTO_DATA_PROMOTED', payload);
+            resolve(payload);
+          } else {
+            reject();
+          }
+        });
+      });
+    },
+    FETCH_TODAY_BEST_CRYPTO_DATA({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        API.get("coins/today-best", {
+          params: {
+            per_page: 20,
+            direction: "DESC",
+            sort_key: "vote_count",
+            ip_address: state.clientIP,
+            page: 1
+          }
+        }).then((response) => {
+          if (response) {
+            let payload = response.data.payload;
+            commit('SET_CRYPTO_DATA_TODAY_BEST', payload);
+            resolve(payload);
+          } else {
+            reject();
+          }
+        });
+      });
     },
     FETCH_CLIENT_IP({ commit }) {
       return new Promise((resolve, reject) => {
@@ -84,7 +133,9 @@ export default {
         //send the vote request
         API.post(`coin/${coinID}/vote`, { client_ip: clientIP }).then(() => {
           // let coinData = response.data.payload;
-          dispatch('FETCH_CRYPTO_DATA')
+          dispatch('FETCH_CRYPTO_DATA');
+          dispatch('FETCH_TODAY_BEST_CRYPTO_DATA');
+          dispatch('FETCH_PROMOTED_CRYPTO_DATA');
           // commit('UPDATE_VOTE_COUNT', coinData);
         });
       }
