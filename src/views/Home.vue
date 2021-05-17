@@ -2,7 +2,7 @@
   <div>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <h2>💎 Promoted coins</h2>
+        <h2>💎 Promoted Hemal</h2>
         <small
           >Even though promoted, trying to choose quality projects only.</small
         >
