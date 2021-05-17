@@ -55,7 +55,10 @@
       <!-- vote_count -->
       <template #cell(vote_count)="data">
         <div class="d-flex align-items-center">
-          <b-button :variant="isVoted(data.item)" @click="castVote(data.item)">
+          <b-button
+            :variant="isVoted(data.item.is_voted)"
+            @click="castVote(data.item)"
+          >
             🚀 {{ data.item.vote_count }}
           </b-button>
         </div>
@@ -111,8 +114,8 @@ export default {
     castVote(coin) {
       this.$store.dispatch("CAST_VOTE", coin.id);
     },
-    isVoted(coin) {
-      return coin.votes.length > 0 ? "success" : "outline-success";
+    isVoted(isVoted) {
+      return isVoted ? "success" : "outline-success";
     },
     viewDetails(coin) {
       this.$router.push({
