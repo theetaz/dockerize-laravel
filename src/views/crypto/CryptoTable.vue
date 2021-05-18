@@ -64,7 +64,7 @@
             @click="castVote(data.item)"
           >
             <div v-if="loading && (data.item.id == selectId)">
-              <b-spinner label="Loading..."></b-spinner>
+              <b-spinner label="Loading..." size="20px"></b-spinner>
             </div>
             <div v-else>
               🚀 {{ data.item.vote_count }}

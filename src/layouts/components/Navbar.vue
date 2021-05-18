@@ -1,26 +1,44 @@
 <template>
   <div class="navbar-container d-flex content align-items-center">
-
     <!-- Nav Menu Toggler -->
     <ul class="nav navbar-nav d-xl-none">
       <li class="nav-item">
-        <b-link
-          class="nav-link"
-          @click="toggleVerticalMenuActive"
-        >
-          <feather-icon
-            icon="MenuIcon"
-            size="21"
-          />
+        <b-link class="nav-link" @click="toggleVerticalMenuActive">
+          <feather-icon icon="MenuIcon" size="21" />
         </b-link>
       </li>
     </ul>
 
     <!-- Left Col -->
-    <div class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex">
+    <div
+      class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex"
+    >
       <dark-Toggler class="d-none d-lg-block" />
     </div>
-
+    <div>
+      <b-card no-body>
+        <b-tabs pills card>
+          <b-tab title="Tab 1" active></b-tab>
+          <b-tab title="Tab 2"></b-tab>
+        </b-tabs>
+      </b-card>
+    </div>
+    <div class="pr-2">
+      <b-button
+        @mouseover="mouseoverLogin()"
+        @mouseleave="mouseoverLogin()"
+        :variant="mouseover_check_login ? 'info' : 'success'"
+        >Login</b-button
+      >
+    </div>
+    <div class="pr-5">
+      <b-button
+        @mouseover="mouseover()"
+        @mouseleave="mouseover()"
+        :variant="mouseover_check ? 'success' : 'outline-success'"
+        >Signup</b-button
+      >
+    </div>
     <b-navbar-nav class="nav align-items-center ml-auto">
       <b-nav-item-dropdown
         right
@@ -29,9 +47,7 @@
       >
         <template #button-content>
           <div class="d-sm-flex d-none user-nav">
-            <p class="user-name font-weight-bolder mb-0">
-              John Doe
-            </p>
+            <p class="user-name font-weight-bolder mb-0">John Doe</p>
             <span class="user-status">Admin</span>
           </div>
           <b-avatar
@@ -45,49 +61,29 @@
         </template>
 
         <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="UserIcon"
-            class="mr-50"
-          />
+          <feather-icon size="16" icon="UserIcon" class="mr-50" />
           <span>Profile</span>
         </b-dropdown-item>
 
         <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="MailIcon"
-            class="mr-50"
-          />
+          <feather-icon size="16" icon="MailIcon" class="mr-50" />
           <span>Inbox</span>
         </b-dropdown-item>
 
         <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="CheckSquareIcon"
-            class="mr-50"
-          />
+          <feather-icon size="16" icon="CheckSquareIcon" class="mr-50" />
           <span>Task</span>
         </b-dropdown-item>
 
         <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="MessageSquareIcon"
-            class="mr-50"
-          />
+          <feather-icon size="16" icon="MessageSquareIcon" class="mr-50" />
           <span>Chat</span>
         </b-dropdown-item>
 
         <b-dropdown-divider />
 
         <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon
-            size="16"
-            icon="LogOutIcon"
-            class="mr-50"
-          />
+          <feather-icon size="16" icon="LogOutIcon" class="mr-50" />
           <span>Logout</span>
         </b-dropdown-item>
       </b-nav-item-dropdown>
@@ -97,19 +93,37 @@
 
 <script>
 import {
-  BLink, BNavbarNav, BNavItemDropdown, BDropdownItem, BDropdownDivider, BAvatar,
-} from 'bootstrap-vue'
-import DarkToggler from '@core/layouts/components/app-navbar/components/DarkToggler.vue'
+  BLink,
+  BNavbarNav,
+  BNavItemDropdown,
+  BDropdownItem,
+  BDropdownDivider,
+  BAvatar,
+  BButton,
+  BTab,
+  BTabs,
+  BCard
+} from "bootstrap-vue";
+import DarkToggler from "@core/layouts/components/app-navbar/components/DarkToggler.vue";
 
 export default {
+  data() {
+    return {
+      mouseover_check: false,
+      mouseover_check_login: false,
+    };
+  },
   components: {
+    BButton,
     BLink,
     BNavbarNav,
     BNavItemDropdown,
     BDropdownItem,
     BDropdownDivider,
     BAvatar,
-
+    BTab,
+    BTabs,
+    BCard,
     // Navbar Components
     DarkToggler,
   },
@@ -119,5 +133,13 @@ export default {
       default: () => {},
     },
   },
-}
+  methods: {
+    mouseover() {
+      this.mouseover_check = !this.mouseover_check;
+    },
+    mouseoverLogin() {
+      this.mouseover_check_login = !this.mouseover_check_login;
+    },
+  },
+};
 </script>
