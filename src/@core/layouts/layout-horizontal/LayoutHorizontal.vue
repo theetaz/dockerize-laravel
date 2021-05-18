@@ -30,6 +30,54 @@
     </b-navbar>
     <!--/ NAVBAR -->
 
+    <div class="horizontal-menu-wrapper">
+      <!-- <div
+        v-if="!isNavMenuHidden"
+        class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-light navbar-shadow menu-border d-none d-xl-block"
+        :class="[navbarMenuTypeClass]"
+      >
+        <horizontal-nav-menu />
+      </div> -->
+
+      <!-- Vertical Nav Menu -->
+      <vertical-nav-menu
+        :is-vertical-menu-active="isVerticalMenuActive"
+        :toggle-vertical-menu-active="toggleVerticalMenuActive"
+        class="d-block d-xl-none"
+      >
+        <template #header="slotProps">
+          <slot name="vertical-menu-header" v-bind="slotProps" />
+        </template>
+      </vertical-nav-menu>
+      <!-- /Vertical Nav Menu -->
+    </div>
+
+    <!-- Vertical Nav Menu Overlay -->
+    <div
+      class="sidenav-overlay"
+      :class="overlayClasses"
+      @click="isVerticalMenuActive = false"
+    />
+    <!-- /Vertical Nav Menu Overlay -->
+
+    <!-- CONTENT -->
+    <!-- CONTENT TYPE: Left -->
+    <transition :name="routerTransition" mode="out-in">
+      <component
+        :is="layoutContentRenderer"
+        :key="
+          layoutContentRenderer === 'layout-content-renderer-left'
+            ? $route.meta.navActiveLink || $route.name
+            : null
+        "
+      >
+        <template v-for="(index, name) in $scopedSlots" v-slot:[name]="data">
+          <slot :name="name" v-bind="data" />
+        </template>
+      </component>
+    </transition>
+    <!--/ Content -->
+
     <!-- CONTENT -->
     <!-- CONTENT TYPE: Left -->
     <transition :name="routerTransition" mode="out-in">
