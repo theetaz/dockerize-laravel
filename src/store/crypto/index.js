@@ -6,7 +6,8 @@ export default {
     cryptoDataPromoted: [],
     cryptoDataTodayBest: [],
     clientIP: null,
-    coin: null
+    coin: null,
+    token: null
   },
   getters: {
 
@@ -31,6 +32,9 @@ export default {
       let votedCoin = state.cryptoData.filter((coin) => coin.id === coinData.id);
       //update the vote count
       votedCoin[0].vote_count = coinData.vote_count;
+    },
+    SET_TOKEN(state, token) {
+      state.token = token;
     }
   },
   actions: {
@@ -124,7 +128,6 @@ export default {
         });
       });
     },
-
     CAST_VOTE({ dispatch, commit }, coinID) {
       commit('loaders/SET_LOADING', true, { root: true })
       //get the ip address from store
@@ -137,19 +140,44 @@ export default {
           dispatch('FETCH_CRYPTO_DATA');
           dispatch('FETCH_TODAY_BEST_CRYPTO_DATA');
           dispatch('FETCH_PROMOTED_CRYPTO_DATA');
-          
+
           // commit('UPDATE_VOTE_COUNT', coinData);
-          
+
         })
-        .finally(() => {
-          commit('loaders/SET_LOADING', false, { root: true })
-        });
-        
+          .finally(() => {
+            commit('loaders/SET_LOADING', false, { root: true })
+          });
+
       }
       else {
         commit('loaders/SET_LOADING', false, { root: true })
       }
 
+    },
+    REGISTER_USER({ commit }, userData) {
+      return new Promise((resolve, reject) => {
+
+        //set loader status to true
+        commit('loaders/SET_LOADING', true, { root: true });
+
+        API.post('/auth/register', userData).then((response) => {
+
+          console.log("register", response);
+          console.log("userData", userData);
+          let token = response.data.payload.token;
+          commit('SET_TOKEN', token);
+          resolve(response);
+
+        }).catch((error) => {
+
+          reject(error);
+
+        }).finally(() => {
+
+          //set loader status to false
+          commit('loaders/SET_LOADING', false, { root: true });
+        });
+      })
     }
   },
 
