@@ -4,6 +4,7 @@
       <b-form @submit.prevent>
         <b-row>
           <b-col cols="6">
+            <h3 class="mb-2">Token informations</h3>
             <b-row>
               <!-- Token name start -->
               <b-col cols="6">
@@ -105,6 +106,9 @@
             </b-row>
 
             <b-row>
+              <b-col cols="12">
+                <h3 class="mb-2 mt-2">Token Meta Data</h3>
+              </b-col>
               <!-- Released Date start -->
               <b-col cols="6">
                 <b-form-group
@@ -138,30 +142,18 @@
                 <b-form-group
                   label="Token Logo Link"
                   label-for="iv-token-logo-link"
-                  :state="state"
                 >
-                  <validation-provider
-                    #default="{ errors }"
-                    name="Token Logo Link"
-                    rules="required"
-                  >
-                    <b-input-group
-                      class="input-group-merge"
-                      :class="errors.length > 0 ? 'is-invalid' : ''"
-                    >
-                      <b-input-group-prepend is-text>
-                        <feather-icon icon="LockIcon" />
-                      </b-input-group-prepend>
-                      <b-form-input
-                        id="iv-token-logo-link"
-                        v-model="tokenLogoLink"
-                        type="text"
-                        :state="errors.length > 0 ? false : null"
-                        placeholder="Expl: https://.."
-                      />
-                    </b-input-group>
-                    <small class="text-danger">{{ errors[0] }}</small>
-                  </validation-provider>
+                  <b-input-group class="input-group-merge">
+                    <b-input-group-prepend is-text>
+                      <feather-icon icon="LockIcon" />
+                    </b-input-group-prepend>
+                    <b-form-input
+                      id="iv-token-logo-link"
+                      v-model="tokenLogoLink"
+                      type="text"
+                      placeholder="Expl: https://.."
+                    />
+                  </b-input-group>
                 </b-form-group>
               </b-col>
               <!-- Token link end-->
@@ -236,6 +228,7 @@
           <b-col cols="6">
             <b-row>
               <b-col cols="12">
+                <h3 class="mb-2">Smart Contracts</h3>
                 <!-- Token Binance Smart Chain contract address start -->
                 <b-form-group
                   label="Token Binance Smart Chain contract address"
@@ -315,134 +308,78 @@
                 <!-- Other links end-->
 
                 <b-row>
+                  <b-col cols="12">
+                    <h3 class="mb-2 mt-2">Social</h3>
+                  </b-col>
+
                   <!-- Website start -->
                   <b-col cols="6">
-                    <b-form-group
-                      label="Website"
-                      label-for="iv-website"
-                      :state="state"
-                    >
-                      <validation-provider
-                        #default="{ errors }"
-                        name="Website"
-                        rules="required"
-                      >
-                        <b-input-group
-                          class="input-group-merge"
-                          :class="errors.length > 0 ? 'is-invalid' : ''"
-                        >
-                          <b-input-group-prepend is-text>
-                            <feather-icon icon="LockIcon" />
-                          </b-input-group-prepend>
-                          <b-form-input
-                            id="iv-website"
-                            v-model="website"
-                            type="text"
-                            :state="errors.length > 0 ? false : null"
-                            placeholder="Expl: https://www.bitcoin.org"
-                          />
-                        </b-input-group>
-                        <small class="text-danger">{{ errors[0] }}</small>
-                      </validation-provider>
+                    <b-form-group label="Website" label-for="iv-website">
+                      <b-input-group class="input-group-merge">
+                        <b-input-group-prepend is-text>
+                          <feather-icon icon="LockIcon" />
+                        </b-input-group-prepend>
+                        <b-form-input
+                          id="iv-website"
+                          v-model="website"
+                          type="text"
+                          placeholder="Expl: https://www.bitcoin.org"
+                        />
+                      </b-input-group>
                     </b-form-group>
                   </b-col>
                   <!-- Website end-->
 
                   <!-- Telegram start -->
                   <b-col cols="6">
-                    <b-form-group
-                      label="Telegram"
-                      label-for="iv-telegram"
-                      :state="state"
-                    >
-                      <validation-provider
-                        #default="{ errors }"
-                        name="Telegram"
-                        rules="required"
-                      >
-                        <b-input-group
-                          class="input-group-merge"
-                          :class="errors.length > 0 ? 'is-invalid' : ''"
-                        >
-                          <b-input-group-prepend is-text>
-                            <feather-icon icon="LockIcon" />
-                          </b-input-group-prepend>
-                          <b-form-input
-                            id="iv-telegram"
-                            v-model="telegram"
-                            type="text"
-                            :state="errors.length > 0 ? false : null"
-                            placeholder="Expl: https://t.me/bitcoin"
-                          />
-                        </b-input-group>
-                        <small class="text-danger">{{ errors[0] }}</small>
-                      </validation-provider>
+                    <b-form-group label="Telegram" label-for="iv-telegram">
+                      <b-input-group class="input-group-merge">
+                        <b-input-group-prepend is-text>
+                          <feather-icon icon="LockIcon" />
+                        </b-input-group-prepend>
+                        <b-form-input
+                          id="iv-telegram"
+                          v-model="telegram"
+                          type="text"
+                          placeholder="Expl: https://t.me/bitcoin"
+                        />
+                      </b-input-group>
                     </b-form-group>
                   </b-col>
                   <!-- Telegram end-->
 
                   <!-- Twitter start -->
                   <b-col cols="6">
-                    <b-form-group
-                      label="Twitter"
-                      label-for="iv-twitter"
-                      :state="state"
-                    >
-                      <validation-provider
-                        #default="{ errors }"
-                        name="Twitter"
-                        rules="required"
-                      >
-                        <b-input-group
-                          class="input-group-merge"
-                          :class="errors.length > 0 ? 'is-invalid' : ''"
-                        >
-                          <b-input-group-prepend is-text>
-                            <feather-icon icon="LockIcon" />
-                          </b-input-group-prepend>
-                          <b-form-input
-                            id="iv-twitter"
-                            v-model="twitter"
-                            type="text"
-                            :state="errors.length > 0 ? false : null"
-                            placeholder="Expl: https://twitter.com/bitcoin"
-                          />
-                        </b-input-group>
-                        <small class="text-danger">{{ errors[0] }}</small>
-                      </validation-provider>
+                    <b-form-group label="Twitter" label-for="iv-twitter">
+                      <b-input-group class="input-group-merge">
+                        <b-input-group-prepend is-text>
+                          <feather-icon icon="LockIcon" />
+                        </b-input-group-prepend>
+                        <b-form-input
+                          id="iv-twitter"
+                          v-model="twitter"
+                          type="text"
+                          placeholder="Expl: https://twitter.com/bitcoin"
+                        />
+                      </b-input-group>
                     </b-form-group>
                   </b-col>
                   <!-- Twitter end-->
 
                   <!-- Reddit start -->
                   <b-col cols="6">
-                    <b-form-group
-                      label="Reddit"
-                      label-for="iv-reddit"
-                      :state="state"
-                    >
-                      <validation-provider
-                        #default="{ errors }"
-                        name="Reddit"
-                        rules="required"
-                      >
-                        <b-input-group
-                          class="input-group-merge"
-                          :class="errors.length > 0 ? 'is-invalid' : ''"
-                        >
-                          <b-input-group-prepend is-text>
-                            <feather-icon icon="LockIcon" />
-                          </b-input-group-prepend>
-                          <b-form-input
-                            id="iv-reddit"
-                            v-model="reddit"
-                            type="text"
-                            :state="errors.length > 0 ? false : null"
-                            placeholder="Expl: https://reddit.com/bitcoin"
-                          />
-                        </b-input-group>
-                        <small class="text-danger">{{ errors[0] }}</small>
-                      </validation-provider>
+                    <b-form-group label="Reddit" label-for="iv-reddit">
+                      <b-input-group class="input-group-merge">
+                        <b-input-group-prepend is-text>
+                          <feather-icon icon="LockIcon" />
+                        </b-input-group-prepend>
+                        <b-form-input
+                          id="iv-reddit"
+                          v-model="reddit"
+                          type="text"
+                          placeholder="Expl: https://reddit.com/bitcoin"
+                        />
+                      </b-input-group>
                     </b-form-group>
                   </b-col>
                   <!-- Reddit end-->
@@ -450,13 +387,18 @@
               </b-col>
             </b-row>
           </b-col>
-          <b-col cols="12">
+          <b-col v-if="loading" cols="12" class="text-center">
+            <b-spinner class="mt-2" variant="primary" />
+          </b-col>
+          <b-col v-else cols="12" class="text-center">
             <b-button
+              class="mt-2"
               variant="primary"
               type="submit"
+              loading="true"
               @click.prevent="validationForm"
             >
-              Submit
+              Submit Request
             </b-button>
           </b-col>
         </b-row>
@@ -479,10 +421,12 @@ import {
   BInputGroup,
   BInputGroupPrepend,
   BCard,
-  BFormDatepicker
+  BFormDatepicker,
+  BSpinner
 } from "bootstrap-vue";
 import Ripple from "vue-ripple-directive";
-
+import FormData from "form-data";
+import API from "../../services/api";
 export default {
   components: {
     BRow,
@@ -497,7 +441,8 @@ export default {
     BFormTextarea,
     ValidationProvider,
     ValidationObserver,
-    BFormDatepicker
+    BFormDatepicker,
+    BSpinner
   },
   computed: {
     tokenNameValidation() {
@@ -512,6 +457,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       state: "",
       required,
       tokenName: "",
@@ -534,10 +480,73 @@ export default {
     validationForm() {
       this.$refs.simpleRules.validate().then((success) => {
         if (success) {
-          // eslint-disable-next-line
-          alert("form submitted!");
+          this.loading = true;
+          this.submitFormData();
         }
       });
+    },
+
+    makeToast(variant = null, message = null, title = null) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant,
+        solid: true
+      });
+    },
+
+    submitFormData() {
+      let formData = new FormData();
+      formData.append("name", this.tokenName);
+      formData.append("symbol", this.tokenSymbol);
+      formData.append("description", this.tokenDescription);
+      formData.append("telegram_link", this.telegram);
+      formData.append("logo_link", this.tokenLogoLink);
+      formData.append("website", this.website);
+      formData.append("twitter_link", this.twitter);
+      formData.append("reddit_link", this.reddit);
+      formData.append("bsc_contract_address", this.bscAddress);
+      formData.append("ethereum_contract_address", this.ethAddress);
+      formData.append("other_links", this.otherLinks);
+      formData.append("actual_price", this.tokenActualPrice);
+      formData.append("actual_market_cap", this.tokenActualMarketCap);
+      formData.append("release_date", this.releasedDate);
+
+      API.post("/coin", formData)
+        .then((response) => {
+          if (response.status == 201) {
+            //make the success toast message and rest the data fields
+            this.makeToast(
+              "success",
+              "Congratulations 🏆",
+              "Your coin has been submitted"
+            );
+          }
+
+          //reset the form
+          this.resetFormData();
+        })
+        .catch((error) => {
+          //check for validation errors
+          if (error.response.status == 422) {
+            let errorList = error.response.data.errors || [];
+            const keys = Object.keys(errorList);
+            if (keys.length > 0) {
+              keys.forEach((key) => {
+                this.makeToast("danger", errorList[key][0], "Validation Error");
+              });
+            }
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+
+    resetFormData() {
+      this.tokenName = this.tokenSymbol = this.tokenDescription = this.releasedDate = this.tokenLogoLink = null;
+      this.tokenActualPrice = this.tokenActualMarketCap = this.bscAddress = this.ethAddress = null;
+      this.otherLinks = this.website = this.telegram = this.twitter = this.reddit = null;
+      this.$refs.simpleRules.reset();
     }
   },
   directives: {
