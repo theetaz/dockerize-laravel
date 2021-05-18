@@ -6,6 +6,7 @@ import app from './app'
 import appConfig from './app-config'
 import verticalMenu from './vertical-menu'
 import crypto from './crypto'
+import loaders from './loaders'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ export default new Vuex.Store({
     app,
     appConfig,
     verticalMenu,
-    crypto
+    crypto,
+    loaders
   },
   strict: process.env.DEV,
 })

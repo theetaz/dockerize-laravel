@@ -125,19 +125,29 @@ export default {
       });
     },
 
-    CAST_VOTE({ dispatch }, coinID) {
-
+    CAST_VOTE({ dispatch, commit }, coinID) {
+      commit('loaders/SET_LOADING', true, { root: true })
       //get the ip address from store
       let clientIP = this.state.crypto.clientIP;
       if (clientIP != null) {
         //send the vote request
         API.post(`coin/${coinID}/vote`, { client_ip: clientIP }).then(() => {
+          commit('loaders/SET_LOADING', false, { root: true })
           // let coinData = response.data.payload;
           dispatch('FETCH_CRYPTO_DATA');
           dispatch('FETCH_TODAY_BEST_CRYPTO_DATA');
           dispatch('FETCH_PROMOTED_CRYPTO_DATA');
+          
           // commit('UPDATE_VOTE_COUNT', coinData);
+          
+        })
+        .finally(() => {
+          commit('loaders/SET_LOADING', false, { root: true })
         });
+        
+      }
+      else {
+        commit('loaders/SET_LOADING', false, { root: true })
       }
 
     }
