@@ -15,14 +15,6 @@
     >
       <dark-Toggler class="d-none d-lg-block" />
     </div>
-    <div>
-      <b-card no-body>
-        <b-tabs pills card>
-          <b-tab title="Tab 1" active></b-tab>
-          <b-tab title="Tab 2"></b-tab>
-        </b-tabs>
-      </b-card>
-    </div>
     <div class="pr-2">
       <b-button
         @mouseover="mouseoverLogin()"
@@ -100,9 +92,6 @@ import {
   BDropdownDivider,
   BAvatar,
   BButton,
-  BTab,
-  BTabs,
-  BCard
 } from "bootstrap-vue";
 import DarkToggler from "@core/layouts/components/app-navbar/components/DarkToggler.vue";
 
@@ -121,9 +110,6 @@ export default {
     BDropdownItem,
     BDropdownDivider,
     BAvatar,
-    BTab,
-    BTabs,
-    BCard,
     // Navbar Components
     DarkToggler,
   },
