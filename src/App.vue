@@ -40,6 +40,15 @@ export default {
       return this.$store.state.appConfig.layout.type;
     }
   },
+  mounted() {
+    window.Echo.channel("coin-data").listen("CoinDataEvent", (event) => {
+      this.$bvToast.toast(event.message, {
+        title: event.title,
+        variant: "success",
+        solid: true
+      });
+    });
+  },
   beforeCreate() {
     // Set colors in theme
     const colors = [

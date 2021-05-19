@@ -14,6 +14,19 @@ import './global-components'
 import '@/libs/portal-vue'
 import '@/libs/toastification'
 
+import Echo from 'laravel-echo'
+
+window.Pusher = require('pusher-js')
+
+window.Echo = new Echo({
+  broadcaster: 'pusher',
+  key: 'coinhuntkey',
+  wsHost: '127.0.0.1',
+  wsPort: 6001,
+  forceTLS: false,
+  disableStats: true
+})
+
 // BSV Plugin Registration
 Vue.use(ToastPlugin)
 Vue.use(ModalPlugin)
