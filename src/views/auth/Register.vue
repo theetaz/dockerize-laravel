@@ -5,14 +5,10 @@
       <b-card class="mb-0">
         <b-link class="brand-logo">
           <vuexy-logo />
-          <h2 class="brand-text text-primary ml-1">
-            Vuexy
-          </h2>
+          <h2 class="brand-text text-primary ml-1">Vuexy</h2>
         </b-link>
 
-        <b-card-title class="mb-1">
-          Adventure starts here 🚀
-        </b-card-title>
+        <b-card-title class="mb-1"> Adventure starts here 🚀 </b-card-title>
         <b-card-text class="mb-2">
           Make your cryoto hunt easy and fun!
         </b-card-text>
@@ -105,6 +101,12 @@
 
             <!-- submit button -->
             <b-button variant="primary" block type="submit">
+              <b-spinner
+                v-if="loading"
+                label="Loading..."
+                class="mr-2 mx-1"
+                style="width: 13px; height: 13px"
+              ></b-spinner>
               Sign up
             </b-button>
           </b-form>
@@ -118,9 +120,7 @@
         </b-card-text>
 
         <div class="divider my-2">
-          <div class="divider-text">
-            or
-          </div>
+          <div class="divider-text">or</div>
         </div>
 
         <!-- social buttons -->
@@ -157,7 +157,8 @@ import {
   BFormGroup,
   BInputGroup,
   BInputGroupAppend,
-  BFormCheckbox
+  BFormCheckbox,
+  BSpinner
 } from "bootstrap-vue";
 import VuexyLogo from "@core/layouts/components/Logo.vue";
 import { required, email } from "@validations";
@@ -181,7 +182,8 @@ export default {
     BFormCheckbox,
     // validations
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
+    BSpinner
   },
   mixins: [togglePasswordVisibility],
   data() {
@@ -193,13 +195,16 @@ export default {
 
       // validation rules
       required,
-      email
+      email,
     };
   },
   computed: {
+    loading() {
+      return this.$store.state.loaders.loading;
+    },
     passwordToggleIcon() {
       return this.passwordFieldType === "password" ? "EyeIcon" : "EyeOffIcon";
-    }
+    },
   },
   methods: {
     validationForm() {
@@ -214,7 +219,7 @@ export default {
       this.$bvToast.toast(message, {
         title: title,
         variant,
-        solid: true
+        solid: true,
       });
     },
 
@@ -244,8 +249,8 @@ export default {
             }
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
