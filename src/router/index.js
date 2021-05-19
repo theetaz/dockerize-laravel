@@ -53,6 +53,34 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/news-letter',
+      name: 'news-letter',
+      component: () => import('@/views/crypto/NewsLetter.vue'),
+      meta: {
+        pageTitle: 'News Letter Page',
+        breadcrumb: [
+          {
+            text: 'News Letter',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/promote',
+      name: 'promote',
+      component: () => import('@/views/crypto/Promote.vue'),
+      meta: {
+        pageTitle: 'Promote Page',
+        breadcrumb: [
+          {
+            text: 'Promote',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/second-page',
       name: 'second-page',
       component: () => import('@/views/SecondPage.vue'),
@@ -70,6 +98,14 @@ const router = new VueRouter({
       path: '/login',
       name: 'login',
       component: () => import('@/views/Login.vue'),
+      meta: {
+        layout: 'full',
+      },
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('@/views/Signup.vue'),
       meta: {
         layout: 'full',
       },
