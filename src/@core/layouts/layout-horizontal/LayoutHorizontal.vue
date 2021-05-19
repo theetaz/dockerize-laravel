@@ -62,7 +62,7 @@
 
     <!-- CONTENT -->
     <!-- CONTENT TYPE: Left -->
-    <transition :name="routerTransition" mode="out-in">
+    <!-- <transition :name="routerTransition" mode="out-in">
       <component
         :is="layoutContentRenderer"
         :key="
@@ -75,7 +75,7 @@
           <slot :name="name" v-bind="data" />
         </template>
       </component>
-    </transition>
+    </transition> -->
     <!--/ Content -->
 
     <!-- CONTENT -->
