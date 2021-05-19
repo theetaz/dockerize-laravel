@@ -1,5 +1,14 @@
 <template>
   <b-card v-if="tableData" no-body class="card-company-table">
+    <b-progress
+      v-if="loading"
+      :max="max"
+      height="3px"
+      :striped="true"
+      :animated="true"
+    >
+      <b-progress-bar :value="value" variant="primery"> </b-progress-bar>
+    </b-progress>
     <b-table
       id="table-crypto"
       hover
@@ -63,13 +72,14 @@
             :variant="isVoted(data.item.is_voted)"
             @click="castVote(data.item)"
           >
-            <div v-if="loading && (data.item.id == selectId)">
-              <b-spinner label="Loading..." class="mr-2 mx-1" style="width: 13px; height: 13px;"></b-spinner>
+            <div v-if="loading && data.item.id == selectId">
+              <b-spinner
+                label="Loading..."
+                class="mr-2 mx-1"
+                style="width: 13px; height: 13px"
+              ></b-spinner>
             </div>
-            <div v-else>
-              🚀 {{ data.item.vote_count }}
-            </div>
-            
+            <div v-else>🚀 {{ data.item.vote_count }}</div>
           </b-button>
         </div>
       </template>
@@ -85,6 +95,8 @@ import {
   BImgLazy,
   BButton,
   BSpinner,
+  BProgress,
+  BProgressBar,
 } from "bootstrap-vue";
 import numeral from "numeral";
 import dayjs from "dayjs";
@@ -99,6 +111,8 @@ export default {
     BImgLazy,
     BButton,
     BSpinner,
+    BProgress,
+    BProgressBar,
   },
   props: {
     tableData: {
@@ -123,8 +137,17 @@ export default {
         { key: "actual_price", label: "PRICE" },
         { key: "vote_count", label: "VOTES" },
       ],
-      selectId: null
+      selectId: null,
+      value: 0,
+      max: 100,
     };
+  },
+  watch: {
+    loading(e) {
+      if (e) {
+        this.startTimer();
+      }
+    },
   },
   created() {
     this.dayjs.extend(relativeTime);
@@ -135,6 +158,13 @@ export default {
     },
   },
   methods: {
+    startTimer() {
+      let vm = this;
+      let timer = setInterval(function () {
+        vm.value += 20;
+        if (vm.value >= 100) clearInterval(timer);
+      }, 100);
+    },
     castVote(coin) {
       this.selectId = coin.id;
       this.$store.dispatch("CAST_VOTE", coin.id);

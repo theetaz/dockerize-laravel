@@ -15,13 +15,13 @@
     >
       <dark-Toggler class="d-none d-lg-block" />
     </div>
-    <b-tabs fill class="pr-5">
-      <b-tab title="ADD COIN" @click="linked('add-coin')" class="text-decoration-none"></b-tab>
-      <b-tab title="PROMOTE" @click="linked('promote')"></b-tab>
-      <b-tab title="NEWSLETTER" @click="linked('news-letter')"></b-tab>
-    </b-tabs>
-
-    <div class="pr-2">
+    <div  v-if="!is_mobilesize">
+      <span class="pointer px-1"  @click="linked('add-coin')">ADD COIN</span>
+      <span class="pointer px-1"  @click="linked('promote')">PROMOTE</span>
+      <span class="pointer px-1"  @click="linked('news-letter')">NEWSLETTER</span>
+    </div>
+    
+    <div class="pr-2" v-if="!is_mobilesize && !check_is_login">
       <b-button
         @mouseover="mouseoverLogin()"
         @mouseleave="mouseoverLogin()"
@@ -30,16 +30,16 @@
         >Login</b-button
       >
     </div>
-    <div class="pr-5">
+    <div class="pr-5" v-if="!is_mobilesize && !check_is_login">
       <b-button
         @mouseover="mouseover()"
         @mouseleave="mouseover()"
         :variant="mouseover_check ? 'success' : 'outline-success'"
-        @click="linked('signup')"
+        @click="linked('register')"
         >Signup</b-button
       >
     </div>
-    <b-navbar-nav class="nav align-items-center ml-auto" v-show="is_login">
+    <b-navbar-nav class="nav align-items-center ml-auto" v-show="check_is_login">
       <b-nav-item-dropdown
         right
         toggle-class="d-flex align-items-center dropdown-user-link"
@@ -99,9 +99,7 @@ import {
   BDropdownItem,
   BDropdownDivider,
   BAvatar,
-  BButton,
-  BTab,
-  BTabs,
+  BButton
 } from "bootstrap-vue";
 import DarkToggler from "@core/layouts/components/app-navbar/components/DarkToggler.vue";
 
@@ -111,6 +109,8 @@ export default {
       mouseover_check: false,
       mouseover_check_login: false,
       is_login: false,
+      is_mobilesize: false,
+      check_is_login: false
     };
   },
   components: {
@@ -121,8 +121,6 @@ export default {
     BDropdownItem,
     BDropdownDivider,
     BAvatar,
-    BTab,
-    BTabs,
     // Navbar Components
     DarkToggler,
   },
@@ -142,14 +140,27 @@ export default {
     mouseoverLogin() {
       this.mouseover_check_login = !this.mouseover_check_login;
     },
+    checkWIndowSize() {
+      let window_size = window.innerWidth;
+      if (window_size <=1024) {
+        this.is_mobilesize = true
+      }
+    },
+    checkIsLogin() {
+      let check_token = localStorage.getItem('token');
+      if (check_token != null) {
+        this.check_is_login = true
+      }
+    }
   },
+  mounted() {
+    this.checkWIndowSize();
+    this.checkIsLogin();
+  }
 };
 </script>
 <style scoped>
-[dir="ltr"] .nav-tabs .nav-link:after {
-  /* left: 0; */
-  background: linear-gradient(30deg, #df6a0b, rgba(240, 238, 103, 0.5));
-  /* outline: none; */
-  /* display: block; */
-}
+  .pointer {
+    cursor: pointer;
+  }
 </style>

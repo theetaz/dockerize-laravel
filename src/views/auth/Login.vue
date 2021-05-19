@@ -6,21 +6,17 @@
         <b-link class="brand-logo">
           <vuexy-logo />
 
-          <h2 class="brand-text text-primary ml-1">
-            Coin Hunt
-          </h2>
+          <h2 class="brand-text text-primary ml-1">Coin Hunt</h2>
         </b-link>
 
-        <b-card-title class="mb-1">
-          Welcome to Coin Hunt! 👋
-        </b-card-title>
+        <b-card-title class="mb-1"> Welcome to Coin Hunt! 👋 </b-card-title>
         <b-card-text class="mb-2">
           Please sign-in to your account and start the adventure
         </b-card-text>
 
         <!-- form -->
-        <validation-observer ref="loginForm" #default="{invalid}">
-          <b-form class="auth-login-form mt-2" @submit.prevent>
+        <validation-observer ref="loginForm" #default="{ invalid }">
+          <b-form class="auth-login-form mt-2" @submit.prevent="validationForm">
             <!-- email -->
             <b-form-group label-for="email" label="Email">
               <validation-provider
@@ -92,6 +88,12 @@
 
             <!-- submit button -->
             <b-button variant="primary" type="submit" block :disabled="invalid">
+              <b-spinner
+                v-if="loading"
+                label="Loading..."
+                class="mr-2 mx-1"
+                style="width: 13px; height: 13px"
+              ></b-spinner>
               Sign in
             </b-button>
           </b-form>
@@ -105,9 +107,7 @@
         </b-card-text>
 
         <div class="divider my-2">
-          <div class="divider-text">
-            or
-          </div>
+          <div class="divider-text">or</div>
         </div>
 
         <!-- social button -->
@@ -144,11 +144,13 @@ import {
   BCardText,
   BInputGroup,
   BInputGroupAppend,
-  BFormCheckbox
+  BFormCheckbox,
+  BSpinner
 } from "bootstrap-vue";
 import VuexyLogo from "@core/layouts/components/Logo.vue";
 import { required, email } from "@validations";
 import { togglePasswordVisibility } from "@core/mixins/ui/forms";
+import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
 export default {
   components: {
@@ -166,7 +168,8 @@ export default {
     BInputGroupAppend,
     BFormCheckbox,
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
+    BSpinner
   },
   mixins: [togglePasswordVisibility],
   data() {
@@ -176,14 +179,60 @@ export default {
       status: "",
       // validation rules
       required,
-      email
+      email,
     };
   },
   computed: {
+    loading() {
+      return this.$store.state.loaders.loading;
+    },
     passwordToggleIcon() {
       return this.passwordFieldType === "password" ? "EyeIcon" : "EyeOffIcon";
-    }
-  }
+    },
+  },
+  methods: {
+    validationForm() {
+      console.log("ssss");
+      this.$refs.loginForm.validate().then((success) => {
+        if (success) {
+          this.login();
+          this.$toast({
+            component: ToastificationContent,
+            props: {
+              title: "Succesfully login",
+              icon: "EditIcon",
+              variant: "success",
+            },
+          });
+        }
+      });
+    },
+    login() {
+      //creat the form request
+      let formData = new FormData();
+      formData.append("email", this.userEmail);
+      formData.append("password", this.password);
+
+      this.$store
+        .dispatch("USER_LOGIN", formData)
+        .then((response) => {
+          if (response.status == 200) {
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status == 422) {
+            let errorList = error.response.data.errors || [];
+            const keys = Object.keys(errorList);
+            if (keys.length > 0) {
+              keys.forEach((key) => {
+                this.makeToast("danger", errorList[key][0], "Validation Error");
+              });
+            }
+          }
+        });
+    },
+  },
 };
 </script>
 

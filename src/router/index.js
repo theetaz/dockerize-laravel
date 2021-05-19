@@ -15,6 +15,7 @@ const router = new VueRouter({
       name: 'home',
       component: () => import('@/views/Home.vue'),
       meta: {
+        requiresAuth: false,
         pageTitle: 'Home',
         breadcrumb: [
           {
@@ -29,6 +30,7 @@ const router = new VueRouter({
       name: 'details',
       component: () => import('@/views/crypto/CryptoDetails.vue'),
       meta: {
+        requiresAuth: true,
         pageTitle: 'Crypto Details Page',
         breadcrumb: [
           {
@@ -43,6 +45,7 @@ const router = new VueRouter({
       name: 'add-coin',
       component: () => import('@/views/crypto/AddCoin.vue'),
       meta: {
+        requiresAuth: true,
         pageTitle: 'Add coin page',
         breadcrumb: [
           {
@@ -57,6 +60,7 @@ const router = new VueRouter({
       name: 'news-letter',
       component: () => import('@/views/crypto/NewsLetter.vue'),
       meta: {
+        requiresAuth: true,
         pageTitle: 'News Letter Page',
         breadcrumb: [
           {
@@ -71,6 +75,7 @@ const router = new VueRouter({
       name: 'promote',
       component: () => import('@/views/crypto/Promote.vue'),
       meta: {
+        requiresAuth: true,
         pageTitle: 'Promote Page',
         breadcrumb: [
           {
@@ -85,6 +90,7 @@ const router = new VueRouter({
       name: 'second-page',
       component: () => import('@/views/SecondPage.vue'),
       meta: {
+        requiresAuth: true,
         pageTitle: 'Second Page',
         breadcrumb: [
           {
@@ -99,6 +105,7 @@ const router = new VueRouter({
       name: 'login',
       component: () => import('@/views/auth/Login.vue'),
       meta: {
+        requiresAuth: false,
         layout: 'full',
       },
     },
@@ -107,6 +114,7 @@ const router = new VueRouter({
       name: 'register',
       component: () => import('@/views/auth/Register.vue'),
       meta: {
+        requiresAuth: false,
         layout: 'full',
       },
     },
@@ -115,6 +123,7 @@ const router = new VueRouter({
       name: 'signup',
       component: () => import('@/views/Signup.vue'),
       meta: {
+        requiresAuth: false,
         layout: 'full',
       },
     },
@@ -123,6 +132,7 @@ const router = new VueRouter({
       name: 'error-404',
       component: () => import('@/views/error/Error404.vue'),
       meta: {
+        requiresAuth: false,
         layout: 'full',
       },
     },
@@ -142,5 +152,28 @@ router.afterEach(() => {
     appLoading.style.display = 'none'
   }
 })
+
+function is_authenticated() {
+  const token = localStorage.getItem("token");
+  if (token == "null" || token == null || token == "") {
+    return false;
+  } else {
+    return true;
+  }
+}
+/**
+ * Router Authentication Guard
+ */
+router.beforeEach((to, from, next) => {
+  const withoutAuth = ["login", "signup", "register", "home"];
+  if (withoutAuth.includes(to.name)) {
+    next();
+  }
+  else if (!to.meta.requiresAuth) {
+    is_authenticated() ? next(to.name) : next();
+  } else {
+    is_authenticated() ? next() : next({ name: "login" });
+  }
+});
 
 export default router

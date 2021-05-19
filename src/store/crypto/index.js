@@ -40,6 +40,7 @@ export default {
   actions: {
     FETCH_CRYPTO_DATA({ commit, state }) {
       return new Promise((resolve, reject) => {
+        commit('loaders/SET_LOADING', true, { root: true })
         API.get("coins", {
           params: {
             per_page: 20,
@@ -52,8 +53,10 @@ export default {
           if (response) {
             let payload = response.data.payload.data;
             commit('SET_CRYPTO_DATA', payload);
+            commit('loaders/SET_LOADING', false, { root: true })
             resolve();
           } else {
+            commit('loaders/SET_LOADING', false, { root: true })
             reject();
           }
         });
@@ -165,6 +168,35 @@ export default {
           console.log("register", response);
           console.log("userData", userData);
           let token = response.data.payload.token;
+          localStorage.setItem('token', token);
+
+          commit('SET_TOKEN', token);
+          resolve(response);
+
+        }).catch((error) => {
+
+          reject(error);
+
+        }).finally(() => {
+
+          //set loader status to false
+          commit('loaders/SET_LOADING', false, { root: true });
+        });
+      })
+    },
+    USER_LOGIN({ commit }, userData) {
+      return new Promise((resolve, reject) => {
+
+        //set loader status to true
+        commit('loaders/SET_LOADING', true, { root: true });
+
+        API.post('/auth/login', userData).then((response) => {
+
+          console.log("register", response);
+          console.log("userData", userData);
+          let token = response.data.payload.token;
+          localStorage.setItem('token', token);
+          
           commit('SET_TOKEN', token);
           resolve(response);
 
