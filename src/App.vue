@@ -12,6 +12,7 @@ import { $themeColors, $themeBreakpoints, $themeConfig } from "@themeConfig";
 import { provideToast } from "vue-toastification/composition";
 import { watch } from "@vue/composition-api";
 import useAppConfig from "@core/app-config/useAppConfig";
+import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
 import { useWindowSize, useCssVar } from "@vueuse/core";
 
@@ -27,7 +28,8 @@ export default {
     // Layouts
     LayoutHorizontal,
     LayoutVertical,
-    LayoutFull
+    LayoutFull,
+    ToastificationContent
   },
   // ! We can move this computed: layout & contentLayoutType once we get to use Vue 3
   // Currently, router.currentRoute is not reactive and doesn't trigger any change
@@ -41,13 +43,34 @@ export default {
     }
   },
   mounted() {
-    window.Echo.channel("coin-data").listen("CoinDataEvent", (event) => {
-      this.$bvToast.toast(event.message, {
-        title: event.title,
-        variant: "success",
-        solid: true
+    window.Echo.channel("coin-data")
+      .listen("CoinDataEvent", (event) => {
+        this.$bvToast.toast(event.message, {
+          title: event.title,
+          variant: "success",
+          solid: true
+        });
+      })
+      .listen("CoinVoteCastingEvent", (event) => {
+        if (event.data) {
+          this.$store.dispatch("UPDATE_REALTIME_VOTE", event.data);
+          this.$toast(
+            {
+              component: ToastificationContent,
+              props: {
+                title: event.title || "Notification",
+                icon: "InfoIcon",
+                text: event.message || "New Vote has been casted",
+                variant: "warning"
+              }
+            },
+            {
+              position: "bottom-left"
+            }
+          );
+        }
+        console.log("CoinVoteCastingEvent", event);
       });
-    });
   },
   beforeCreate() {
     // Set colors in theme

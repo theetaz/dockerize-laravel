@@ -35,7 +35,7 @@ export default {
     },
     SET_TOKEN(state, token) {
       state.token = token;
-    }
+    },
   },
   actions: {
     FETCH_CRYPTO_DATA({ commit, state }) {
@@ -200,7 +200,7 @@ export default {
           console.log("userData", userData);
           let token = response.data.payload.token;
           localStorage.setItem('token', token);
-          
+
           commit('SET_TOKEN', token);
           resolve(response);
 
@@ -214,9 +214,9 @@ export default {
           commit('loaders/SET_LOADING', false, { root: true });
         });
       })
+    },
+    UPDATE_REALTIME_VOTE({ commit }, coinData) {
+      commit('UPDATE_VOTE_COUNT', coinData);
     }
-  },
-
-
-
+  }
 }
