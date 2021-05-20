@@ -20,9 +20,10 @@ window.Pusher = require('pusher-js')
 
 window.Echo = new Echo({
   broadcaster: 'pusher',
-  key: 'coinhuntkey',
-  wsHost: '127.0.0.1',
-  wsPort: 6001,
+  key: process.env.VUE_APP_WEBSOCKET_KEY,
+  wsHost: process.env.VUE_APP_WEBSOCKET_HOST,
+  wsPort: process.env.VUE_APP_WEBSOCKET_PORT,
+  wssPort: process.env.VUE_APP_WEBSOCKET_PORT,
   forceTLS: false,
   disableStats: true
 })
