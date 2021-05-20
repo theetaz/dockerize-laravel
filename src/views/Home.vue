@@ -1,5 +1,12 @@
 <template>
   <div>
+    <b-row v-if="api_loading" class="match-height">
+      <b-col lg="12">
+        <div class="d-flex justify-content-center mb-3 col-12 text-center">
+          <b-spinner variant="primary" label="Loading..."></b-spinner>
+        </div>
+      </b-col>
+    </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
         <h2>💎 Promoted coins</h2>
@@ -60,11 +67,11 @@ export default {
     BSpinner,
     CryptoTable,
     BTabs,
-    BTab
+    BTab,
   },
   data() {
     return {
-      loading: false
+      loading: false,
     };
   },
   computed: {
@@ -76,7 +83,10 @@ export default {
     },
     cryptoDataTodayBest() {
       return this.$store.state.crypto.cryptoDataTodayBest;
-    }
+    },
+    api_loading() {
+      return this.$store.state.loaders.apiloading;
+    },
   },
   methods: {},
   created() {
@@ -87,7 +97,7 @@ export default {
         this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA");
       });
     }
-  }
+  },
 };
 </script>
 
