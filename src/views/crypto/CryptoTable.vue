@@ -7,7 +7,7 @@
       :striped="true"
       :animated="true"
     >
-      <b-progress-bar :value="value" variant="primery"> </b-progress-bar>
+      <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
     <b-table
       id="table-crypto"
