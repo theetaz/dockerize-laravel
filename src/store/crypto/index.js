@@ -106,13 +106,17 @@ export default {
     },
     FETCH_CLIENT_IP({ commit }) {
       return new Promise((resolve, reject) => {
+        commit('loaders/SET_API_LOADING', true, { root: true })
         API.get("https://api.ipify.org", { params: { format: "json" } }).then((response) => {
           if (response) {
             let clientIP = response.data.ip
             commit('SET_CLIENT_IP', clientIP);
             resolve(clientIP);
+            commit('loaders/SET_API_LOADING', false, { root: true })
           } else {
-            reject();
+            reject(
+              commit('loaders/SET_API_LOADING', false, { root: true })
+            );
           }
         });
       });

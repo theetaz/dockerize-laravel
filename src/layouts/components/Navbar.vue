@@ -16,9 +16,9 @@
       <dark-Toggler class="d-none d-lg-block" />
     </div>
     <div  v-if="!is_mobilesize">
-      <span class="pointer px-1"  @click="linked('add-coin')">ADD COIN</span>
-      <span class="pointer px-1"  @click="linked('promote')">PROMOTE</span>
-      <span class="pointer px-1"  @click="linked('news-letter')">NEWSLETTER</span>
+      <span class="pointer px-1 span_class"  @click="linked('add-coin')">ADD COIN</span>
+      <span class="pointer px-1 span_class"  @click="linked('promote')">PROMOTE</span>
+      <span class="pointer px-1 span_class"  @click="linked('news-letter')">NEWSLETTER</span>
     </div>
     
     <div class="pr-2" v-if="!is_mobilesize && !check_is_login">
@@ -82,7 +82,7 @@
 
         <b-dropdown-divider />
 
-        <b-dropdown-item link-class="d-flex align-items-center">
+        <b-dropdown-item link-class="d-flex align-items-center" @click="logout">
           <feather-icon size="16" icon="LogOutIcon" class="mr-50" />
           <span>Logout</span>
         </b-dropdown-item>
@@ -131,6 +131,10 @@ export default {
     },
   },
   methods: {
+    logout() {
+      localStorage.removeItem('token');
+      location.reload();
+    },
     linked: function (e) {
       this.$router.push({ path: "/" + e });
     },
@@ -163,4 +167,11 @@ export default {
   .pointer {
     cursor: pointer;
   }
+  .span_class {
+    font-family: "Montserrat", Helvetica, Arial, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.45;
+    color: #695cea;
+}
 </style>
