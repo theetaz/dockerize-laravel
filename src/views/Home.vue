@@ -7,6 +7,7 @@
         </div>
       </b-col>
     </b-row>
+    
     <b-row class="match-height mb-1">
       <b-col lg="12">
         <h2>💎 Promoted coins</h2>
@@ -46,6 +47,14 @@
       <!-- and will be un-mounted when hidden -->
       <b-tab title="🥇 Today's best" lazy>
         <small>Today best perofoming coins</small>
+        <b-row class="match-height mt-1">
+          <b-col lg="12">
+            <crypto-table :table-data="cryptoDataTodayBest" />
+          </b-col>
+        </b-row>
+      </b-tab>
+      <b-tab title="🥇 Audited coins" lazy>
+        <small>Audited coins</small>
         <b-row class="match-height mt-1">
           <b-col lg="12">
             <crypto-table :table-data="cryptoDataTodayBest" />
