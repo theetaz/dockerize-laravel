@@ -145,7 +145,7 @@ import {
   BInputGroup,
   BInputGroupAppend,
   BFormCheckbox,
-  BSpinner
+  BSpinner,
 } from "bootstrap-vue";
 import VuexyLogo from "@core/layouts/components/Logo.vue";
 import { required, email } from "@validations";
@@ -169,7 +169,7 @@ export default {
     BFormCheckbox,
     ValidationProvider,
     ValidationObserver,
-    BSpinner
+    BSpinner,
   },
   mixins: [togglePasswordVisibility],
   data() {
@@ -192,18 +192,9 @@ export default {
   },
   methods: {
     validationForm() {
-      console.log("ssss");
       this.$refs.loginForm.validate().then((success) => {
         if (success) {
           this.login();
-          this.$toast({
-            component: ToastificationContent,
-            props: {
-              title: "Succesfully login",
-              icon: "EditIcon",
-              variant: "success",
-            },
-          });
         }
       });
     },
@@ -217,6 +208,14 @@ export default {
         .dispatch("USER_LOGIN", formData)
         .then((response) => {
           if (response.status == 200) {
+            this.$toast({
+              component: ToastificationContent,
+              props: {
+                title: "Succesfully login",
+                icon: "EditIcon",
+                variant: "success",
+              },
+            });
             this.$router.push("/");
           }
         })

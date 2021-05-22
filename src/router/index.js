@@ -101,6 +101,36 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/terms-n-conditions',
+      name: 'terms-n-conditions',
+      component: () => import('@/views/TermsAndConditions.vue'),
+      meta: {
+        requiresAuth: false,
+        pageTitle: 'Terms And Conditions Page',
+        breadcrumb: [
+          {
+            text: 'Terms And Conditions',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: () => import('@/views/PrivacyPolicy.vue'),
+      meta: {
+        requiresAuth: false,
+        pageTitle: 'Privacy Policy Page',
+        breadcrumb: [
+          {
+            text: 'Privacy Policy',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('@/views/auth/Login.vue'),
@@ -165,7 +195,7 @@ function is_authenticated() {
  * Router Authentication Guard
  */
 router.beforeEach((to, from, next) => {
-  const withoutAuth = ["login", "signup", "register", "home"];
+  const withoutAuth = ["login", "signup", "register", "home", "terms-n-conditions", "privacy-policy"];
   if (withoutAuth.includes(to.name)) {
     next();
   }
