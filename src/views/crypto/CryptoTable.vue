@@ -15,18 +15,18 @@
       :items="tableData"
       responsive
       :fields="fields"
+      :sort-by.sync="sortBy"
+      :sort-desc.sync="sortDesc"
       class="mb-0"
+      :tbody-transition-props="transProps"
+      primary-key="id"
       @row-clicked="viewDetails"
     >
       <!-- company -->
       <template #cell(name)="data">
         <div class="d-flex align-items-center">
           <b-avatar rounded size="45" variant="light-company">
-            <b-img-lazy
-              center
-              fluid
-              :src="data.item.logo_link"
-              alt="avatar img"
+            <b-img-lazy center fluid :src="data.item.logo_link" alt="avatar img"
           /></b-avatar>
           <div>
             <div class="font-weight-bolder pl-1">{{ data.item.name }}</div>
@@ -96,7 +96,7 @@ import {
   BButton,
   BSpinner,
   BProgress,
-  BProgressBar,
+  BProgressBar
 } from "bootstrap-vue";
 import numeral from "numeral";
 import dayjs from "dayjs";
@@ -112,34 +112,36 @@ export default {
     BButton,
     BSpinner,
     BProgress,
-    BProgressBar,
+    BProgressBar
   },
   props: {
     tableData: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
 
   data() {
     return {
       transProps: {
         // Transition name
-        name: "flip-list",
+        name: "flip-list"
       },
       numeral,
       dayjs,
       relativeTime,
+      sortBy: "vote_count",
+      sortDesc: true,
       fields: [
         { key: "name", label: "NAME" },
         { key: "actual_market_cap", label: "MARKET CAP" },
         { key: "release_date", label: "RELEASED" },
         { key: "actual_price", label: "PRICE" },
-        { key: "vote_count", label: "VOTES" },
+        { key: "vote_count", label: "VOTES" }
       ],
       selectId: null,
       value: 0,
-      max: 100,
+      max: 100
     };
   },
   watch: {
@@ -147,7 +149,7 @@ export default {
       if (e) {
         this.startTimer();
       }
-    },
+    }
   },
   created() {
     this.dayjs.extend(relativeTime);
@@ -155,12 +157,12 @@ export default {
   computed: {
     loading() {
       return this.$store.state.loaders.loading;
-    },
+    }
   },
   methods: {
     startTimer() {
       let vm = this;
-      let timer = setInterval(function () {
+      let timer = setInterval(function() {
         vm.value += 20;
         if (vm.value >= 100) clearInterval(timer);
       }, 100);
@@ -176,10 +178,10 @@ export default {
       this.$router.push({
         path: `/details/${coin.bsc_contract_address}`,
         params: {
-          id: coin.id,
-        },
+          id: coin.id
+        }
       });
-    },
+    }
   },
   filters: {
     diffForHumans: (date) => {
@@ -188,8 +190,8 @@ export default {
       }
 
       return dayjs(date).fromNow();
-    },
-  },
+    }
+  }
 };
 </script>
 
