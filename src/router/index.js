@@ -30,7 +30,7 @@ const router = new VueRouter({
       name: 'details',
       component: () => import('@/views/crypto/CryptoDetails.vue'),
       meta: {
-        requiresAuth: true,
+        requiresAuth: false,
         pageTitle: 'Crypto Details Page',
         breadcrumb: [
           {
@@ -195,11 +195,13 @@ function is_authenticated() {
  * Router Authentication Guard
  */
 router.beforeEach((to, from, next) => {
-  const withoutAuth = ["login", "signup", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter", "promote", "home"];
+  const withoutAuth = ["login", "signup", "details", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter", "promote", "home"];
   if (withoutAuth.includes(to.name)) {
     next();
   }
-  else {
+  else if (!to.meta.requiresAuth) {
+    is_authenticated() ? next(to.name) : next();
+  } else {
     is_authenticated() ? next() : next({ name: "login" });
   }
 });
