@@ -23,19 +23,15 @@ export default {
   },
   data() {
     return {
-      //coinData: null
+      coinData: {}
     };
   },
   created() {
-    let coinContract = this.$route.params.hash;
-    this.$store.dispatch("FETCH_COIN_DATA", coinContract).then((coinData) => {
-      console.log("coin data", coinData);
+    let id = this.$route.params.id;
+    this.$store.dispatch("FETCH_COIN_DATA", id).then((coinData) => {
+      console.log("FETCH_COIN_DATA", coinData);
+      this.coinData = coinData;
     });
-  },
-  computed: {
-    coinData() {
-      return this.$store.state.crypto.coin;
-    }
   }
 };
 </script>

@@ -14,32 +14,46 @@
       class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex"
     >
       <dark-Toggler class="d-none d-lg-block" />
+      <div v-if="!is_mobilesize" class="ml-2">
+        <span
+          class="pointer px-1 span_class font-weight-bold"
+          @click="linked('add-coin')"
+          ><small class="font-weight-bold">ADD COIN</small></span
+        >
+        <span class="pointer px-1 span_class" @click="linked('promote')"
+          ><small class="font-weight-bold">PROMOTE</small></span
+        >
+        <span class="pointer px-1 span_class" @click="linked('news-letter')"
+          ><small class="font-weight-bold">NEWSLETTER</small></span
+        >
+      </div>
     </div>
-    <div  v-if="!is_mobilesize">
-      <span class="pointer px-1 span_class"  @click="linked('add-coin')">ADD COIN</span>
-      <span class="pointer px-1 span_class"  @click="linked('promote')">PROMOTE</span>
-      <span class="pointer px-1 span_class"  @click="linked('news-letter')">NEWSLETTER</span>
-    </div>
-    
+
     <div class="pr-2" v-if="!is_mobilesize && !check_is_login">
       <b-button
+        size="sm"
+        v-ripple.400="'rgba(255, 255, 255, 0.15)'"
         @mouseover="mouseoverLogin()"
         @mouseleave="mouseoverLogin()"
-        :variant="mouseover_check_login ? 'info' : 'success'"
+        variant="success"
         @click="linked('login')"
-        >Login</b-button
+        >LOGIN</b-button
       >
     </div>
     <div class="pr-5" v-if="!is_mobilesize && !check_is_login">
       <b-button
+        size="sm"
         @mouseover="mouseover()"
         @mouseleave="mouseover()"
         :variant="mouseover_check ? 'success' : 'outline-success'"
         @click="linked('register')"
-        >Signup</b-button
+        >SIGNUP</b-button
       >
     </div>
-    <b-navbar-nav class="nav align-items-center ml-auto" v-show="check_is_login">
+    <b-navbar-nav
+      class="nav align-items-center ml-auto"
+      v-show="check_is_login"
+    >
       <b-nav-item-dropdown
         right
         toggle-class="d-flex align-items-center dropdown-user-link"
@@ -47,15 +61,14 @@
       >
         <template #button-content>
           <div class="d-sm-flex d-none user-nav">
-            <p class="user-name font-weight-bolder mb-0">John Doe</p>
-            <span class="user-status">Admin</span>
+            <p class="user-name font-weight-bolder mb-0">
+              {{ profileData.name }}
+            </p>
           </div>
           <b-avatar
             size="40"
             variant="light-primary"
-            badge
-            :src="require('@/assets/images/avatars/13-small.png')"
-            class="badge-minimal"
+            :text="getNameText"
             badge-variant="success"
           />
         </template>
@@ -63,21 +76,6 @@
         <b-dropdown-item link-class="d-flex align-items-center">
           <feather-icon size="16" icon="UserIcon" class="mr-50" />
           <span>Profile</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon size="16" icon="MailIcon" class="mr-50" />
-          <span>Inbox</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon size="16" icon="CheckSquareIcon" class="mr-50" />
-          <span>Task</span>
-        </b-dropdown-item>
-
-        <b-dropdown-item link-class="d-flex align-items-center">
-          <feather-icon size="16" icon="MessageSquareIcon" class="mr-50" />
-          <span>Chat</span>
         </b-dropdown-item>
 
         <b-dropdown-divider />
@@ -102,6 +100,7 @@ import {
   BButton
 } from "bootstrap-vue";
 import DarkToggler from "@core/layouts/components/app-navbar/components/DarkToggler.vue";
+import Ripple from "vue-ripple-directive";
 
 export default {
   data() {
@@ -122,20 +121,38 @@ export default {
     BDropdownDivider,
     BAvatar,
     // Navbar Components
-    DarkToggler,
+    DarkToggler
+  },
+  directives: {
+    Ripple
   },
   props: {
     toggleVerticalMenuActive: {
       type: Function,
-      default: () => {},
+      default: () => {}
+    }
+  },
+  computed: {
+    profileData() {
+      return JSON.parse(localStorage.getItem("profile"));
     },
+    getNameText() {
+      let userData = JSON.parse(localStorage.getItem("profile"));
+      let name = userData.name;
+      let slpitName = name.split(" ");
+      let text = "";
+      slpitName.forEach((name) => {
+        text = text + name.charAt(0);
+      });
+      return text;
+    }
   },
   methods: {
     logout() {
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
       location.reload();
     },
-    linked: function (e) {
+    linked: function(e) {
       this.$router.push({ path: "/" + e });
     },
     mouseover() {
@@ -146,14 +163,14 @@ export default {
     },
     checkWIndowSize() {
       let window_size = window.innerWidth;
-      if (window_size <=1024) {
-        this.is_mobilesize = true
+      if (window_size <= 1024) {
+        this.is_mobilesize = true;
       }
     },
     checkIsLogin() {
-      let check_token = localStorage.getItem('token');
+      let check_token = localStorage.getItem("token");
       if (check_token != null) {
-        this.check_is_login = true
+        this.check_is_login = true;
       }
     }
   },
@@ -164,14 +181,14 @@ export default {
 };
 </script>
 <style scoped>
-  .pointer {
-    cursor: pointer;
-  }
-  .span_class {
-    font-family: "Montserrat", Helvetica, Arial, serif;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.45;
-    color: #695cea;
+.pointer {
+  cursor: pointer;
+}
+.span_class {
+  font-family: "Montserrat", Helvetica, Arial, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #695cea;
 }
 </style>

@@ -3,9 +3,13 @@
     <div class="auth-inner py-2">
       <!-- Register v1 -->
       <b-card class="mb-0">
-        <b-link class="brand-logo">
-          <vuexy-logo />
-          <h2 class="brand-text text-primary ml-1">Vuexy</h2>
+        <b-link to="/" class="brand-logo">
+          <b-img
+            src="@/assets/images/logo/rugfreecoins.png"
+            height="50"
+            alt="RugFreeCoins"
+          ></b-img>
+          <h2 class="brand-text text-primary ml-1">RFC</h2>
         </b-link>
 
         <b-card-title class="mb-1"> Adventure starts here 🚀 </b-card-title>
@@ -147,6 +151,7 @@
 <script>
 import { ValidationProvider, ValidationObserver } from "vee-validate";
 import {
+  BImg,
   BCard,
   BLink,
   BCardTitle,
@@ -160,14 +165,13 @@ import {
   BFormCheckbox,
   BSpinner
 } from "bootstrap-vue";
-import VuexyLogo from "@core/layouts/components/Logo.vue";
 import { required, email } from "@validations";
 import { togglePasswordVisibility } from "@core/mixins/ui/forms";
 import FormData from "form-data";
 
 export default {
   components: {
-    VuexyLogo,
+    BImg,
     // BSV
     BCard,
     BLink,
@@ -195,7 +199,7 @@ export default {
 
       // validation rules
       required,
-      email,
+      email
     };
   },
   computed: {
@@ -204,7 +208,7 @@ export default {
     },
     passwordToggleIcon() {
       return this.passwordFieldType === "password" ? "EyeIcon" : "EyeOffIcon";
-    },
+    }
   },
   methods: {
     validationForm() {
@@ -219,7 +223,7 @@ export default {
       this.$bvToast.toast(message, {
         title: title,
         variant,
-        solid: true,
+        solid: true
       });
     },
 
@@ -235,7 +239,18 @@ export default {
         .dispatch("REGISTER_USER", formData)
         .then((response) => {
           if (response.status == 200) {
-            this.$router.push("/");
+            this.$store
+              .dispatch("FETCH_PROFILE_DATA", response.data.payload.token)
+              .then(() => {
+                this.$router.push("/");
+              })
+              .catch((error) => {
+                this.makeToast(
+                  "danger",
+                  error.response.data.error || "Something went wrong",
+                  "Authentication Error 😥"
+                );
+              });
           }
         })
         .catch((error) => {
@@ -249,8 +264,8 @@ export default {
             }
           }
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

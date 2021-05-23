@@ -3,13 +3,17 @@
     <div class="auth-inner py-2">
       <!-- Login v1 -->
       <b-card class="mb-0">
-        <b-link class="brand-logo">
-          <vuexy-logo />
+        <b-link to="/" class="brand-logo">
+          <b-img
+            src="@/assets/images/logo/rugfreecoins.png"
+            height="50"
+            alt="RugFreeCoins"
+          ></b-img>
 
-          <h2 class="brand-text text-primary ml-1">Coin Hunt</h2>
+          <h2 class="brand-text text-primary ml-1">RFC</h2>
         </b-link>
 
-        <b-card-title class="mb-1"> Welcome to Coin Hunt! 👋 </b-card-title>
+        <b-card-title class="mb-1"> Welcome to Rug Free Coins 👋 </b-card-title>
         <b-card-text class="mb-2">
           Please sign-in to your account and start the adventure
         </b-card-text>
@@ -135,6 +139,7 @@
 import { ValidationProvider, ValidationObserver } from "vee-validate";
 import {
   BButton,
+  BImg,
   BForm,
   BFormInput,
   BFormGroup,
@@ -145,9 +150,8 @@ import {
   BInputGroup,
   BInputGroupAppend,
   BFormCheckbox,
-  BSpinner,
+  BSpinner
 } from "bootstrap-vue";
-import VuexyLogo from "@core/layouts/components/Logo.vue";
 import { required, email } from "@validations";
 import { togglePasswordVisibility } from "@core/mixins/ui/forms";
 import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
@@ -162,14 +166,14 @@ export default {
     BCard,
     BCardTitle,
     BLink,
-    VuexyLogo,
+    BImg,
     BCardText,
     BInputGroup,
     BInputGroupAppend,
     BFormCheckbox,
     ValidationProvider,
     ValidationObserver,
-    BSpinner,
+    BSpinner
   },
   mixins: [togglePasswordVisibility],
   data() {
@@ -179,7 +183,7 @@ export default {
       status: "",
       // validation rules
       required,
-      email,
+      email
     };
   },
   computed: {
@@ -188,7 +192,7 @@ export default {
     },
     passwordToggleIcon() {
       return this.passwordFieldType === "password" ? "EyeIcon" : "EyeOffIcon";
-    },
+    }
   },
   methods: {
     validationForm() {
@@ -196,6 +200,13 @@ export default {
         if (success) {
           this.login();
         }
+      });
+    },
+    makeToast(variant = null, message = null, title = null) {
+      this.$bvToast.toast(message, {
+        title: title,
+        variant,
+        solid: true
       });
     },
     login() {
@@ -213,10 +224,23 @@ export default {
               props: {
                 title: "Succesfully login",
                 icon: "EditIcon",
-                variant: "success",
-              },
+                variant: "success"
+              }
             });
-            this.$router.push("/");
+
+            //fetch the profile data and sent it the the home page
+            this.$store
+              .dispatch("FETCH_PROFILE_DATA", response.data.payload.token)
+              .then(() => {
+                this.$router.push("/");
+              })
+              .catch((error) => {
+                this.makeToast(
+                  "danger",
+                  error.response.data.error || "Something went wrong",
+                  "Authentication Error 😥"
+                );
+              });
           }
         })
         .catch((error) => {
@@ -228,10 +252,16 @@ export default {
                 this.makeToast("danger", errorList[key][0], "Validation Error");
               });
             }
+          } else {
+            this.makeToast(
+              "danger",
+              error.response.data.error || "Something went wrong",
+              "Authentication Error 😥"
+            );
           }
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

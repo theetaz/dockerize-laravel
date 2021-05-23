@@ -84,8 +84,8 @@ export default {
   },
   props: {
     coinData: {
-      type: Object,
-      required: true
+      type: null,
+      required: false
     }
   }
 };

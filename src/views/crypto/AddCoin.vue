@@ -23,7 +23,7 @@
                       :class="errors.length > 0 ? 'is-invalid' : ''"
                     >
                       <b-input-group-prepend is-text>
-                        <feather-icon icon="LockIcon" />
+                        <feather-icon icon="CpuIcon" />
                       </b-input-group-prepend>
                       <b-form-input
                         id="iv-token-name"
@@ -56,7 +56,7 @@
                       :class="errors.length > 0 ? 'is-invalid' : ''"
                     >
                       <b-input-group-prepend is-text>
-                        <feather-icon icon="LockIcon" />
+                        <feather-icon icon="PackageIcon" />
                       </b-input-group-prepend>
                       <b-form-input
                         id="iv-token-symbol"
@@ -145,7 +145,7 @@
                 >
                   <b-input-group class="input-group-merge">
                     <b-input-group-prepend is-text>
-                      <feather-icon icon="LockIcon" />
+                      <feather-icon icon="ImageIcon" />
                     </b-input-group-prepend>
                     <b-form-input
                       id="iv-token-logo-link"
@@ -176,6 +176,9 @@
                       class="input-group-merge"
                       :class="errors.length > 0 ? 'is-invalid' : ''"
                     >
+                      <b-input-group-prepend is-text>
+                        <feather-icon icon="DollarSignIcon" />
+                      </b-input-group-prepend>
                       <b-form-input
                         id="iv-token-actual-price"
                         v-model="tokenActualPrice"
@@ -207,7 +210,7 @@
                       :class="errors.length > 0 ? 'is-invalid' : ''"
                     >
                       <b-input-group-prepend is-text>
-                        <feather-icon icon="LockIcon" />
+                        <feather-icon icon="TrendingUpIcon" />
                       </b-input-group-prepend>
                       <b-form-input
                         id="iv-token-actual-market-cap"
@@ -233,30 +236,18 @@
                 <b-form-group
                   label="Token Binance Smart Chain contract address"
                   label-for="iv-bsc-address"
-                  :state="state"
                 >
-                  <validation-provider
-                    #default="{ errors }"
-                    name="Binance Smart Chain contract address"
-                    rules="required"
-                  >
-                    <b-input-group
-                      class="input-group-merge"
-                      :class="errors.length > 0 ? 'is-invalid' : ''"
-                    >
-                      <b-input-group-prepend is-text>
-                        <feather-icon icon="LockIcon" />
-                      </b-input-group-prepend>
-                      <b-form-input
-                        id="iv-bsc-address"
-                        v-model="bscAddress"
-                        type="text"
-                        :state="errors.length > 0 ? false : null"
-                        placeholder="Expl: https://bscscan.com/address/0x23C28E9346C82228FB2b62b20b6fe5d75989F5b2#code"
-                      />
-                    </b-input-group>
-                    <small class="text-danger">{{ errors[0] }}</small>
-                  </validation-provider>
+                  <b-input-group class="input-group-merge">
+                    <b-input-group-prepend is-text>
+                      <feather-icon icon="PackageIcon" />
+                    </b-input-group-prepend>
+                    <b-form-input
+                      id="iv-bsc-address"
+                      v-model="bscAddress"
+                      type="text"
+                      placeholder="Expl: 0x23C28E9346C82228FB2b62b20b6fe5d75989F5b2"
+                    />
+                  </b-input-group>
                 </b-form-group>
                 <!-- Token Binance Smart Chain contract address end-->
 
@@ -264,30 +255,18 @@
                 <b-form-group
                   label="Token Ethereum contract address"
                   label-for="iv-eth-address"
-                  :state="state"
                 >
-                  <validation-provider
-                    #default="{ errors }"
-                    name="Ethereum address"
-                    rules="required"
-                  >
-                    <b-input-group
-                      class="input-group-merge"
-                      :class="errors.length > 0 ? 'is-invalid' : ''"
-                    >
-                      <b-input-group-prepend is-text>
-                        <feather-icon icon="LockIcon" />
-                      </b-input-group-prepend>
-                      <b-form-input
-                        id="iv-eth-address"
-                        v-model="ethAddress"
-                        type="text"
-                        :state="errors.length > 0 ? false : null"
-                        placeholder="Expl: https://ethscan.com/address/0x23C28E9346C82228FB2b62b20b6fe5d75989F5b2#code"
-                      />
-                    </b-input-group>
-                    <small class="text-danger">{{ errors[0] }}</small>
-                  </validation-provider>
+                  <b-input-group class="input-group-merge">
+                    <b-input-group-prepend is-text>
+                      <feather-icon icon="PackageIcon" />
+                    </b-input-group-prepend>
+                    <b-form-input
+                      id="iv-eth-address"
+                      v-model="ethAddress"
+                      type="text"
+                      placeholder="Expl: 0x23C28E9346C82228FB2b62b20b6fe5d75989F5b2"
+                    />
+                  </b-input-group>
                 </b-form-group>
                 <!-- Token Ethereum contract address end-->
 
@@ -317,7 +296,7 @@
                     <b-form-group label="Website" label-for="iv-website">
                       <b-input-group class="input-group-merge">
                         <b-input-group-prepend is-text>
-                          <feather-icon icon="LockIcon" />
+                          <feather-icon icon="LinkIcon" />
                         </b-input-group-prepend>
                         <b-form-input
                           id="iv-website"
@@ -335,7 +314,7 @@
                     <b-form-group label="Telegram" label-for="iv-telegram">
                       <b-input-group class="input-group-merge">
                         <b-input-group-prepend is-text>
-                          <feather-icon icon="LockIcon" />
+                          <feather-icon icon="MessageSquareIcon" />
                         </b-input-group-prepend>
                         <b-form-input
                           id="iv-telegram"
@@ -353,7 +332,7 @@
                     <b-form-group label="Twitter" label-for="iv-twitter">
                       <b-input-group class="input-group-merge">
                         <b-input-group-prepend is-text>
-                          <feather-icon icon="LockIcon" />
+                          <feather-icon icon="TwitterIcon" />
                         </b-input-group-prepend>
                         <b-form-input
                           id="iv-twitter"
@@ -371,7 +350,7 @@
                     <b-form-group label="Reddit" label-for="iv-reddit">
                       <b-input-group class="input-group-merge">
                         <b-input-group-prepend is-text>
-                          <feather-icon icon="LockIcon" />
+                          <feather-icon icon="BellIcon" />
                         </b-input-group-prepend>
                         <b-form-input
                           id="iv-reddit"
@@ -383,6 +362,24 @@
                     </b-form-group>
                   </b-col>
                   <!-- Reddit end-->
+
+                  <!-- Discord start -->
+                  <b-col cols="6">
+                    <b-form-group label="Discord" label-for="iv-discord">
+                      <b-input-group class="input-group-merge">
+                        <b-input-group-prepend is-text>
+                          <feather-icon icon="PhoneCallIcon" />
+                        </b-input-group-prepend>
+                        <b-form-input
+                          id="iv-discord"
+                          v-model="discord"
+                          type="text"
+                          placeholder="Expl: https://discord.com/bitcoin"
+                        />
+                      </b-input-group>
+                    </b-form-group>
+                  </b-col>
+                  <!-- Discord end-->
                 </b-row>
               </b-col>
             </b-row>
@@ -473,7 +470,8 @@ export default {
       website: "",
       telegram: "",
       twitter: "",
-      reddit: ""
+      reddit: "",
+      discord: ""
     };
   },
   methods: {
@@ -504,6 +502,7 @@ export default {
       formData.append("website", this.website);
       formData.append("twitter_link", this.twitter);
       formData.append("reddit_link", this.reddit);
+      formData.append("discord_link", this.discord);
       formData.append("bsc_contract_address", this.bscAddress);
       formData.append("ethereum_contract_address", this.ethAddress);
       formData.append("other_links", this.otherLinks);

@@ -26,7 +26,7 @@ const router = new VueRouter({
       },
     },
     {
-      path: '/details/:hash',
+      path: '/details/:id',
       name: 'details',
       component: () => import('@/views/crypto/CryptoDetails.vue'),
       meta: {
@@ -60,7 +60,7 @@ const router = new VueRouter({
       name: 'news-letter',
       component: () => import('@/views/crypto/NewsLetter.vue'),
       meta: {
-        requiresAuth: true,
+        requiresAuth: false,
         pageTitle: 'News Letter Page',
         breadcrumb: [
           {
@@ -195,7 +195,7 @@ function is_authenticated() {
  * Router Authentication Guard
  */
 router.beforeEach((to, from, next) => {
-  const withoutAuth = ["login", "signup", "register", "home", "terms-n-conditions", "privacy-policy"];
+  const withoutAuth = ["login", "signup", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter"];
   if (withoutAuth.includes(to.name)) {
     next();
   }

@@ -38,24 +38,63 @@
         </div>
       </div>
 
-      <div class="mt-1">
-        <b-button block variant="gradient-primary">
+      <div class="mt-1" v-show="coinData.website">
+        <b-button
+          :href="coinData.website"
+          target="_blank"
+          block
+          variant="gradient-primary"
+        >
+          <feather-icon icon="LinkIcon" class="mr-50" />
+          <span class="align-middle">Website</span>
+        </b-button>
+      </div>
+
+      <div class="mt-1" v-show="coinData.telegram_link">
+        <b-button
+          :href="coinData.telegram_link"
+          target="_blank"
+          block
+          variant="gradient-primary"
+        >
           <feather-icon icon="ActivityIcon" class="mr-50" />
           <span class="align-middle">Telegram</span>
         </b-button>
       </div>
 
-      <div class="mt-1">
-        <b-button block variant="gradient-primary">
+      <div class="mt-1" v-show="coinData.twitter_link">
+        <b-button
+          :href="coinData.twitter_link"
+          target="_blank"
+          block
+          variant="gradient-primary"
+        >
           <feather-icon icon="TwitterIcon" class="mr-50" />
           <span class="align-middle">Twitter</span>
         </b-button>
       </div>
 
-      <div class="mt-1">
-        <b-button block variant="gradient-primary">
+      <div class="mt-1" v-show="coinData.reddit_link">
+        <b-button
+          :href="coinData.reddit_link"
+          target="_blank"
+          block
+          variant="gradient-primary"
+        >
           <feather-icon icon="HashIcon" class="mr-50" />
           <span class="align-middle">Reddit</span>
+        </b-button>
+      </div>
+
+      <div class="mt-1" v-show="coinData.discord_link">
+        <b-button
+          :href="coinData.discord_link"
+          target="_blank"
+          block
+          variant="gradient-primary"
+        >
+          <feather-icon icon="PhoneCallIcon" class="mr-50" />
+          <span class="align-middle">Discord</span>
         </b-button>
       </div>
     </b-card-body>
@@ -88,8 +127,8 @@ export default {
   },
   props: {
     coinData: {
-      type: Object,
-      required: true
+      type: null,
+      required: false
     }
   },
   data() {

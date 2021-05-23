@@ -5,9 +5,11 @@ export default {
     cryptoData: [],
     cryptoDataPromoted: [],
     cryptoDataTodayBest: [],
+    cryptoDataAuditedCoins: [],
     clientIP: null,
     coin: null,
-    token: null
+    token: null,
+    profile: null
   },
   getters: {
 
@@ -22,6 +24,9 @@ export default {
     SET_CRYPTO_DATA_TODAY_BEST(state, cryptoData) {
       state.cryptoDataTodayBest = cryptoData;
     },
+    SET_CRYPTO_DATA_AUDITED_COINS(state, cryptoData) {
+      state.cryptoDataAuditedCoins = cryptoData;
+    },
     SET_COIN_DATA(state, coinData) {
       state.coin = coinData;
     },
@@ -35,6 +40,9 @@ export default {
     },
     SET_TOKEN(state, token) {
       state.token = token;
+    },
+    SET_PROFILE_DATA(state, profileData) {
+      state.profile = profileData;
     },
   },
   actions: {
@@ -104,6 +112,27 @@ export default {
         });
       });
     },
+    FETCH_AUDITED_CRYPTO_DATA({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        API.get("coins/audited-coins", {
+          params: {
+            per_page: 20,
+            direction: "DESC",
+            sort_key: "vote_count",
+            ip_address: state.clientIP,
+            page: 1
+          }
+        }).then((response) => {
+          if (response) {
+            let payload = response.data.payload;
+            commit('SET_CRYPTO_DATA_AUDITED_COINS', payload);
+            resolve(payload);
+          } else {
+            reject();
+          }
+        });
+      });
+    },
     FETCH_CLIENT_IP({ commit }) {
       return new Promise((resolve, reject) => {
         commit('loaders/SET_API_LOADING', true, { root: true })
@@ -122,9 +151,9 @@ export default {
       });
     },
 
-    FETCH_COIN_DATA({ commit }, coinContract) {
+    FETCH_COIN_DATA({ commit }, id) {
       return new Promise((resolve, reject) => {
-        API.get(`coin/${coinContract}`).then((response) => {
+        API.get(`coin/${id}`).then((response) => {
           if (response) {
             let coinData = response.data.payload;
             commit('SET_COIN_DATA', coinData);
@@ -169,8 +198,7 @@ export default {
 
         API.post('/auth/register', userData).then((response) => {
 
-          console.log("register", response);
-          console.log("userData", userData);
+
           let token = response.data.payload.token;
           localStorage.setItem('token', token);
 
@@ -196,11 +224,8 @@ export default {
 
         API.post('/auth/login', userData).then((response) => {
 
-          console.log("register", response);
-          console.log("userData", userData);
           let token = response.data.payload.token;
           localStorage.setItem('token', token);
-
           commit('SET_TOKEN', token);
           resolve(response);
 
@@ -209,7 +234,32 @@ export default {
           reject(error);
 
         }).finally(() => {
+          //set loader status to false
+          commit('loaders/SET_LOADING', false, { root: true });
+        });
+      })
+    },
+    FETCH_PROFILE_DATA({ commit }, token) {
+      return new Promise((resolve, reject) => {
 
+        //set loader status to true
+        commit('loaders/SET_LOADING', true, { root: true });
+
+        let headers = {
+          'Authorization': 'Bearer ' + token
+        };
+
+        API.get('/auth/profile', { headers }).then((response) => {
+
+          commit('SET_PROFILE_DATA', response.data.payload.user);
+          localStorage.setItem('profile', JSON.stringify(response.data.payload.user));
+          resolve(response);
+
+        }).catch((error) => {
+
+          reject(error);
+
+        }).finally(() => {
           //set loader status to false
           commit('loaders/SET_LOADING', false, { root: true });
         });

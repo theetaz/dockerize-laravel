@@ -9,13 +9,13 @@ export const $themeBreakpoints = {}
 // APP CONFIG
 export const $themeConfig = {
   app: {
-    appName: 'Coin Hunt', // Will update name in navigation menu (Branding)
+    appName: 'RFC', // Will update name in navigation menu (Branding)
     // eslint-disable-next-line global-require
-    appLogoImage: require('@/assets/images/logo/logo.svg'), // Will update logo in navigation menu (Branding)
+    appLogoImage: require('@/assets/images/logo/rugfreecoins.png'), // Will update logo in navigation menu (Branding)
   },
   layout: {
     isRTL: false,
-    skin: 'light', // light, dark, bordered, semi-dark
+    skin: 'semi-dark', // light, dark, bordered, semi-dark
     routerTransition: 'zoom-fade', // zoom-fade, slide-fade, fade-bottom, fade, zoom-out, none
     type: 'horizontal', // vertical, horizontal
     contentWidth: 'boxed', // full, boxed

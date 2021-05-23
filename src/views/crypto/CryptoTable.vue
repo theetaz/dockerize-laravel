@@ -176,7 +176,7 @@ export default {
     },
     viewDetails(coin) {
       this.$router.push({
-        path: `/details/${coin.bsc_contract_address}`,
+        path: `/details/${coin.id}`,
         params: {
           id: coin.id
         }
