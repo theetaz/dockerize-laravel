@@ -71,6 +71,21 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/audit-coin',
+      name: 'audit-coin',
+      component: () => import('@/views/AuditCoin.vue'),
+      meta: {
+        requiresAuth: false,
+        pageTitle: 'Audit Coin Page',
+        breadcrumb: [
+          {
+            text: 'Audit Coin',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/promote',
       name: 'promote',
       component: () => import('@/views/crypto/Promote.vue'),
@@ -195,7 +210,7 @@ function is_authenticated() {
  * Router Authentication Guard
  */
 router.beforeEach((to, from, next) => {
-  const withoutAuth = ["login", "signup", "details", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter", "promote", "home"];
+  const withoutAuth = ["login", "signup", "details", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter", "promote", "home","audit-coin"];
   if (withoutAuth.includes(to.name)) {
     next();
   }

@@ -26,6 +26,9 @@
         <span class="pointer px-1 span_class" @click="linked('news-letter')"
           ><small class="font-weight-bold">NEWSLETTER</small></span
         >
+        <span class="pointer px-1 span_class" @click="linked('audit-coin')"
+          ><small class="font-weight-bold">AUDITED COINS</small></span
+        >
       </div>
     </div>
 
