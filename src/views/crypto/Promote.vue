@@ -13,10 +13,9 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <h1 class="text-center">Promoted coins</h1>
+        <h1 class="text-center">Paid promotions</h1>
         <p class="text-center">
-          Paid promotions Only audited coins will be listed in the paid
-          promotions section.<br />
+          Only audited coins will be listed in the paid promotions section.<br />
           These are paid advertisements. These are verified coins by the
           rugfreecoins.com development team.<br />
           If we have reports or if we notice any suspicious activity even after

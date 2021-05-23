@@ -55,14 +55,9 @@
       </b-tab>
       <b-tab title="🔥 Audited coins" lazy>
         <small
-          >Upon the requests and payments, the Rugfreecoins.com development team
-          and audit team will review the contract, code, holders, and all other
-          rug pull factors and generate a manual report in accordance with the
-          industry standards. Rugfreecoins.com development team will preview the
-          report publicly. We give 95% assurance to the public that those
-          audited coins are rug pull-free and scams will not likely happen. We
-          will keep tracking the coins daily and make sure no suspicious
-          activity will occur.</small
+          >We give 95% assurance to the public that those audited coins are rug
+          pull-free and scams will not likely happen. We will keep tracking the
+          coins daily and make sure no suspicious activity will occur.</small
         >
         <b-row class="match-height mt-1">
           <b-col lg="12">

@@ -62,7 +62,7 @@
         <template #button-content>
           <div class="d-sm-flex d-none user-nav">
             <p class="user-name font-weight-bolder mb-0">
-              {{ profileData.name }}
+              {{ profileName }}
             </p>
           </div>
           <b-avatar
@@ -133,23 +133,31 @@ export default {
     }
   },
   computed: {
-    profileData() {
-      return JSON.parse(localStorage.getItem("profile"));
+    profileName() {
+      let userData = JSON.parse(localStorage.getItem("profile"));
+      if (userData) {
+        return userData.name;
+      }
+      return "";
     },
     getNameText() {
       let userData = JSON.parse(localStorage.getItem("profile"));
-      let name = userData.name;
-      let slpitName = name.split(" ");
-      let text = "";
-      slpitName.forEach((name) => {
-        text = text + name.charAt(0);
-      });
-      return text;
+      if (userData) {
+        let name = userData.name || [];
+        let slpitName = name.split(" ");
+        let text = "";
+        slpitName.forEach((name) => {
+          text = text + name.charAt(0);
+        });
+        return text;
+      }
+      return null;
     }
   },
   methods: {
     logout() {
       localStorage.removeItem("token");
+      localStorage.removeItem("profile");
       location.reload();
     },
     linked: function(e) {

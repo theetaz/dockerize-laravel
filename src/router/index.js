@@ -75,7 +75,7 @@ const router = new VueRouter({
       name: 'promote',
       component: () => import('@/views/crypto/Promote.vue'),
       meta: {
-        requiresAuth: true,
+        requiresAuth: false,
         pageTitle: 'Promote Page',
         breadcrumb: [
           {
@@ -195,13 +195,11 @@ function is_authenticated() {
  * Router Authentication Guard
  */
 router.beforeEach((to, from, next) => {
-  const withoutAuth = ["login", "signup", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter"];
+  const withoutAuth = ["login", "signup", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter", "promote", "home"];
   if (withoutAuth.includes(to.name)) {
     next();
   }
-  else if (!to.meta.requiresAuth) {
-    is_authenticated() ? next(to.name) : next();
-  } else {
+  else {
     is_authenticated() ? next() : next({ name: "login" });
   }
 });
