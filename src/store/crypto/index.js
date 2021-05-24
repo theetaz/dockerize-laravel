@@ -9,7 +9,8 @@ export default {
     clientIP: null,
     coin: null,
     token: null,
-    profile: null
+    profile: null,
+    comments: []
   },
   getters: {
 
@@ -40,6 +41,9 @@ export default {
     },
     SET_TOKEN(state, token) {
       state.token = token;
+    },
+    SET_COMMENTS(state, comments) {
+      state.comments = comments;
     },
     SET_PROFILE_DATA(state, profileData) {
       state.profile = profileData;
@@ -157,6 +161,7 @@ export default {
           if (response) {
             let coinData = response.data.payload;
             commit('SET_COIN_DATA', coinData);
+            commit('SET_COMMENTS', coinData.comments);
             resolve(coinData);
           } else {
             reject();
@@ -267,6 +272,32 @@ export default {
     },
     UPDATE_REALTIME_VOTE({ commit }, coinData) {
       commit('UPDATE_VOTE_COUNT', coinData);
-    }
+    },
+    // POST_COMMENT({ commit }, token, commentData) {
+    //   return new Promise((resolve, reject) => {
+
+    //     //set loader status to true
+    //     commit('loaders/SET_LOADING', true, { root: true });
+
+    //     API.post('/coin/comment', commentData).then((response) => {
+
+
+    //       let token = response.data.payload.token;
+    //       localStorage.setItem('token', token);
+
+    //       commit('SET_TOKEN', token);
+    //       resolve(response);
+
+    //     }).catch((error) => {
+
+    //       reject(error);
+
+    //     }).finally(() => {
+
+    //       //set loader status to false
+    //       commit('loaders/SET_LOADING', false, { root: true });
+    //     });
+    //   })
+    // },
   }
 }
