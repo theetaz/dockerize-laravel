@@ -4,7 +4,7 @@
       <b-row>
         <b-col lg="8" cols="12" order="1" order-lg="1">
           <crypto-details-view :coin-data="coinData" />
-          <crypto-comments />
+          <crypto-comments :coin-data="coinData" />
         </b-col>
 
         <b-col lg="4" cols="12" order="2" order-lg="2">
