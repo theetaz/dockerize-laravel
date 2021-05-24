@@ -56,6 +56,21 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('@/views/auth/Profile.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: 'Profile page',
+        breadcrumb: [
+          {
+            text: 'Profile',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/news-letter',
       name: 'news-letter',
       component: () => import('@/views/crypto/NewsLetter.vue'),
