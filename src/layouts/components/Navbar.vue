@@ -71,7 +71,7 @@
           <b-avatar
             size="40"
             variant="light-primary"
-            :text="getNameText"
+            :text="helper.getNameText(user_name)"
             badge-variant="success"
           />
         </template>
@@ -93,6 +93,7 @@
 </template>
 
 <script>
+import helper from "@/utils/helper";
 import {
   BLink,
   BNavbarNav,
@@ -108,11 +109,12 @@ import Ripple from "vue-ripple-directive";
 export default {
   data() {
     return {
+      helper: helper,
       mouseover_check: false,
       mouseover_check_login: false,
       is_login: false,
       is_mobilesize: false,
-      check_is_login: false
+      check_is_login: false,
     };
   },
   components: {
@@ -143,16 +145,11 @@ export default {
       }
       return "";
     },
-    getNameText() {
+    user_name() {
       let userData = JSON.parse(localStorage.getItem("profile"));
       if (userData) {
         let name = userData.name || [];
-        let slpitName = name.split(" ");
-        let text = "";
-        slpitName.forEach((name) => {
-          text = text + name.charAt(0);
-        });
-        return text;
+        return name;
       }
       return null;
     }

@@ -9,10 +9,10 @@
             <div v-for="comment in commentData" :key="comment.id">
               <b-media class="py-1">
                 <template #aside>
-                  <b-avatar size="32" text="NT" variant="primary" />
+                  <b-avatar size="32" :text="helper.getNameText(comment.user.name)" variant="primary" />
                 </template>
                 <div class="media-heading">
-                  <span class="font-weight-bolder"> Nipun Theekshsshana </span>
+                  <span class="font-weight-bolder"> {{comment.user.name}} </span>
                 </div>
                 <small class="notification-text">{{ comment.comment }}</small>
               </b-media>
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import helper from "@/utils/helper";
 import {
   BCard,
   BRow,
@@ -103,6 +104,7 @@ export default {
   },
   data() {
     return {
+      helper: helper,
       settings: {
         suppressScrollY: false,
         suppressScrollX: false,
@@ -156,6 +158,7 @@ export default {
     commentData() {
       return this.$store.state.crypto.comments;
     },
+    
   },
   mounted() {
     this.checkIsLogin();
@@ -167,5 +170,6 @@ export default {
 .scroll-area {
   position: relative;
   margin: left;
+  max-height: 300px;
 }
 </style>
