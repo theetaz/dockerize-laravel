@@ -1,4 +1,5 @@
 import API from '@/services/api';
+import AXIOS from '@/services/api';
 
 export default {
   state: {
@@ -270,22 +271,29 @@ export default {
         });
       })
     },
-    ADD_COMMENT({ commit }, commentData, token) {
+    ADD_COMMENT({ commit }, commentData) {
       return new Promise((resolve, reject) => {
 
         //set loader status to true
         commit('loaders/SET_LOADING', true, { root: true });
+        const token = localStorage.getItem('token');
 
-        const headerPayload = {
+        // const headerPayload = {
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json',
+        //     'Authorization': 'Bearer ' + token,
+        //     ...commentData.getHeaders()
+        //   },
+        //   data: commentData
+        // };
+        console.log("headerPayload");
+        AXIOS.post('/coin/comment', commentData, {
           headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token,
-            ...commentData.getHeaders()
+            Accept: 'application/json',
+            Authorization: 'Bearer ' + token,
           },
-          data: commentData
-        };
-        API.post('/coin/comment', headerPayload).then((response) => {
+        }).then((response) => {
 
           resolve(response);
 

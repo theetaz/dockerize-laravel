@@ -115,7 +115,6 @@ export default {
     },
     submitComment() {
       const user_data = localStorage.getItem("profile");
-      console.log("user_data",JSON.parse(user_data).id);
       const user_id = JSON.parse(user_data).id;
       const coin_id = this.coinData.id;
 
