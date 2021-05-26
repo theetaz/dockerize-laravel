@@ -270,13 +270,22 @@ export default {
         });
       })
     },
-    ADD_COMMENT({ commit }, commentData) {
+    ADD_COMMENT({ commit }, commentData, token) {
       return new Promise((resolve, reject) => {
 
         //set loader status to true
         commit('loaders/SET_LOADING', true, { root: true });
 
-        API.post('/coin/comment', commentData).then((response) => {
+        const headerPayload = {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
+            ...commentData.getHeaders()
+          },
+          data: commentData
+        };
+        API.post('/coin/comment', headerPayload).then((response) => {
 
           resolve(response);
 
@@ -293,32 +302,6 @@ export default {
     },
     UPDATE_REALTIME_VOTE({ commit }, coinData) {
       commit('UPDATE_VOTE_COUNT', coinData);
-    },
-    // POST_COMMENT({ commit }, token, commentData) {
-    //   return new Promise((resolve, reject) => {
-
-    //     //set loader status to true
-    //     commit('loaders/SET_LOADING', true, { root: true });
-
-    //     API.post('/coin/comment', commentData).then((response) => {
-
-
-    //       let token = response.data.payload.token;
-    //       localStorage.setItem('token', token);
-
-    //       commit('SET_TOKEN', token);
-    //       resolve(response);
-
-    //     }).catch((error) => {
-
-    //       reject(error);
-
-    //     }).finally(() => {
-
-    //       //set loader status to false
-    //       commit('loaders/SET_LOADING', false, { root: true });
-    //     });
-    //   })
-    // },
+    }
   }
 }
