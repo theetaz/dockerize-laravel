@@ -12,7 +12,7 @@
       <b-col lg="12">
         <h2>💎 Promoted coins</h2>
         <small
-          >Even though promoted, trying to choose quality projects only.</small
+          >Only audited coins are listed in the paid promotions section.</small
         >
       </b-col>
     </b-row>
