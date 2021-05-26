@@ -13,6 +13,7 @@ import './global-components'
 // 3rd party plugins
 import '@/libs/portal-vue'
 import '@/libs/toastification'
+import VueAnalytics from 'vue-analytics'
 
 import Echo from 'laravel-echo'
 
@@ -34,6 +35,10 @@ Vue.use(ModalPlugin)
 
 // Composition API
 Vue.use(VueCompositionAPI)
+Vue.use(VueAnalytics, {
+  id: 'G-EEQM0EN1K9',
+  router
+})
 
 // import core styles
 require('@core/scss/core.scss')
