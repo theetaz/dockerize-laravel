@@ -71,7 +71,12 @@
     <b-row>
       <b-card-body>
         <div class="mt-1" v-show="!coinData.is_voted">
-          <b-button target="_blank" block variant="gradient-primary" @click="castVote(coinData.item)">
+          <b-button
+            target="_blank"
+            block
+            variant="gradient-primary"
+            @click="castVote(coinData.id)"
+          >
             <span class="align-middle"
               >Vote for
               <b-badge variant="dark">{{ coinData.name }}</b-badge></span
@@ -94,8 +99,9 @@ import {
   BFormInput,
   BInputGroupPrepend,
   BButton,
-  BCardBody,
+  BCardBody
 } from "bootstrap-vue";
+import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
 export default {
   components: {
@@ -108,19 +114,37 @@ export default {
     BFormInput,
     BInputGroupPrepend,
     BButton,
-    BCardBody,
+    BCardBody
   },
   props: {
     coinData: {
       type: null,
-      required: false,
-    },
+      required: false
+    }
   },
   methods: {
-    castVote(coin) {
-      this.selectId = coin.id;
-      this.$store.dispatch("CAST_VOTE", coin.id);
-    },
+    castVote(coinId) {
+      this.selectId = coinId;
+      this.$store
+        .dispatch("CAST_VOTE", this.selectId)
+        .then(() => {})
+        .catch((error) => {
+          this.$toast(
+            {
+              component: ToastificationContent,
+              props: {
+                title: "Notification",
+                icon: "InfoIcon",
+                text: error.response.data.message || "Something went wrong",
+                variant: "warning"
+              }
+            },
+            {
+              position: "bottom-left"
+            }
+          );
+        });
+    }
   }
 };
 </script>
