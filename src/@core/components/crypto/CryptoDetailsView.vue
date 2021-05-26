@@ -51,8 +51,12 @@
         </div>
       </b-col>
       <b-col cols="2" xl="2" class="mt-1">
-        <b-avatar variant="light-primary" rounded>
-          <feather-icon icon="CopyIcon" size="18" />
+        <b-avatar variant="light-primary" rounded class="pointer">
+          <feather-icon
+            icon="CopyIcon"
+            size="18"
+            @click="doCopy(coinData.bsc_contract_address)"
+          />
         </b-avatar>
       </b-col>
       <b-col class="pt-2">
@@ -71,7 +75,12 @@
     <b-row>
       <b-card-body>
         <div class="mt-1" v-show="!coinData.is_voted">
-          <b-button target="_blank" block variant="gradient-primary" @click="castVote(coinData.item)">
+          <b-button
+            target="_blank"
+            block
+            variant="gradient-primary"
+            @click="castVote(coinData)"
+          >
             <span class="align-middle"
               >Vote for
               <b-badge variant="dark">{{ coinData.name }}</b-badge></span
@@ -84,6 +93,7 @@
 </template>
 
 <script>
+import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 import {
   BCard,
   BAvatar,
@@ -99,6 +109,7 @@ import {
 
 export default {
   components: {
+    // ToastificationContent,
     BCard,
     BRow,
     BCol,
@@ -118,10 +129,36 @@ export default {
   },
   methods: {
     castVote(coin) {
-      this.selectId = coin.id;
-      this.$store.dispatch("CAST_VOTE", coin.id);
+      this.$store.dispatch("CAST_VOTE", coin.id).then((response) => {
+        console.log(response);
+        // if (response.data.message == "success") {
+        //   this.$store.dispatch("FETCH_COIN_DATA", coin.id);
+        // }
+      });
     },
-  }
+    doCopy(value) {
+      navigator.clipboard.writeText(value).then(
+        () => {
+          this.$toast({
+            component: ToastificationContent,
+            props: {
+              title: "BSC contract address copied",
+              icon: "BellIcon",
+            },
+          });
+        },
+        (e) => {
+          this.$toast({
+            component: ToastificationContent,
+            props: {
+              title: e + "Can not copy!",
+              icon: "BellIcon",
+            },
+          });
+        }
+      );
+    },
+  },
 };
 </script>
 
@@ -130,4 +167,7 @@ export default {
   position: relative;
   top: 1px;
 }
+.pointer {
+    cursor: pointer;
+  }
 </style>

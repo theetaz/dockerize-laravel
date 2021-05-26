@@ -1,27 +1,36 @@
 <template>
   <div>
-    <b-card v-if="commentData.length<1"  class="text-center"> No Comments</b-card>
+    <b-card v-if="commentData.length < 1" class="text-center">
+      No Comments</b-card
+    >
     <b-card v-else>
       <b-row>
         <b-col cols="12">
-          <vue-custom-scrollbar class="scroll-area" :settings="settings">
-            <!-- Account Notification -->
+          <vue-custom-scrollbar class="scroll-area" :settings="settings"  id="commentss">
+          <!-- Account Notification -->
+          <!-- <div > -->
             <div v-for="comment in commentData" :key="comment.id">
               <b-media class="py-1">
                 <template #aside>
-                  <b-avatar size="32" :text="helper.getNameText(comment.user.name)" variant="primary" />
+                  <b-avatar
+                    size="32"
+                    :text="helper.getNameText(comment.user.name)"
+                    variant="primary"
+                  />
                 </template>
                 <div class="media-heading">
-                  <span class="font-weight-bolder"> {{comment.user.name}} </span>
+                  <span class="font-weight-bolder">
+                    {{ comment.user.name }}
+                  </span>
                 </div>
                 <small class="notification-text">{{ comment.comment }}</small>
               </b-media>
             </div>
+          <!-- </div> -->
           </vue-custom-scrollbar>
         </b-col>
       </b-row>
     </b-card>
-
     <b-card>
       <b-row>
         <b-col cols="12">
@@ -111,11 +120,16 @@ export default {
         wheelPropagation: false,
       },
       comment: "",
-      check_is_login: false
+      check_is_login: false,
     };
   },
   methods: {
-    linked: function(e) {
+    scrollToBottom() {
+      // 
+      const commentss = this.$el.querySelector("#commentss");
+      commentss.scrollTop = (commentss.scrollHeight+10);
+    },
+    linked: function (e) {
       this.$router.push({ path: "/" + e });
     },
     validationForm() {
@@ -136,33 +150,35 @@ export default {
       formData.append("user_id", user_id);
       formData.append("coin_id", coin_id);
       formData.append("comment", this.comment);
-      
+
       this.$store
         .dispatch("ADD_COMMENT", formData)
         .then((response) => {
-          if (response.data.message == 'success') {
+          if (response.data.message == "success") {
             this.$store.dispatch("FETCH_COIN_DATA", coin_id);
-            this.comment = ''
+            this.comment = "";
           }
         })
-        .catch(() => {});
+        .catch(() => {})
+        .finally(() => {
+          this.scrollToBottom();
+        });
     },
     checkIsLogin() {
       let check_token = localStorage.getItem("token");
       if (check_token != null) {
         this.check_is_login = true;
       }
-    }
+    },
   },
   computed: {
     commentData() {
       return this.$store.state.crypto.comments;
     },
-    
   },
   mounted() {
     this.checkIsLogin();
-  }
+  },
 };
 </script>
 
@@ -171,5 +187,23 @@ export default {
   position: relative;
   margin: left;
   max-height: 300px;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+/* 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+} */
+::-webkit-scrollbar-track-piece {
+  border-radius: 10px;
+  background-color: #c0c0c0;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #7b7a7a;
+  -webkit-box-shadow: inset 0 0 6px rgba(39, 39, 39, 0.5);
 }
 </style>
