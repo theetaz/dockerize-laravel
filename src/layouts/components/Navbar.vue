@@ -26,6 +26,9 @@
         <span class="pointer px-1 span_class" @click="linked('news-letter')"
           ><small class="font-weight-bold">NEWSLETTER</small></span
         >
+        <span class="pointer px-1 span_class" @click="linked('audit-coin')"
+          ><small class="font-weight-bold">AUDITED COINS</small></span
+        >
       </div>
     </div>
 
@@ -73,7 +76,7 @@
           />
         </template>
 
-        <b-dropdown-item link-class="d-flex align-items-center">
+        <b-dropdown-item link-class="d-flex align-items-center" @click="linked('profile')">
           <feather-icon size="16" icon="UserIcon" class="mr-50" />
           <span>Profile</span>
         </b-dropdown-item>

@@ -55,6 +55,30 @@
           <feather-icon icon="CopyIcon" size="18" />
         </b-avatar>
       </b-col>
+      <b-col class="pt-2">
+        <h3 class="mb-0">
+          Status :
+          <b-badge variant="success">{{ coinData.status }}</b-badge>
+        </h3>
+      </b-col>
+      <b-col class="pt-2">
+        <h3 class="mb-0">
+          Total votes :
+          <b-badge variant="success">{{ coinData.vote_count }}</b-badge>
+        </h3>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-card-body>
+        <div class="mt-1" v-show="!coinData.is_voted">
+          <b-button target="_blank" block variant="gradient-primary" @click="castVote(coinData.item)">
+            <span class="align-middle"
+              >Vote for
+              <b-badge variant="dark">{{ coinData.name }}</b-badge></span
+            >
+          </b-button>
+        </div>
+      </b-card-body>
     </b-row>
   </b-card>
 </template>
@@ -68,7 +92,9 @@ import {
   BBadge,
   BInputGroup,
   BFormInput,
-  BInputGroupPrepend
+  BInputGroupPrepend,
+  BButton,
+  BCardBody,
 } from "bootstrap-vue";
 
 export default {
@@ -80,15 +106,28 @@ export default {
     BBadge,
     BInputGroup,
     BFormInput,
-    BInputGroupPrepend
+    BInputGroupPrepend,
+    BButton,
+    BCardBody,
   },
   props: {
     coinData: {
       type: null,
-      required: false
-    }
+      required: false,
+    },
+  },
+  methods: {
+    castVote(coin) {
+      this.selectId = coin.id;
+      this.$store.dispatch("CAST_VOTE", coin.id);
+    },
   }
 };
 </script>
 
-<style></style>
+<style>
+.btn .badge {
+  position: relative;
+  top: 1px;
+}
+</style>
