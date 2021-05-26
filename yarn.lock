@@ -6725,6 +6725,11 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+perfect-scrollbar@^1.5.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/perfect-scrollbar/-/perfect-scrollbar-1.5.1.tgz#8ee5b3ca06ce9c3f7338fd4ab67a55248a6cf3be"
+  integrity sha512-MrSImINnIh3Tm1hdPT6bji6fmIeRorVEegQvyUnhqko2hDGTHhmjPefHXfxG/Jb8xVbfCwgmUIlIajERGXjVXQ==
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -9071,6 +9076,14 @@ vue-context@6.0.0:
   dependencies:
     vue-clickaway "^2.2.2"
 
+vue-custom-scrollbar@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/vue-custom-scrollbar/-/vue-custom-scrollbar-1.4.0.tgz#878190a38686637e44b59808993ddfef380e3189"
+  integrity sha512-ap5yZruXBoc7rp+o40VNt7ShoxaTKC3m384afE/6KgDNfo/UiwPu0houuJxxyLKdrspvwNgecfx7J6vqe7KWww==
+  dependencies:
+    perfect-scrollbar "^1.5.0"
+    vue "^2.6.11"
+
 vue-demi@latest:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.9.0.tgz#b30da61450079d60a132d7aaf9e86d1949e8445e"
@@ -9277,7 +9290,7 @@ vue2-leaflet@2.5.2:
   resolved "https://registry.yarnpkg.com/vue2-leaflet/-/vue2-leaflet-2.5.2.tgz#b89c056fe741c7ce7cb9df5aca90809092e5eb8d"
   integrity sha512-9eN0TxqCkyXbaI7waO3u+n0OAezkxjb811tstG6gRLAZy/ocXlNLC3JqTWE0FwBUlqBbMpyzsIk6LrEhs8oVBQ==
 
-vue@2.6.12, vue@^2.2.1, vue@^2.4.4, vue@^2.6.10:
+vue@2.6.12, vue@^2.2.1, vue@^2.4.4, vue@^2.6.10, vue@^2.6.11:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==

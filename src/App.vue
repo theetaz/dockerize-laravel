@@ -69,7 +69,6 @@ export default {
             }
           );
         }
-        console.log("CoinVoteCastingEvent", event);
       });
   },
   beforeCreate() {

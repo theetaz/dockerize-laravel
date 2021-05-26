@@ -26,6 +26,9 @@
         <span class="pointer px-1 span_class" @click="linked('news-letter')"
           ><small class="font-weight-bold">NEWSLETTER</small></span
         >
+        <span class="pointer px-1 span_class" @click="linked('audit-coin')"
+          ><small class="font-weight-bold">AUDITED COINS</small></span
+        >
       </div>
     </div>
 
@@ -62,18 +65,18 @@
         <template #button-content>
           <div class="d-sm-flex d-none user-nav">
             <p class="user-name font-weight-bolder mb-0">
-              {{ profileData.name }}
+              {{ profileName }}
             </p>
           </div>
           <b-avatar
             size="40"
             variant="light-primary"
-            :text="getNameText"
+            :text="helper.getNameText(user_name)"
             badge-variant="success"
           />
         </template>
 
-        <b-dropdown-item link-class="d-flex align-items-center">
+        <b-dropdown-item link-class="d-flex align-items-center" @click="linked('profile')">
           <feather-icon size="16" icon="UserIcon" class="mr-50" />
           <span>Profile</span>
         </b-dropdown-item>
@@ -90,6 +93,7 @@
 </template>
 
 <script>
+import helper from "@/utils/helper";
 import {
   BLink,
   BNavbarNav,
@@ -105,11 +109,12 @@ import Ripple from "vue-ripple-directive";
 export default {
   data() {
     return {
+      helper: helper,
       mouseover_check: false,
       mouseover_check_login: false,
       is_login: false,
       is_mobilesize: false,
-      check_is_login: false
+      check_is_login: false,
     };
   },
   components: {
@@ -133,23 +138,26 @@ export default {
     }
   },
   computed: {
-    profileData() {
-      return JSON.parse(localStorage.getItem("profile"));
-    },
-    getNameText() {
+    profileName() {
       let userData = JSON.parse(localStorage.getItem("profile"));
-      let name = userData.name;
-      let slpitName = name.split(" ");
-      let text = "";
-      slpitName.forEach((name) => {
-        text = text + name.charAt(0);
-      });
-      return text;
+      if (userData) {
+        return userData.name;
+      }
+      return "";
+    },
+    user_name() {
+      let userData = JSON.parse(localStorage.getItem("profile"));
+      if (userData) {
+        let name = userData.name || [];
+        return name;
+      }
+      return null;
     }
   },
   methods: {
     logout() {
       localStorage.removeItem("token");
+      localStorage.removeItem("profile");
       location.reload();
     },
     linked: function(e) {

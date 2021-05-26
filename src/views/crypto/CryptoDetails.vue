@@ -1,35 +1,42 @@
 <template>
-  <b-row>
-    <b-col cols="12" xl="8" lg="8" md="7">
-      <crypto-details-view :coin-data="coinData" />
-    </b-col>
-    <b-col cols="12" md="5" xl="4" lg="4">
-      <crypto-meta-data :coin-data="coinData" />
-    </b-col>
-  </b-row>
+  <div>
+    <section id="profile-info">
+      <b-row>
+        <b-col lg="8" cols="12" order="1" order-lg="1">
+          <crypto-details-view :coin-data="coinData" />
+          <crypto-comments :coin-data="coinData" />
+        </b-col>
+
+        <b-col lg="4" cols="12" order="2" order-lg="2">
+          <crypto-meta-data :coin-data="coinData" />
+        </b-col>
+      </b-row>
+    </section>
+  </div>
 </template>
 
 <script>
 import { BCol, BRow } from "bootstrap-vue";
 import CryptoDetailsView from "@core/components/crypto/CryptoDetailsView";
 import CryptoMetaData from "@core/components/crypto/CryptoMetaData";
+import CryptoComments from "@/@core/components/crypto/CryptoComments";
 
 export default {
   components: {
     BRow,
     BCol,
     CryptoDetailsView,
-    CryptoMetaData
+    CryptoMetaData,
+    CryptoComments
   },
   data() {
     return {
       coinData: {}
     };
   },
-  created() {
+  mounted() {
     let id = this.$route.params.id;
     this.$store.dispatch("FETCH_COIN_DATA", id).then((coinData) => {
-      console.log("FETCH_COIN_DATA", coinData);
       this.coinData = coinData;
     });
   }

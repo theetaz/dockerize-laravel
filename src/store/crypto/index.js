@@ -1,4 +1,5 @@
 import API from '@/services/api';
+import AXIOS from '@/services/api';
 
 export default {
   state: {
@@ -9,7 +10,8 @@ export default {
     clientIP: null,
     coin: null,
     token: null,
-    profile: null
+    profile: null,
+    comments: []
   },
   getters: {
 
@@ -34,12 +36,21 @@ export default {
       state.clientIP = clientIP;
     },
     UPDATE_VOTE_COUNT(state, coinData) {
-      let votedCoin = state.cryptoData.filter((coin) => coin.id === coinData.id);
-      //update the vote count
-      votedCoin[0].vote_count = coinData.vote_count;
+
+      if (coinData.isArray) {
+        let votedCoin = state.cryptoData.filter((coin) => coin.id === coinData.id);
+        //update the vote count
+        votedCoin[0].vote_count = coinData.vote_count;
+      } else {
+        state.coin.vote_count = coinData.vote_count;
+      }
+
     },
     SET_TOKEN(state, token) {
       state.token = token;
+    },
+    SET_COMMENTS(state, comments) {
+      state.comments = comments;
     },
     SET_PROFILE_DATA(state, profileData) {
       state.profile = profileData;
@@ -140,6 +151,8 @@ export default {
           if (response) {
             let clientIP = response.data.ip
             commit('SET_CLIENT_IP', clientIP);
+            //set client IP into local storage
+            localStorage.setItem("clientIP", clientIP);
             resolve(clientIP);
             commit('loaders/SET_API_LOADING', false, { root: true })
           } else {
@@ -153,10 +166,19 @@ export default {
 
     FETCH_COIN_DATA({ commit }, id) {
       return new Promise((resolve, reject) => {
-        API.get(`coin/${id}`).then((response) => {
+        //get the ip address from store
+        let clientIP = localStorage.getItem("clientIP");
+        API.get(`coin/${id}`,
+          {
+            params: {
+              ip_address: clientIP,
+            }
+          }
+        ).then((response) => {
           if (response) {
             let coinData = response.data.payload;
             commit('SET_COIN_DATA', coinData);
+            commit('SET_COMMENTS', coinData.comments);
             resolve(coinData);
           } else {
             reject();
@@ -165,29 +187,37 @@ export default {
       });
     },
     CAST_VOTE({ dispatch, commit }, coinID) {
-      commit('loaders/SET_LOADING', true, { root: true })
-      //get the ip address from store
-      let clientIP = this.state.crypto.clientIP;
-      if (clientIP != null) {
-        //send the vote request
-        API.post(`coin/${coinID}/vote`, { client_ip: clientIP }).then(() => {
-          commit('loaders/SET_LOADING', false, { root: true })
-          // let coinData = response.data.payload;
-          dispatch('FETCH_CRYPTO_DATA');
-          dispatch('FETCH_TODAY_BEST_CRYPTO_DATA');
-          dispatch('FETCH_PROMOTED_CRYPTO_DATA');
 
-          // commit('UPDATE_VOTE_COUNT', coinData);
+      return new Promise((resolve, reject) => {
+        commit('loaders/SET_LOADING', true, { root: true })
 
-        })
-          .finally(() => {
+        //get the ip address from store
+        let clientIP = localStorage.getItem("clientIP");
+
+        if (clientIP != null) {
+          //send the vote request
+          API.post(`coin/${coinID}/vote`, { client_ip: clientIP }).then((response) => {
             commit('loaders/SET_LOADING', false, { root: true })
-          });
+            // let coinData = response.data.payload;
+            dispatch('FETCH_CRYPTO_DATA');
+            dispatch('FETCH_TODAY_BEST_CRYPTO_DATA');
+            dispatch('FETCH_PROMOTED_CRYPTO_DATA');
 
-      }
-      else {
-        commit('loaders/SET_LOADING', false, { root: true })
-      }
+            resolve(response);
+
+          }).catch((error) => {
+
+            reject(error);
+          })
+            .finally(() => {
+              commit('loaders/SET_LOADING', false, { root: true })
+            });
+        }
+        else {
+          commit('loaders/SET_LOADING', false, { root: true })
+        }
+
+      })
 
     },
     REGISTER_USER({ commit }, userData) {
@@ -260,6 +290,37 @@ export default {
           reject(error);
 
         }).finally(() => {
+          //set loader status to false
+          commit('loaders/SET_LOADING', false, { root: true });
+        });
+      })
+    },
+    ADD_COMMENT({ commit, dispatch }, commentData) {
+      return new Promise((resolve, reject) => {
+
+        //set loader status to true
+        commit('loaders/SET_LOADING', true, { root: true });
+
+        const token = localStorage.getItem('token');
+
+        AXIOS.post('/coin/comment', commentData, {
+          headers: {
+            Accept: 'application/json',
+            Authorization: 'Bearer ' + token,
+          },
+        }).then((response) => {
+          if (response.message == 'success') {
+            dispatch('FETCH_COIN_DATA', commentData.coin_id)
+          }
+
+          resolve(response);
+
+        }).catch((error) => {
+
+          reject(error);
+
+        }).finally(() => {
+
           //set loader status to false
           commit('loaders/SET_LOADING', false, { root: true });
         });

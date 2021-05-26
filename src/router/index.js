@@ -30,7 +30,7 @@ const router = new VueRouter({
       name: 'details',
       component: () => import('@/views/crypto/CryptoDetails.vue'),
       meta: {
-        requiresAuth: true,
+        requiresAuth: false,
         pageTitle: 'Crypto Details Page',
         breadcrumb: [
           {
@@ -56,6 +56,21 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('@/views/auth/Profile.vue'),
+      meta: {
+        requiresAuth: true,
+        pageTitle: 'Profile page',
+        breadcrumb: [
+          {
+            text: 'Profile',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/news-letter',
       name: 'news-letter',
       component: () => import('@/views/crypto/NewsLetter.vue'),
@@ -71,11 +86,26 @@ const router = new VueRouter({
       },
     },
     {
+      path: '/audit-coin',
+      name: 'audit-coin',
+      component: () => import('@/views/AuditCoin.vue'),
+      meta: {
+        requiresAuth: false,
+        pageTitle: 'Audit Coin Page',
+        breadcrumb: [
+          {
+            text: 'Audit Coin',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
       path: '/promote',
       name: 'promote',
       component: () => import('@/views/crypto/Promote.vue'),
       meta: {
-        requiresAuth: true,
+        requiresAuth: false,
         pageTitle: 'Promote Page',
         breadcrumb: [
           {
@@ -195,7 +225,7 @@ function is_authenticated() {
  * Router Authentication Guard
  */
 router.beforeEach((to, from, next) => {
-  const withoutAuth = ["login", "signup", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter"];
+  const withoutAuth = ["login", "signup", "details", "register", "home", "terms-n-conditions", "privacy-policy", "news-letter", "promote", "home","audit-coin"];
   if (withoutAuth.includes(to.name)) {
     next();
   }

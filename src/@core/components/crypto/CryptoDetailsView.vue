@@ -51,10 +51,43 @@
         </div>
       </b-col>
       <b-col cols="2" xl="2" class="mt-1">
-        <b-avatar variant="light-primary" rounded>
-          <feather-icon icon="CopyIcon" size="18" />
+        <b-avatar variant="light-primary" rounded class="pointer">
+          <feather-icon
+            icon="CopyIcon"
+            size="18"
+            @click="doCopy(coinData.bsc_contract_address)"
+          />
         </b-avatar>
       </b-col>
+      <b-col class="pt-2">
+        <h3 class="mb-0">
+          Status :
+          <b-badge variant="success">{{ coinData.status }}</b-badge>
+        </h3>
+      </b-col>
+      <b-col class="pt-2">
+        <h3 class="mb-0">
+          Total votes :
+          <b-badge variant="success">{{ coinData.vote_count }}</b-badge>
+        </h3>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-card-body>
+        <div class="mt-1" v-show="!coinData.is_voted">
+          <b-button
+            target="_blank"
+            block
+            variant="gradient-primary"
+            @click="castVote(coinData.id)"
+          >
+            <span class="align-middle"
+              >Vote for
+              <b-badge variant="dark">{{ coinData.name }}</b-badge></span
+            >
+          </b-button>
+        </div>
+      </b-card-body>
     </b-row>
   </b-card>
 </template>
@@ -68,11 +101,15 @@ import {
   BBadge,
   BInputGroup,
   BFormInput,
-  BInputGroupPrepend
+  BInputGroupPrepend,
+  BButton,
+  BCardBody
 } from "bootstrap-vue";
+import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
 export default {
   components: {
+    // ToastificationContent,
     BCard,
     BRow,
     BCol,
@@ -80,15 +117,49 @@ export default {
     BBadge,
     BInputGroup,
     BFormInput,
-    BInputGroupPrepend
+    BInputGroupPrepend,
+    BButton,
+    BCardBody
   },
   props: {
     coinData: {
       type: null,
       required: false
     }
+  },
+  methods: {
+    castVote(coinId) {
+      this.selectId = coinId;
+      this.$store
+        .dispatch("CAST_VOTE", this.selectId)
+        .then(() => {})
+        .catch((error) => {
+          this.$toast(
+            {
+              component: ToastificationContent,
+              props: {
+                title: "Notification",
+                icon: "InfoIcon",
+                text: error.response.data.message || "Something went wrong",
+                variant: "warning"
+              }
+            },
+            {
+              position: "bottom-left"
+            }
+          );
+        });
+    }
   }
 };
 </script>
 
-<style></style>
+<style>
+.btn .badge {
+  position: relative;
+  top: 1px;
+}
+.pointer {
+  cursor: pointer;
+}
+</style>
