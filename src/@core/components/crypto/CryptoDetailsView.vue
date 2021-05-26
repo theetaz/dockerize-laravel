@@ -51,8 +51,12 @@
         </div>
       </b-col>
       <b-col cols="2" xl="2" class="mt-1">
-        <b-avatar variant="light-primary" rounded>
-          <feather-icon icon="CopyIcon" size="18" />
+        <b-avatar variant="light-primary" rounded class="pointer">
+          <feather-icon
+            icon="CopyIcon"
+            size="18"
+            @click="doCopy(coinData.bsc_contract_address)"
+          />
         </b-avatar>
       </b-col>
       <b-col class="pt-2">
@@ -105,6 +109,7 @@ import ToastificationContent from "@core/components/toastification/Toastificatio
 
 export default {
   components: {
+    // ToastificationContent,
     BCard,
     BRow,
     BCol,
@@ -153,5 +158,8 @@ export default {
 .btn .badge {
   position: relative;
   top: 1px;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>

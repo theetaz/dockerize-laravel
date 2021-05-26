@@ -25,7 +25,7 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table :table-data="cryptoDataPromoted" />
+        <crypto-table :table-data="cryptoDataAuditedCoins" />
       </b-col>
     </b-row>
     <b-row v-if="loading" class="match-height">
@@ -55,15 +55,6 @@ export default {
     };
   },
   computed: {
-    cryptoData() {
-      return this.$store.state.crypto.cryptoData;
-    },
-    cryptoDataPromoted() {
-      return this.$store.state.crypto.cryptoDataPromoted;
-    },
-    cryptoDataTodayBest() {
-      return this.$store.state.crypto.cryptoDataTodayBest;
-    },
     cryptoDataAuditedCoins() {
       return this.$store.state.crypto.cryptoDataAuditedCoins;
     },
