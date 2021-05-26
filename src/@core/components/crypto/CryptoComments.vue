@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-card>
+    <b-card v-if="commentData.length<1"  class="text-center"> No Comments</b-card>
+    <b-card v-else>
       <b-row>
         <b-col cols="12">
           <vue-custom-scrollbar class="scroll-area" :settings="settings">
@@ -26,7 +27,7 @@
         <b-col cols="12">
           <validation-observer ref="simpleRules">
             <b-form @submit.prevent>
-              <div>
+              <div v-if="check_is_login">
                 <label for="comment-input">Type your amazing thoughts 🤩</label>
                 <b-form-textarea
                   id="comment-input"
@@ -37,6 +38,16 @@
               </div>
               <div class="mt-2">
                 <b-button
+                  v-if="!check_is_login"
+                  v-ripple.400="'rgba(113, 102, 240, 0.15)'"
+                  block
+                  variant="outline-primary"
+                  @click="linked('login')"
+                >
+                  Please login
+                </b-button>
+                <b-button
+                  v-else
                   v-ripple.400="'rgba(113, 102, 240, 0.15)'"
                   block
                   variant="outline-primary"
@@ -98,13 +109,13 @@ export default {
         wheelPropagation: false,
       },
       comment: "",
+      check_is_login: false
     };
   },
-  created() {
-    //this.comments = this.$store.state.crypto.comments;
-    //console.log("hi", this.$props.commentsData);
-  },
   methods: {
+    linked: function(e) {
+      this.$router.push({ path: "/" + e });
+    },
     validationForm() {
       this.$refs.simpleRules.validate().then((success) => {
         if (success) {
@@ -127,19 +138,28 @@ export default {
       this.$store
         .dispatch("ADD_COMMENT", formData)
         .then((response) => {
-          if (response.status == 200) {
+          if (response.data.message == 'success') {
             this.$store.dispatch("FETCH_COIN_DATA", coin_id);
             this.comment = ''
           }
         })
         .catch(() => {});
     },
+    checkIsLogin() {
+      let check_token = localStorage.getItem("token");
+      if (check_token != null) {
+        this.check_is_login = true;
+      }
+    }
   },
   computed: {
     commentData() {
       return this.$store.state.crypto.comments;
     },
   },
+  mounted() {
+    this.checkIsLogin();
+  }
 };
 </script>
 
@@ -147,6 +167,5 @@ export default {
 .scroll-area {
   position: relative;
   margin: left;
-  height: 300px;
 }
 </style>
