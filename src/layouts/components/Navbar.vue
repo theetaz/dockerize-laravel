@@ -76,7 +76,10 @@
           />
         </template>
 
-        <b-dropdown-item link-class="d-flex align-items-center" @click="linked('profile')">
+        <b-dropdown-item
+          link-class="d-flex align-items-center"
+          @click="linked('profile')"
+        >
           <feather-icon size="16" icon="UserIcon" class="mr-50" />
           <span>Profile</span>
         </b-dropdown-item>
@@ -93,6 +96,7 @@
 </template>
 
 <script>
+import { mixinList } from "@/mixins/mixinList";
 import helper from "@/utils/helper";
 import {
   BLink,
@@ -101,19 +105,19 @@ import {
   BDropdownItem,
   BDropdownDivider,
   BAvatar,
-  BButton
+  BButton,
 } from "bootstrap-vue";
 import DarkToggler from "@core/layouts/components/app-navbar/components/DarkToggler.vue";
 import Ripple from "vue-ripple-directive";
 
 export default {
+  mixins: [mixinList],
   data() {
     return {
       helper: helper,
       mouseover_check: false,
       mouseover_check_login: false,
       is_login: false,
-      is_mobilesize: false,
       check_is_login: false,
     };
   },
@@ -126,16 +130,16 @@ export default {
     BDropdownDivider,
     BAvatar,
     // Navbar Components
-    DarkToggler
+    DarkToggler,
   },
   directives: {
-    Ripple
+    Ripple,
   },
   props: {
     toggleVerticalMenuActive: {
       type: Function,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   computed: {
     profileName() {
@@ -152,7 +156,7 @@ export default {
         return name;
       }
       return null;
-    }
+    },
   },
   methods: {
     logout() {
@@ -160,7 +164,7 @@ export default {
       localStorage.removeItem("profile");
       location.reload();
     },
-    linked: function(e) {
+    linked: function (e) {
       this.$router.push({ path: "/" + e });
     },
     mouseover() {
@@ -169,23 +173,16 @@ export default {
     mouseoverLogin() {
       this.mouseover_check_login = !this.mouseover_check_login;
     },
-    checkWIndowSize() {
-      let window_size = window.innerWidth;
-      if (window_size <= 1024) {
-        this.is_mobilesize = true;
-      }
-    },
     checkIsLogin() {
       let check_token = localStorage.getItem("token");
       if (check_token != null) {
         this.check_is_login = true;
       }
-    }
+    },
   },
   mounted() {
-    this.checkWIndowSize();
     this.checkIsLogin();
-  }
+  },
 };
 </script>
 <style scoped>
