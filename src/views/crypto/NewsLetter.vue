@@ -80,7 +80,7 @@ import {
   BLink,
   BImg,
   BFormInput,
-  BCardText
+  BCardText,
 } from "bootstrap-vue";
 export default {
   components: {
@@ -93,13 +93,13 @@ export default {
     BLink,
     BImg,
     BFormInput,
-    BCardText
+    BCardText,
   },
   computed: {},
   data() {
     return {
       required,
-      email: ''
+      email: "",
     };
   },
   methods: {
@@ -112,8 +112,12 @@ export default {
       });
     },
     submitFormData() {
-      console.log("email",this.email);
-    }
+    },
   },
 };
 </script>
+<style>
+.card-body {
+  padding: 4.5rem;
+}
+</style>

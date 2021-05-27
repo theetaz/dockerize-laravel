@@ -188,22 +188,5 @@ export default {
   margin: left;
   max-height: 300px;
 }
-::-webkit-scrollbar {
-  width: 5px;
-}
-/* 
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-} */
-::-webkit-scrollbar-track-piece {
-  border-radius: 10px;
-  background-color: #c0c0c0;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #7b7a7a;
-  -webkit-box-shadow: inset 0 0 6px rgba(39, 39, 39, 0.5);
-}
+
 </style>
