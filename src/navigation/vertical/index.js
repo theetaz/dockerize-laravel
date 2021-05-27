@@ -7,26 +7,26 @@ export default [
   {
     title: 'Add Coin',
     route: 'add-coin',
-    icon: 'FileIcon',
+    icon: 'TrendingUpIcon',
   },
   {
     title: 'Promote',
     route: 'promote',
-    icon: 'FileIcon',
+    icon: 'ChevronsUpIcon',
   },
   {
     title: 'News Letter',
     route: 'news-letter',
-    icon: 'FileIcon',
+    icon: 'MailIcon',
   },
   {
     title: 'Login',
     route: 'login',
-    icon: 'FileIcon',
+    icon: 'LogInIcon',
   },
   {
     title: 'Register',
     route: 'register',
-    icon: 'FileIcon',
+    icon: 'UserPlusIcon',
   }
 ]

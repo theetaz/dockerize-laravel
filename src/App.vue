@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="h-100" :class="[skinClasses]">
+  <div id="app" class="h-100 testings" :class="[skinClasses]">
     <component :is="layout">
       <router-view />
     </component>
@@ -29,7 +29,7 @@ export default {
     LayoutHorizontal,
     LayoutVertical,
     LayoutFull,
-    ToastificationContent
+    ToastificationContent,
   },
   // ! We can move this computed: layout & contentLayoutType once we get to use Vue 3
   // Currently, router.currentRoute is not reactive and doesn't trigger any change
@@ -40,7 +40,7 @@ export default {
     },
     contentLayoutType() {
       return this.$store.state.appConfig.layout.type;
-    }
+    },
   },
   mounted() {
     window.Echo.channel("coin-data")
@@ -48,7 +48,7 @@ export default {
         this.$bvToast.toast(event.message, {
           title: event.title,
           variant: "success",
-          solid: true
+          solid: true,
         });
       })
       .listen("CoinVoteCastingEvent", (event) => {
@@ -61,11 +61,11 @@ export default {
                 title: event.title || "Notification",
                 icon: "InfoIcon",
                 text: event.message || "New Vote has been casted",
-                variant: "warning"
-              }
+                variant: "warning",
+              },
             },
             {
-              position: "bottom-left"
+              position: "bottom-left",
             }
           );
         }
@@ -81,7 +81,7 @@ export default {
       "warning",
       "danger",
       "light",
-      "dark"
+      "dark",
     ];
 
     // eslint-disable-next-line no-plusplus
@@ -124,7 +124,7 @@ export default {
       closeButton: false,
       icon: false,
       timeout: 3000,
-      transition: "Vue-Toastification__fade"
+      transition: "Vue-Toastification__fade",
     });
 
     // Set Window Width in store
@@ -135,8 +135,46 @@ export default {
     });
 
     return {
-      skinClasses
+      skinClasses,
     };
-  }
+  },
 };
 </script>
+<style>
+.horizontal-layout.navbar-floating:not(.blank-page) .app-content {
+  padding: calc(0rem + 4rem * 2 + 1.3rem) 7rem 0 7rem !important;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track-piece {
+  border-radius: 10px;
+  background-color: #c0c0c0;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #7b7a7a;
+  -webkit-box-shadow: inset 0 0 6px rgba(39, 39, 39, 0.5);
+}
+@media (max-width: 1024px) {
+  .horizontal-layout.navbar-floating:not(.blank-page) .app-content {
+    padding: calc(0rem + 4rem * 2 + 1.3rem) 2rem 0 2rem !important;
+  }
+  .table th,
+  .table td {
+    padding: 0px 0px !important;
+  }
+  body {
+    font-family: "Montserrat", Helvetica, Arial, serif;
+    font-size: 10px !important;
+    font-weight: 400;
+    line-height: 2.45;
+  }
+  .btn {
+    text-align: center;
+    padding: 0.4rem 0.2rem !important;
+    border-radius: 0.358rem;
+}
+}
+</style>

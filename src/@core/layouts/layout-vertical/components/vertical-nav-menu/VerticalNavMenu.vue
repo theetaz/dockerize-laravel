@@ -20,7 +20,7 @@
 
           <!-- Logo & Text -->
           <li class="nav-item mr-auto">
-            <b-link
+            <!-- <b-link
               class="navbar-brand"
               to="/"
             >
@@ -33,7 +33,7 @@
               <h2 class="brand-text">
                 {{ appName }}
               </h2>
-            </b-link>
+            </b-link> -->
           </li>
 
           <!-- Toggler Button -->
@@ -83,7 +83,7 @@
 <script>
 import navMenuItems from '@/navigation/vertical'
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
-import { BLink, BImg } from 'bootstrap-vue'
+import { BLink } from 'bootstrap-vue'
 import { provide, computed, ref } from '@vue/composition-api'
 import useAppConfig from '@core/app-config/useAppConfig'
 import { $themeConfig } from '@themeConfig'
@@ -95,7 +95,6 @@ export default {
     VuePerfectScrollbar,
     VerticalNavMenuItems,
     BLink,
-    BImg,
   },
   props: {
     isVerticalMenuActive: {
