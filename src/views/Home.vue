@@ -31,7 +31,7 @@
 
     <b-tabs content-class="mt-1">
       <!-- This tabs content will always be mounted -->
-      <b-tab title="👑 All time best">
+      <b-tab :title="!is_mobilesize? '👑 All time best' : 'All time'">
         <small
           >Won't get visibility unless voted, so make sure your community knows
           about it.</small
@@ -47,7 +47,7 @@
 
       <!-- This tabs content will not be mounted until the tab is shown -->
       <!-- and will be un-mounted when hidden -->
-      <b-tab title="🥇 Today's best" lazy>
+      <b-tab  title="🥇 Today's best" lazy>
         <small>Today best perofoming coins</small>
         <b-row class="match-height mt-1">
           <b-col lg="12">
@@ -55,7 +55,7 @@
           </b-col>
         </b-row>
       </b-tab>
-      <b-tab title="🔥 Audited coins" lazy>
+      <b-tab :title="!is_mobilesize? '🔥 Audited coins' : 'Audited'" lazy>
         <small
           >We give 95% assurance to the public that those audited coins are rug
           pull-free and scams will not likely happen. We will keep tracking the
@@ -74,8 +74,9 @@
 <script>
 import { BRow, BCol, BSpinner, BTabs, BTab } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
-
+import { mixinList } from "@/mixins/mixinList";
 export default {
+  mixins: [mixinList],
   components: {
     BRow,
     BCol,
