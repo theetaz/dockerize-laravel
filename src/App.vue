@@ -131,6 +131,7 @@ export default {
     store.commit("app/UPDATE_WINDOW_WIDTH", window.innerWidth);
     const { width: windowWidth } = useWindowSize();
     watch(windowWidth, (val) => {
+      console.log("val",val);
       store.commit("app/UPDATE_WINDOW_WIDTH", val);
     });
 

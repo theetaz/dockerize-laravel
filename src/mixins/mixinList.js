@@ -9,6 +9,7 @@ export const mixinList = {
     this.$nextTick(() => {
       window.addEventListener("resize", this.onResize);
     });
+    this.checkWIndowSize();
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);
@@ -20,6 +21,12 @@ export const mixinList = {
         this.is_mobilesize = true;
       }
     },
+    checkWIndowSize() {
+      let window_size = window.innerWidth;
+      if (window_size <= 1024) {
+        this.is_mobilesize = true;
+      }
+    }
   }
 
 }
