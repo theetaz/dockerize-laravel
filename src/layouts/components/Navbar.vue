@@ -7,6 +7,11 @@
           <feather-icon icon="MenuIcon" size="21" />
         </b-link>
       </li>
+      <b-link class="navbar-brand" to="/">
+          <span class="brand-logo">
+            <b-img :src="appLogoImage" alt="logo" />
+          </span>
+        </b-link>
     </ul>
 
     <!-- Left Col -->
@@ -98,6 +103,7 @@
 <script>
 import { mixinList } from "@/mixins/mixinList";
 import helper from "@/utils/helper";
+import { $themeConfig } from "@themeConfig";
 import {
   BLink,
   BNavbarNav,
@@ -106,6 +112,7 @@ import {
   BDropdownDivider,
   BAvatar,
   BButton,
+  BImg
 } from "bootstrap-vue";
 import DarkToggler from "@core/layouts/components/app-navbar/components/DarkToggler.vue";
 import Ripple from "vue-ripple-directive";
@@ -122,6 +129,7 @@ export default {
     };
   },
   components: {
+    BImg,
     BButton,
     BLink,
     BNavbarNav,
@@ -131,6 +139,14 @@ export default {
     BAvatar,
     // Navbar Components
     DarkToggler,
+  },
+  setup() {
+    // App Name
+    const { appLogoImage, appName } = $themeConfig.app;
+    return {
+      appLogoImage,
+      appName
+    };
   },
   directives: {
     Ripple,
@@ -195,5 +211,11 @@ export default {
   font-weight: 600;
   line-height: 1.45;
   color: #695cea;
+}
+img {
+    border-style: none;
+    width: 29px;
+    margin-top: -20px;
+    margin-left: 10px;
 }
 </style>
