@@ -3,10 +3,9 @@
     <validation-observer ref="simpleRules">
       <b-form @submit.prevent>
         <b-row>
-          <b-col cols="6">
+          <b-col md="6">
             <h3 class="mb-2">Token informations</h3>
             <b-row>
-              <!-- Token name start -->
               <b-col cols="6">
                 <b-form-group
                   label="Token Name"
@@ -37,9 +36,6 @@
                   </validation-provider>
                 </b-form-group>
               </b-col>
-              <!-- Token name end-->
-
-              <!-- Token symbol start -->
               <b-col cols="6">
                 <b-form-group
                   label="Token Symbol"
@@ -70,9 +66,7 @@
                   </validation-provider>
                 </b-form-group>
               </b-col>
-              <!-- Token symbol end-->
             </b-row>
-
             <b-row>
               <b-col cols="12">
                 <!-- Token description start -->
@@ -104,7 +98,6 @@
                 <!-- Token description end-->
               </b-col>
             </b-row>
-
             <b-row>
               <b-col cols="12">
                 <h3 class="mb-2 mt-2">Token Meta Data</h3>
@@ -158,7 +151,6 @@
               </b-col>
               <!-- Token link end-->
             </b-row>
-
             <b-row>
               <!-- Token Actual Price start -->
               <b-col cols="6">
@@ -227,11 +219,10 @@
               <!-- Token link end-->
             </b-row>
           </b-col>
-
-          <b-col cols="6">
+          <b-col md="6">
+            <h3 class="mb-2">Smart Contracts</h3>
             <b-row>
-              <b-col cols="12">
-                <h3 class="mb-2">Smart Contracts</h3>
+              <b-col md="12">
                 <!-- Token Binance Smart Chain contract address start -->
                 <b-form-group
                   label="Token Binance Smart Chain contract address"
@@ -250,7 +241,10 @@
                   </b-input-group>
                 </b-form-group>
                 <!-- Token Binance Smart Chain contract address end-->
-
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col md="12">
                 <!-- Token Ethereum contract address start -->
                 <b-form-group
                   label="Token Ethereum contract address"
@@ -269,7 +263,10 @@
                   </b-input-group>
                 </b-form-group>
                 <!-- Token Ethereum contract address end-->
-
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col md="12">
                 <!-- Other links start -->
                 <b-form-group
                   label="Other links, other blockchain contracts or anything else you would like to add to your coin request"
@@ -285,120 +282,119 @@
                   </b-input-group>
                 </b-form-group>
                 <!-- Other links end-->
-
-                <b-row>
-                  <b-col cols="12">
-                    <h3 class="mb-2 mt-2">Social</h3>
-                  </b-col>
-
-                  <!-- Website start -->
-                  <b-col cols="6">
-                    <b-form-group label="Website" label-for="iv-website">
-                      <b-input-group class="input-group-merge">
-                        <b-input-group-prepend is-text>
-                          <feather-icon icon="LinkIcon" />
-                        </b-input-group-prepend>
-                        <b-form-input
-                          id="iv-website"
-                          v-model="website"
-                          type="text"
-                          placeholder="Expl: https://www.bitcoin.org"
-                        />
-                      </b-input-group>
-                    </b-form-group>
-                  </b-col>
-                  <!-- Website end-->
-
-                  <!-- Telegram start -->
-                  <b-col cols="6">
-                    <b-form-group label="Telegram" label-for="iv-telegram">
-                      <b-input-group class="input-group-merge">
-                        <b-input-group-prepend is-text>
-                          <feather-icon icon="MessageSquareIcon" />
-                        </b-input-group-prepend>
-                        <b-form-input
-                          id="iv-telegram"
-                          v-model="telegram"
-                          type="text"
-                          placeholder="Expl: https://t.me/bitcoin"
-                        />
-                      </b-input-group>
-                    </b-form-group>
-                  </b-col>
-                  <!-- Telegram end-->
-
-                  <!-- Twitter start -->
-                  <b-col cols="6">
-                    <b-form-group label="Twitter" label-for="iv-twitter">
-                      <b-input-group class="input-group-merge">
-                        <b-input-group-prepend is-text>
-                          <feather-icon icon="TwitterIcon" />
-                        </b-input-group-prepend>
-                        <b-form-input
-                          id="iv-twitter"
-                          v-model="twitter"
-                          type="text"
-                          placeholder="Expl: https://twitter.com/bitcoin"
-                        />
-                      </b-input-group>
-                    </b-form-group>
-                  </b-col>
-                  <!-- Twitter end-->
-
-                  <!-- Reddit start -->
-                  <b-col cols="6">
-                    <b-form-group label="Reddit" label-for="iv-reddit">
-                      <b-input-group class="input-group-merge">
-                        <b-input-group-prepend is-text>
-                          <feather-icon icon="BellIcon" />
-                        </b-input-group-prepend>
-                        <b-form-input
-                          id="iv-reddit"
-                          v-model="reddit"
-                          type="text"
-                          placeholder="Expl: https://reddit.com/bitcoin"
-                        />
-                      </b-input-group>
-                    </b-form-group>
-                  </b-col>
-                  <!-- Reddit end-->
-
-                  <!-- Discord start -->
-                  <b-col cols="6">
-                    <b-form-group label="Discord" label-for="iv-discord">
-                      <b-input-group class="input-group-merge">
-                        <b-input-group-prepend is-text>
-                          <feather-icon icon="PhoneCallIcon" />
-                        </b-input-group-prepend>
-                        <b-form-input
-                          id="iv-discord"
-                          v-model="discord"
-                          type="text"
-                          placeholder="Expl: https://discord.com/bitcoin"
-                        />
-                      </b-input-group>
-                    </b-form-group>
-                  </b-col>
-                  <!-- Discord end-->
-                </b-row>
               </b-col>
             </b-row>
-          </b-col>
-          <b-col v-if="loading" cols="12" class="text-center">
-            <b-spinner class="mt-2" variant="primary" />
-          </b-col>
-          <b-col v-else cols="12" class="text-center">
-            <b-button
-              class="mt-2"
-              variant="primary"
-              type="submit"
-              loading="true"
-              @click.prevent="validationForm"
-            >
-              Submit Request
-            </b-button>
+            <b-row>
+              <b-col cols="12">
+                <h3 class="mb-2 mt-2">Social</h3>
+              </b-col>
+
+              <!-- Website start -->
+              <b-col cols="6">
+                <b-form-group label="Website" label-for="iv-website">
+                  <b-input-group class="input-group-merge">
+                    <b-input-group-prepend is-text>
+                      <feather-icon icon="LinkIcon" />
+                    </b-input-group-prepend>
+                    <b-form-input
+                      id="iv-website"
+                      v-model="website"
+                      type="text"
+                      placeholder="Expl: https://www.bitcoin.org"
+                    />
+                  </b-input-group>
+                </b-form-group>
+              </b-col>
+              <!-- Website end-->
+
+              <!-- Telegram start -->
+              <b-col cols="6">
+                <b-form-group label="Telegram" label-for="iv-telegram">
+                  <b-input-group class="input-group-merge">
+                    <b-input-group-prepend is-text>
+                      <feather-icon icon="MessageSquareIcon" />
+                    </b-input-group-prepend>
+                    <b-form-input
+                      id="iv-telegram"
+                      v-model="telegram"
+                      type="text"
+                      placeholder="Expl: https://t.me/bitcoin"
+                    />
+                  </b-input-group>
+                </b-form-group>
+              </b-col>
+              <!-- Telegram end-->
+
+              <!-- Twitter start -->
+              <b-col cols="6">
+                <b-form-group label="Twitter" label-for="iv-twitter">
+                  <b-input-group class="input-group-merge">
+                    <b-input-group-prepend is-text>
+                      <feather-icon icon="TwitterIcon" />
+                    </b-input-group-prepend>
+                    <b-form-input
+                      id="iv-twitter"
+                      v-model="twitter"
+                      type="text"
+                      placeholder="Expl: https://twitter.com/bitcoin"
+                    />
+                  </b-input-group>
+                </b-form-group>
+              </b-col>
+              <!-- Twitter end-->
+
+              <!-- Reddit start -->
+              <b-col cols="6">
+                <b-form-group label="Reddit" label-for="iv-reddit">
+                  <b-input-group class="input-group-merge">
+                    <b-input-group-prepend is-text>
+                      <feather-icon icon="BellIcon" />
+                    </b-input-group-prepend>
+                    <b-form-input
+                      id="iv-reddit"
+                      v-model="reddit"
+                      type="text"
+                      placeholder="Expl: https://reddit.com/bitcoin"
+                    />
+                  </b-input-group>
+                </b-form-group>
+              </b-col>
+              <!-- Reddit end-->
+
+              <!-- Discord start -->
+              <b-col cols="6">
+                <b-form-group label="Discord" label-for="iv-discord">
+                  <b-input-group class="input-group-merge">
+                    <b-input-group-prepend is-text>
+                      <feather-icon icon="PhoneCallIcon" />
+                    </b-input-group-prepend>
+                    <b-form-input
+                      id="iv-discord"
+                      v-model="discord"
+                      type="text"
+                      placeholder="Expl: https://discord.com/bitcoin"
+                    />
+                  </b-input-group>
+                </b-form-group>
+              </b-col>
+              <!-- Discord end-->
+            </b-row>
           </b-col>
         </b-row>
+        <b-col v-if="loading" cols="12" class="text-center">
+          <b-spinner class="mt-2" variant="primary" />
+        </b-col>
+        <b-col v-else cols="12" class="text-center">
+          <b-button
+            class="mt-2"
+            variant="primary"
+            type="submit"
+            loading="true"
+            @click.prevent="validationForm"
+          >
+            Submit Request
+          </b-button>
+        </b-col>
       </b-form>
     </validation-observer>
   </b-card>
@@ -419,7 +415,7 @@ import {
   BInputGroupPrepend,
   BCard,
   BFormDatepicker,
-  BSpinner
+  BSpinner,
 } from "bootstrap-vue";
 import Ripple from "vue-ripple-directive";
 import FormData from "form-data";
@@ -439,7 +435,7 @@ export default {
     ValidationProvider,
     ValidationObserver,
     BFormDatepicker,
-    BSpinner
+    BSpinner,
   },
   computed: {
     tokenNameValidation() {
@@ -450,7 +446,7 @@ export default {
     },
     tokenDescriptionlValidation() {
       return this.tokenDescription.length >= 50;
-    }
+    },
   },
   data() {
     return {
@@ -471,7 +467,7 @@ export default {
       telegram: "",
       twitter: "",
       reddit: "",
-      discord: ""
+      discord: "",
     };
   },
   methods: {
@@ -488,7 +484,7 @@ export default {
       this.$bvToast.toast(message, {
         title: title,
         variant,
-        solid: true
+        solid: true,
       });
     },
 
@@ -546,10 +542,10 @@ export default {
       this.tokenActualPrice = this.tokenActualMarketCap = this.bscAddress = this.ethAddress = null;
       this.otherLinks = this.website = this.telegram = this.twitter = this.reddit = null;
       this.$refs.simpleRules.reset();
-    }
+    },
   },
   directives: {
-    Ripple
-  }
+    Ripple,
+  },
 };
 </script>
