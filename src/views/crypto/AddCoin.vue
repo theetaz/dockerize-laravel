@@ -6,7 +6,7 @@
           <b-col md="6">
             <h3 class="mb-2">Token informations</h3>
             <b-row>
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group
                   label="Token Name"
                   label-for="iv-token-name"
@@ -36,7 +36,7 @@
                   </validation-provider>
                 </b-form-group>
               </b-col>
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group
                   label="Token Symbol"
                   label-for="iv-token-symbol"
@@ -103,7 +103,7 @@
                 <h3 class="mb-2 mt-2">Token Meta Data</h3>
               </b-col>
               <!-- Released Date start -->
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group
                   label="Released Date"
                   label-for="iv-released-date"
@@ -128,10 +128,9 @@
                   </validation-provider>
                 </b-form-group>
               </b-col>
-              <!-- Released Date start end-->
-
+              <!-- Released Date start end -->
               <!-- Token link start -->
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group
                   label="Token Logo Link"
                   label-for="iv-token-logo-link"
@@ -149,11 +148,10 @@
                   </b-input-group>
                 </b-form-group>
               </b-col>
-              <!-- Token link end-->
+              <!-- Token link start end -->
             </b-row>
             <b-row>
-              <!-- Token Actual Price start -->
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group
                   label="Token Actual Price"
                   label-for="iv-roken-actual-price"
@@ -183,18 +181,15 @@
                   </validation-provider>
                 </b-form-group>
               </b-col>
-              <!-- Token Actual Price end-->
-
-              <!-- Token actual market cap start -->
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group
-                  label="Token Actual Market Cap"
-                  label-for="iv-token-actual-market-cap"
+                  label="Token Symbol"
+                  label-for="iv-token-symbol"
                   :state="state"
                 >
                   <validation-provider
                     #default="{ errors }"
-                    name="Token Actual Market Cap"
+                    name="Token Symbol"
                     rules="required"
                   >
                     <b-input-group
@@ -202,21 +197,20 @@
                       :class="errors.length > 0 ? 'is-invalid' : ''"
                     >
                       <b-input-group-prepend is-text>
-                        <feather-icon icon="TrendingUpIcon" />
+                        <feather-icon icon="PackageIcon" />
                       </b-input-group-prepend>
                       <b-form-input
-                        id="iv-token-actual-market-cap"
-                        v-model="tokenActualMarketCap"
-                        type="number"
+                        id="iv-token-symbol"
+                        v-model="tokenSymbol"
+                        type="text"
                         :state="errors.length > 0 ? false : null"
-                        placeholder="Expl: 450000"
+                        placeholder="Expl: BTC"
                       />
                     </b-input-group>
                     <small class="text-danger">{{ errors[0] }}</small>
                   </validation-provider>
                 </b-form-group>
               </b-col>
-              <!-- Token link end-->
             </b-row>
           </b-col>
           <b-col md="6">
@@ -289,8 +283,7 @@
                 <h3 class="mb-2 mt-2">Social</h3>
               </b-col>
 
-              <!-- Website start -->
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group label="Website" label-for="iv-website">
                   <b-input-group class="input-group-merge">
                     <b-input-group-prepend is-text>
@@ -305,10 +298,7 @@
                   </b-input-group>
                 </b-form-group>
               </b-col>
-              <!-- Website end-->
-
-              <!-- Telegram start -->
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group label="Telegram" label-for="iv-telegram">
                   <b-input-group class="input-group-merge">
                     <b-input-group-prepend is-text>
@@ -323,10 +313,10 @@
                   </b-input-group>
                 </b-form-group>
               </b-col>
-              <!-- Telegram end-->
+            </b-row>
 
-              <!-- Twitter start -->
-              <b-col cols="6">
+            <b-row>
+              <b-col md="6">
                 <b-form-group label="Twitter" label-for="iv-twitter">
                   <b-input-group class="input-group-merge">
                     <b-input-group-prepend is-text>
@@ -341,10 +331,7 @@
                   </b-input-group>
                 </b-form-group>
               </b-col>
-              <!-- Twitter end-->
-
-              <!-- Reddit start -->
-              <b-col cols="6">
+              <b-col md="6">
                 <b-form-group label="Reddit" label-for="iv-reddit">
                   <b-input-group class="input-group-merge">
                     <b-input-group-prepend is-text>
@@ -359,10 +346,10 @@
                   </b-input-group>
                 </b-form-group>
               </b-col>
-              <!-- Reddit end-->
+            </b-row>
 
-              <!-- Discord start -->
-              <b-col cols="6">
+            <b-row>
+              <b-col md="6">
                 <b-form-group label="Discord" label-for="iv-discord">
                   <b-input-group class="input-group-merge">
                     <b-input-group-prepend is-text>
@@ -377,7 +364,6 @@
                   </b-input-group>
                 </b-form-group>
               </b-col>
-              <!-- Discord end-->
             </b-row>
           </b-col>
         </b-row>
