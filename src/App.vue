@@ -160,7 +160,7 @@ export default {
 }
 @media (max-width: 1024px) {
   .horizontal-layout.navbar-floating:not(.blank-page) .app-content {
-    padding: calc(0rem + 4rem * 2 + 1.3rem) 2rem 0 2rem !important;
+    padding: calc(0rem + 4rem * 2 + 1.3rem) 1rem 0 1rem !important;
   }
   .table th,
   .table td {
