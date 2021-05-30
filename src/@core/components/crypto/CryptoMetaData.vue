@@ -32,7 +32,9 @@
           <div class="ml-1">
             <h5 class="mb-0">
               {{
-                coinData.actual_price ? coinData.actual_price.toFixed(9) : "N/A"
+                coinData.actual_price
+                  ? coinData.actual_price.toFixed(12)
+                  : "N/A"
               }}
             </h5>
             <small>Price</small>
