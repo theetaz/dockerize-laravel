@@ -37,11 +37,11 @@ export default {
     },
     UPDATE_VOTE_COUNT(state, coinData) {
 
-      if (coinData.isArray) {
-        let votedCoin = state.cryptoData.filter((coin) => coin.id === coinData.id);
-        //update the vote count
-        votedCoin[0].vote_count = coinData.vote_count;
-      } else {
+      let votedCoin = state.cryptoData.filter((coin) => coin.id === coinData.id);
+      //update the vote count
+      votedCoin[0].vote_count = coinData.vote_count;
+
+      if (state.coin) {
         state.coin.vote_count = coinData.vote_count;
       }
 
