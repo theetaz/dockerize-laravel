@@ -183,13 +183,13 @@
               </b-col>
               <b-col md="6">
                 <b-form-group
-                  label="Token Symbol"
-                  label-for="iv-token-symbol"
+                  label="Token Actual Market Cap"
+                  label-for="iv-token-actual-market-cap"
                   :state="state"
                 >
                   <validation-provider
                     #default="{ errors }"
-                    name="Token Symbol"
+                    name="Token Actual Market Cap"
                     rules="required"
                   >
                     <b-input-group
@@ -200,11 +200,11 @@
                         <feather-icon icon="PackageIcon" />
                       </b-input-group-prepend>
                       <b-form-input
-                        id="iv-token-symbol"
-                        v-model="tokenSymbol"
-                        type="text"
+                        id="iv-token-actual-market-cap"
+                        v-model="tokenActualMarketCap"
+                        type="number"
                         :state="errors.length > 0 ? false : null"
-                        placeholder="Expl: BTC"
+                        placeholder="Expl: 5200000"
                       />
                     </b-input-group>
                     <small class="text-danger">{{ errors[0] }}</small>
@@ -401,7 +401,7 @@ import {
   BInputGroupPrepend,
   BCard,
   BFormDatepicker,
-  BSpinner,
+  BSpinner
 } from "bootstrap-vue";
 import Ripple from "vue-ripple-directive";
 import FormData from "form-data";
@@ -421,7 +421,7 @@ export default {
     ValidationProvider,
     ValidationObserver,
     BFormDatepicker,
-    BSpinner,
+    BSpinner
   },
   computed: {
     tokenNameValidation() {
@@ -432,7 +432,7 @@ export default {
     },
     tokenDescriptionlValidation() {
       return this.tokenDescription.length >= 50;
-    },
+    }
   },
   data() {
     return {
@@ -453,7 +453,7 @@ export default {
       telegram: "",
       twitter: "",
       reddit: "",
-      discord: "",
+      discord: ""
     };
   },
   methods: {
@@ -470,7 +470,7 @@ export default {
       this.$bvToast.toast(message, {
         title: title,
         variant,
-        solid: true,
+        solid: true
       });
     },
 
@@ -528,10 +528,10 @@ export default {
       this.tokenActualPrice = this.tokenActualMarketCap = this.bscAddress = this.ethAddress = null;
       this.otherLinks = this.website = this.telegram = this.twitter = this.reddit = null;
       this.$refs.simpleRules.reset();
-    },
+    }
   },
   directives: {
-    Ripple,
-  },
+    Ripple
+  }
 };
 </script>
