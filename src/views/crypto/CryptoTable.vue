@@ -9,6 +9,7 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
+    
     <b-table
       id="table-crypto"
       hover
@@ -29,9 +30,9 @@
             <b-img-lazy center fluid :src="data.item.logo_link" alt="avatar img"
           /></b-avatar>
           <div>
-            <div class="font-weight-bolder pl-1">{{ data.item.name }}</div>
+            <div class="font-weight-bolder pl-1">{{ !is_mobilesize ? data.item.name:data.item.name.slice(0, 8) + ".." }}</div>
             <div class="font-small-2 text-muted pl-1">
-              {{ data.item.symbol }}
+              {{ !is_mobilesize ? data.item.symbol:data.item.symbol.slice(0, 8) + ".." }}
             </div>
           </div>
         </div>
