@@ -10,7 +10,7 @@
     <b-row class="banner-margin">
       <div class="d-flex justify-content-center  mb-3 col-12 text-center">
         <b-link href="https://www.ejectelon.com/" target="_blank">
-            <b-img src="@/assets/images/banners/ejectElon.gif"  :height="is_mobilesize?'37px':'130px'"  />
+            <b-img src="@/assets/images/banners/ejectElon.gif"  :height="is_mobilesize?'37px':'105px'"  />
         </b-link>
       </div>
     </b-row>
