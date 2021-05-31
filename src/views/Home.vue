@@ -7,7 +7,13 @@
         </div>
       </b-col>
     </b-row>
-
+    <b-row class="banner-margin">
+      <div class="d-flex justify-content-center  mb-3 col-12 text-center">
+        <b-link href="https://www.ejectelon.com/" target="_blank">
+            <b-img src="@/assets/images/banners/ejectElon.gif"  :height="is_mobilesize?'37px':'130px'"  />
+        </b-link>
+      </div>
+    </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
         <h2>💎 Promoted coins</h2>
@@ -72,7 +78,7 @@
 </template>
 
 <script>
-import { BRow, BCol, BSpinner, BTabs, BTab } from "bootstrap-vue";
+import { BRow, BCol, BSpinner, BTabs, BTab, BLink, BImg } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
 export default {
@@ -84,6 +90,7 @@ export default {
     CryptoTable,
     BTabs,
     BTab,
+    BLink, BImg
   },
   data() {
     return {
@@ -120,3 +127,12 @@ export default {
   },
 };
 </script>
+<style>
+  img {
+    border-style: none;
+    border-radius: 10px;
+}
+.banner-margin{
+  margin-top: -50px;
+}
+</style>
