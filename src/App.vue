@@ -54,20 +54,20 @@ export default {
       .listen("CoinVoteCastingEvent", (event) => {
         if (event.data) {
           this.$store.dispatch("UPDATE_REALTIME_VOTE", event.data);
-          this.$toast(
-            {
-              component: ToastificationContent,
-              props: {
-                title: event.title || "Notification",
-                icon: "InfoIcon",
-                text: event.message || "New Vote has been casted",
-                variant: "warning"
-              }
-            },
-            {
-              position: "bottom-left"
-            }
-          );
+          // this.$toast(
+          //   {
+          //     component: ToastificationContent,
+          //     props: {
+          //       title: event.title || "Notification",
+          //       icon: "InfoIcon",
+          //       text: event.message || "New Vote has been casted",
+          //       variant: "warning"
+          //     }
+          //   },
+          //   {
+          //     position: "bottom-left"
+          //   }
+          // );
         }
       });
   },
