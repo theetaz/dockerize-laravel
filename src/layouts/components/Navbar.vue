@@ -216,6 +216,7 @@ img {
     border-style: none;
     width: 29px;
     margin-top: -20px;
-    margin-left: 10px;
+    margin-left: 100px;
 }
+
 </style>
