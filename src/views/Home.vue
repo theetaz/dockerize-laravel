@@ -7,12 +7,10 @@
         </div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="banner-margin">
       <div class="d-flex justify-content-center  mb-3 col-12 text-center">
-        <b-link class="navbar-brand" href="https://www.ejectelon.com/" target="_blank">
-          <span class="brand-logo">
-            <b-img src="@/assets/images/banners/ejectElon.gif" alt="logo" />
-          </span>
+        <b-link href="https://www.ejectelon.com/" target="_blank">
+            <b-img src="@/assets/images/banners/ejectElon.gif"  :height="is_mobilesize?'37px':'130px'"  />
         </b-link>
       </div>
     </b-row>
@@ -133,5 +131,8 @@ export default {
   img {
     border-style: none;
     border-radius: 10px;
+}
+.banner-margin{
+  margin-top: -50px;
 }
 </style>
