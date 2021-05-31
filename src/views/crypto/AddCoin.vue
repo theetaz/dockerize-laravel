@@ -183,13 +183,13 @@
               </b-col>
               <b-col md="6">
                 <b-form-group
-                  label="Token Symbol"
-                  label-for="iv-token-symbol"
+                  label="Token Actual Market Cap"
+                  label-for="iv-token-actual-market-cap"
                   :state="state"
                 >
                   <validation-provider
                     #default="{ errors }"
-                    name="Token Symbol"
+                    name="Token Actual Market Cap"
                     rules="required"
                   >
                     <b-input-group
@@ -197,14 +197,14 @@
                       :class="errors.length > 0 ? 'is-invalid' : ''"
                     >
                       <b-input-group-prepend is-text>
-                        <feather-icon icon="PackageIcon" />
+                        <feather-icon icon="TrendingUpIcon" />
                       </b-input-group-prepend>
                       <b-form-input
-                        id="iv-token-symbol"
-                        v-model="tokenSymbol"
-                        type="text"
+                        id="iv-token-actual-market-cap"
+                        v-model="tokenActualMarketCap"
+                        type="number"
                         :state="errors.length > 0 ? false : null"
-                        placeholder="Expl: BTC"
+                        placeholder="Expl: 450000"
                       />
                     </b-input-group>
                     <small class="text-danger">{{ errors[0] }}</small>
@@ -475,6 +475,9 @@ export default {
     },
 
     submitFormData() {
+      const user_data = localStorage.getItem("profile");
+      const user_id = JSON.parse(user_data).id;
+
       let formData = new FormData();
       formData.append("name", this.tokenName);
       formData.append("symbol", this.tokenSymbol);
@@ -491,6 +494,7 @@ export default {
       formData.append("actual_price", this.tokenActualPrice);
       formData.append("actual_market_cap", this.tokenActualMarketCap);
       formData.append("release_date", this.releasedDate);
+      formData.append("user_id", user_id);
 
       API.post("/coin", formData)
         .then((response) => {
@@ -526,7 +530,7 @@ export default {
     resetFormData() {
       this.tokenName = this.tokenSymbol = this.tokenDescription = this.releasedDate = this.tokenLogoLink = null;
       this.tokenActualPrice = this.tokenActualMarketCap = this.bscAddress = this.ethAddress = null;
-      this.otherLinks = this.website = this.telegram = this.twitter = this.reddit = null;
+      this.otherLinks = this.website = this.telegram = this.twitter = this.reddit = this.discord = null;
       this.$refs.simpleRules.reset();
     },
   },

@@ -131,7 +131,6 @@ export default {
     store.commit("app/UPDATE_WINDOW_WIDTH", window.innerWidth);
     const { width: windowWidth } = useWindowSize();
     watch(windowWidth, (val) => {
-      console.log("val",val);
       store.commit("app/UPDATE_WINDOW_WIDTH", val);
     });
 
@@ -159,6 +158,10 @@ export default {
   -webkit-box-shadow: inset 0 0 6px rgba(39, 39, 39, 0.5);
 }
 @media (max-width: 1024px) {
+  .img-fluid {
+    max-width: 55% !important;
+    height: auto;
+}
   .horizontal-layout.navbar-floating:not(.blank-page) .app-content {
     padding: calc(0rem + 4rem * 2 + 1.3rem) 1rem 0 1rem !important;
   }
@@ -169,13 +172,30 @@ export default {
   body {
     font-family: "Montserrat", Helvetica, Arial, serif;
     font-size: 10px !important;
-    font-weight: 400;
-    line-height: 2.45;
+    font-weight: 600 !important;
+    line-height: 2.45 !important;
   }
   .btn {
     text-align: center;
     padding: 0.4rem 0.2rem !important;
     border-radius: 0.358rem;
-}
+  }
+  .header-navbar .navbar-container ul.navbar-nav li {
+      line-height: 4.5 !important;
+  }
+  [dir=ltr] .horizontal-layout .header-navbar .navbar-container {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    margin-bottom: -26px;
+  }
+  [dir] input, [dir] button, [dir] select, [dir] optgroup, [dir] textarea {
+    margin: 0;
+    width: 70px;
+  }
+  [dir] .b-avatar.badge-light-primary {
+    background-color: rgba(115, 103, 240, 0.12);
+    margin-bottom: 20px;
+  }
+  
 }
 </style>
