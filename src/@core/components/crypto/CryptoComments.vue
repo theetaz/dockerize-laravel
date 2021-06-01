@@ -62,7 +62,7 @@
                   variant="outline-primary"
                   @click.prevent="validationForm"
                 >
-                  Submit your thoughs
+                  Submit your thoughts
                 </b-button>
               </div>
             </b-form>
