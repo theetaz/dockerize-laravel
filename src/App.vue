@@ -188,10 +188,6 @@ export default {
     padding-right: 0.8rem;
     margin-bottom: -26px;
   }
-  [dir] input, [dir] button, [dir] select, [dir] optgroup, [dir] textarea {
-    margin: 0;
-    width: 70px;
-  }
   [dir] .b-avatar.badge-light-primary {
     background-color: rgba(115, 103, 240, 0.12);
     margin-bottom: 20px;
