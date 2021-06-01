@@ -72,6 +72,7 @@
           <b-button
             :variant="isVoted(data.item.is_voted)"
             @click="castVote(data.item)"
+            :class="is_mobilesize ? 'button-class' : ''"
           >
             <div v-if="loading && data.item.id == selectId">
               <b-spinner
@@ -221,5 +222,9 @@ table#table-crypto .flip-list-move {
 [dir] .table th,
 [dir] .table td {
   padding: 0.72rem 0rem;
+}
+.button-class {
+  margin: 0;
+  width: 70px;
 }
 </style>
