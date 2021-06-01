@@ -8,11 +8,43 @@
       </b-col>
     </b-row>
     <b-row class="banner-margin">
-      <div class="d-flex justify-content-center  mb-3 col-12 text-center">
+      <div class="d-flex justify-content-center mb-3 col-12 text-center">
         <b-link href="http://bit.ly/eject-elon" target="_blank">
-            <b-img src="@/assets/images/banners/ejectElon.gif"  :height="is_mobilesize?'37px':'105px'"  />
+          <b-img
+            src="@/assets/images/banners/ejectElon.gif"
+            :height="is_mobilesize ? '37px' : '105px'"
+          />
         </b-link>
       </div>
+    </b-row>
+    <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
+      <div class="d-flex justify-content-center mb-3  col-4 text-center">
+        <b-card>
+          <b-card-text><h1>POST YOUR ADD HERE</h1>
+          <h2>366*146</h2> </b-card-text>
+        </b-card>
+      </div>
+      <div class="d-flex justify-content-center mb-3 col-4 text-center">
+        <b-card>
+          <b-card-text><h1>POST YOUR ADD HERE</h1>
+          <h2>366*146</h2> </b-card-text>
+        </b-card>
+      </div>
+      <div class="d-flex justify-content-center mb-3 col-4 text-center">
+        <b-card>
+          <b-card-text><h1>POST YOUR ADD HERE</h1>
+          <h2>366*146</h2> </b-card-text>
+        </b-card>
+      </div>
+    </b-row>
+    <b-row class="banner-margin pt-1" v-else>
+      <div class="d-flex justify-content-center col-12 text-center">
+        <b-card>
+          <b-card-text><h2>POST YOUR ADD </h2>
+          <h2>366*146</h2> </b-card-text>
+        </b-card>
+      </div>
+      
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
@@ -37,23 +69,21 @@
 
     <b-tabs content-class="mt-1">
       <!-- This tabs content will always be mounted -->
-      <b-tab :title="!is_mobilesize? '👑 All time best' : 'All time'">
+      <b-tab :title="!is_mobilesize ? '👑 All time best' : 'All time'">
         <small
           >Won't get visibility unless voted, so make sure your community knows
           about it.</small
         >
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table
-              :table-data="cryptoData"
-            />
+            <crypto-table :table-data="cryptoData" />
           </b-col>
         </b-row>
       </b-tab>
 
       <!-- This tabs content will not be mounted until the tab is shown -->
       <!-- and will be un-mounted when hidden -->
-      <b-tab  title="🥇 Today's best" lazy>
+      <b-tab title="🥇 Today's best" lazy>
         <small>Today best perofoming coins</small>
         <b-row class="match-height mt-1">
           <b-col lg="12">
@@ -61,7 +91,7 @@
           </b-col>
         </b-row>
       </b-tab>
-      <b-tab :title="!is_mobilesize? '🔥 Audited coins' : 'Audited'" lazy>
+      <b-tab :title="!is_mobilesize ? '🔥 Audited coins' : 'Audited'" lazy>
         <small
           >We give 95% assurance to the public that those audited coins are rug
           pull-free and scams will not likely happen. We will keep tracking the
@@ -78,7 +108,17 @@
 </template>
 
 <script>
-import { BRow, BCol, BSpinner, BTabs, BTab, BLink, BImg } from "bootstrap-vue";
+import {
+  BRow,
+  BCol,
+  BSpinner,
+  BTabs,
+  BTab,
+  BLink,
+  BCard,
+  BImg,
+  BCardText
+} from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
 export default {
@@ -90,7 +130,10 @@ export default {
     CryptoTable,
     BTabs,
     BTab,
-    BLink, BImg
+    BLink,
+    BImg,
+    BCardText,
+    BCard,
   },
   data() {
     return {
@@ -128,11 +171,11 @@ export default {
 };
 </script>
 <style>
-  img {
-    border-style: none;
-    border-radius: 10px;
+img {
+  border-style: none;
+  border-radius: 10px;
 }
-.banner-margin{
+.banner-margin {
   margin-top: -50px;
 }
 </style>
