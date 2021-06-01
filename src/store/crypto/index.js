@@ -62,7 +62,7 @@ export default {
         commit('loaders/SET_LOADING', true, { root: true })
         API.get("coins", {
           params: {
-            per_page: 20,
+            per_page: 200,
             direction: "DESC",
             sort_key: "vote_count",
             ip_address: state.clientIP,
