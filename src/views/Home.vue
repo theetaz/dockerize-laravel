@@ -17,7 +17,7 @@
         </b-link>
       </div>
     </b-row>
-    <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
+    <!-- <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center mb-3  col-4 text-center">
         <b-card>
           <b-card-text><h1>POST YOUR ADD HERE</h1>
@@ -45,7 +45,7 @@
         </b-card>
       </div>
       
-    </b-row>
+    </b-row> -->
     <b-row class="match-height mb-1">
       <b-col lg="12">
         <h2>💎 Promoted coins</h2>
@@ -98,8 +98,10 @@
           coins daily and make sure no suspicious activity will occur.</small
         >
         <b-row class="match-height mt-1">
-          <b-col lg="12">
-            <crypto-table :table-data="cryptoDataAuditedCoins" />
+          <b-col lg="12" class="text-center pt-4">
+            <!-- <crypto-table :table-data="cryptoDataAuditedCoins" /> -->
+            <h2 class="text-center">We list coins with audit reports in this section if the contract has already been audited from any recognizable firm.</h2>
+            <small>Mail to </small> <b>contact@rugfreecoins.com</b>
           </b-col>
         </b-row>
       </b-tab>
@@ -115,9 +117,9 @@ import {
   BTabs,
   BTab,
   BLink,
-  BCard,
+  // BCard,
   BImg,
-  BCardText
+  // BCardText,
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
@@ -132,8 +134,8 @@ export default {
     BTab,
     BLink,
     BImg,
-    BCardText,
-    BCard,
+    // BCardText,
+    // BCard,
   },
   data() {
     return {
