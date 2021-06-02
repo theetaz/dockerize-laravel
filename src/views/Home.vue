@@ -98,7 +98,7 @@
           coins daily and make sure no suspicious activity will occur.</small
         >
         <b-row class="match-height mt-1">
-          <b-col lg="12" class="text-center">
+          <b-col lg="12" class="text-center pt-4">
             <!-- <crypto-table :table-data="cryptoDataAuditedCoins" /> -->
             <h2 class="text-center">We list coins with audit reports in this section if the contract has already been audited from any recognizable firm.</h2>
             <small>Mail to </small> <b>contact@rugfreecoins.com</b>
