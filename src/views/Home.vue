@@ -56,7 +56,7 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table :table-data="cryptoDataPromoted" />
+        <crypto-table :table-data="cryptoDataPromoted" :table_name="'pramoted'" :total="promoted_perPage" />
       </b-col>
     </b-row>
     <b-row v-if="loading" class="match-height">
@@ -76,7 +76,7 @@
         >
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table :table-data="cryptoData" />
+            <crypto-table :table-data="cryptoData" :table_name="'all-best'" :total="perPage" />
           </b-col>
         </b-row>
       </b-tab>
@@ -87,7 +87,7 @@
         <small>Today best perofoming coins</small>
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table :table-data="cryptoDataTodayBest" />
+            <crypto-table :table-data="cryptoDataTodayBest" :table_name="'today-best'" :total="best_perPage" />
           </b-col>
         </b-row>
       </b-tab>
@@ -99,9 +99,9 @@
         >
         <b-row class="match-height mt-1">
           <b-col lg="12" class="text-center pt-4">
-            <!-- <crypto-table :table-data="cryptoDataAuditedCoins" /> -->
-            <h2 class="text-center">We list coins with audit reports in this section if the contract has already been audited from any recognizable firm.</h2>
-            <small>Mail to </small> <b>contact@rugfreecoins.com</b>
+            <crypto-table :table-data="cryptoDataAuditedCoins" :table_name="'audited'" :total="audit_perPage" />
+            <!-- <h2 class="text-center">We list coins with audit reports in this section if the contract has already been audited from any recognizable firm.</h2>
+            <small>Mail to </small> <b>contact@rugfreecoins.com</b> -->
           </b-col>
         </b-row>
       </b-tab>
@@ -158,15 +158,27 @@ export default {
     api_loading() {
       return this.$store.state.loaders.apiloading;
     },
+    best_perPage() {
+      return this.$store.state.crypto.best_perPage;
+    },
+    promoted_perPage() {
+      return this.$store.state.crypto.promoted_perPage;
+    },
+    audit_perPage() {
+      return this.$store.state.crypto.audit_perPage;
+    },
+    perPage() {
+      return this.$store.state.crypto.perPage;
+    },
   },
   methods: {},
   created() {
     if (!this.$store.state.crypto.clientIP) {
       this.$store.dispatch("FETCH_CLIENT_IP").then(() => {
-        this.$store.dispatch("FETCH_CRYPTO_DATA");
-        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA");
-        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA");
-        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA");
+        this.$store.dispatch("FETCH_CRYPTO_DATA",20);
+        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA",20);
+        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA",20);
+        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA",20);
       });
     }
   },
