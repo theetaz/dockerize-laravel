@@ -99,14 +99,24 @@
         </div>
       </template>
     </b-table>
-    <div class="text-center pb-1" v-if="!is_show_pagination && total > per_page">
+    <div
+      class="text-center pb-1"
+      v-if="!is_show_pagination && total > per_page"
+    >
       <b-button
+        v-if="!loading"
         v-ripple.400="'rgba(186, 191, 199, 0.15)'"
         variant="flat-secondary"
         @click="changePagination"
       >
         See More
       </b-button>
+      <b-spinner
+        v-else
+        label="Loading..."
+        class="mr-2 mx-1"
+        style="width: 13px; height: 13px"
+      ></b-spinner>
     </div>
   </b-card>
 </template>
@@ -188,13 +198,7 @@ export default {
       windowHeight: window.innerWidth,
     };
   },
-  watch: {
-    loading(e) {
-      if (e) {
-        this.startTimer();
-      }
-    },
-  },
+  watch: {},
   created() {
     this.dayjs.extend(relativeTime);
   },
