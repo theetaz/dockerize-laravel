@@ -11,7 +11,11 @@ export default {
     coin: null,
     token: null,
     profile: null,
-    comments: []
+    comments: [],
+    best_total: null,
+    promoted_total: null,
+    audit_total: null,
+    all_total: null
   },
   getters: {
 
@@ -55,14 +59,26 @@ export default {
     SET_PROFILE_DATA(state, profileData) {
       state.profile = profileData;
     },
+    ALL_BEST_TOTAL(state, totalData) {
+      state.best_total = totalData;
+    },
+    PROMOTED_TOTAL(state, totalData) {
+      state.promoted_total = totalData;
+    },
+    AUDIT_TOTAL(state, totalData) {
+      state.audit_total = totalData;
+    },
+    ALL_TOTAL(state, totalData) {
+      state.all_total = totalData;
+    }
   },
   actions: {
-    FETCH_CRYPTO_DATA({ commit, state }) {
+    FETCH_CRYPTO_DATA({ commit, state }, perPage) {
       return new Promise((resolve, reject) => {
         commit('loaders/SET_LOADING', true, { root: true })
         API.get("coins", {
           params: {
-            per_page: 200,
+            per_page: perPage,
             direction: "DESC",
             sort_key: "vote_count",
             ip_address: state.clientIP,
@@ -73,6 +89,7 @@ export default {
             let payload = response.data.payload.data;
             commit('SET_CRYPTO_DATA', payload);
             commit('loaders/SET_LOADING', false, { root: true })
+            commit('ALL_TOTAL',response.data.payload.total)
             resolve();
           } else {
             commit('loaders/SET_LOADING', false, { root: true })
@@ -81,11 +98,11 @@ export default {
         });
       });
     },
-    FETCH_PROMOTED_CRYPTO_DATA({ commit, state }) {
+    FETCH_PROMOTED_CRYPTO_DATA({ commit, state }, perPage) {
       return new Promise((resolve, reject) => {
         API.get("coins/promoted", {
           params: {
-            per_page: 20,
+            per_page: perPage,
             direction: "DESC",
             sort_key: "vote_count",
             ip_address: state.clientIP,
@@ -95,6 +112,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_PROMOTED', payload);
+            commit('PROMOTED_TOTAL',response.data.payload.total)
             resolve(payload);
           } else {
             reject();
@@ -102,11 +120,11 @@ export default {
         });
       });
     },
-    FETCH_TODAY_BEST_CRYPTO_DATA({ commit, state }) {
+    FETCH_TODAY_BEST_CRYPTO_DATA({ commit, state }, perPage) {
       return new Promise((resolve, reject) => {
         API.get("coins/today-best", {
           params: {
-            per_page: 20,
+            per_page: perPage,
             direction: "DESC",
             sort_key: "vote_count",
             ip_address: state.clientIP,
@@ -116,6 +134,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_TODAY_BEST', payload);
+            commit('ALL_BEST_TOTAL',response.data.payload.total)
             resolve(payload);
           } else {
             reject();
@@ -123,11 +142,11 @@ export default {
         });
       });
     },
-    FETCH_AUDITED_CRYPTO_DATA({ commit, state }) {
+    FETCH_AUDITED_CRYPTO_DATA({ commit, state }, perPage) {
       return new Promise((resolve, reject) => {
         API.get("coins/audited-coins", {
           params: {
-            per_page: 20,
+            per_page: perPage,
             direction: "DESC",
             sort_key: "vote_count",
             ip_address: state.clientIP,
@@ -137,6 +156,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_AUDITED_COINS', payload);
+            commit('AUDIT_TOTAL',response.data.payload.total)
             resolve(payload);
           } else {
             reject();

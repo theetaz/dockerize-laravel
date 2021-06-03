@@ -9,7 +9,6 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
-    
     <b-table
       id="table-crypto"
       hover
@@ -27,12 +26,26 @@
       <template #cell(name)="data">
         <div class="d-flex align-items-center">
           <b-avatar rounded size="45" variant="light-company">
-            <b-img-lazy center fluid :src="data.item.logo_link" alt="avatar img"
+            <b-img-lazy
+              center
+              fluid
+              :src="data.item.logo_link"
+              alt="avatar img"
           /></b-avatar>
           <div>
-            <div class="font-weight-bolder pl-1">{{ !is_mobilesize ? data.item.name:data.item.name.slice(0, 8) + ".." }}</div>
+            <div class="font-weight-bolder pl-1">
+              {{
+                !is_mobilesize
+                  ? data.item.name
+                  : data.item.name.slice(0, 8) + ".."
+              }}
+            </div>
             <div class="font-small-2 text-muted pl-1">
-              {{ !is_mobilesize ? data.item.symbol:data.item.symbol.slice(0, 8) + ".." }}
+              {{
+                !is_mobilesize
+                  ? data.item.symbol
+                  : data.item.symbol.slice(0, 8) + ".."
+              }}
             </div>
           </div>
         </div>
@@ -86,11 +99,31 @@
         </div>
       </template>
     </b-table>
+    <div
+      class="text-center pb-1"
+      v-if="!is_show_pagination && total > per_page"
+    >
+      <b-button
+        v-if="!loading"
+        v-ripple.400="'rgba(186, 191, 199, 0.15)'"
+        variant="flat-secondary"
+        @click="changePagination"
+      >
+        See More
+      </b-button>
+      <b-spinner
+        v-else
+        label="Loading..."
+        class="mr-2 mx-1"
+        style="width: 13px; height: 13px"
+      ></b-spinner>
+    </div>
   </b-card>
 </template>
 
 <script>
 import { mixinList } from "@/mixins/mixinList";
+import Ripple from "vue-ripple-directive";
 import {
   BCard,
   BTable,
@@ -99,12 +132,11 @@ import {
   BButton,
   BSpinner,
   BProgress,
-  BProgressBar
+  BProgressBar,
 } from "bootstrap-vue";
 import numeral from "numeral";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-//import router from "@/router";
 
 export default {
   components: {
@@ -115,20 +147,31 @@ export default {
     BButton,
     BSpinner,
     BProgress,
-    BProgressBar
+    BProgressBar,
   },
   props: {
     tableData: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
+    table_name: {
+      type: String,
+    },
+    total: {
+      type: Number,
+    },
+  },
+  directives: {
+    Ripple,
   },
   mixins: [mixinList],
   data() {
     return {
+      per_page: 20,
+      is_show_pagination: false,
       transProps: {
         // Transition name
-        name: "flip-list"
+        name: "flip-list",
       },
       numeral,
       dayjs,
@@ -140,40 +183,46 @@ export default {
         { key: "actual_market_cap", label: "MARKET CAP" },
         { key: "release_date", label: "RELEASED" },
         { key: "actual_price", label: "PRICE" },
-        { key: "vote_count", label: "VOTES" }
+        { key: "vote_count", label: "VOTES" },
       ],
       fields_mobile: [
         { key: "name", label: "NAME" },
         // { key: "actual_market_cap", label: "MARKET CAP" },
         // { key: "release_date", label: "RELEASED" },
         { key: "actual_price", label: "PRICE" },
-        { key: "vote_count", label: "VOTES" }
+        { key: "vote_count", label: "VOTES" },
       ],
       selectId: null,
       value: 0,
       max: 100,
-      windowHeight: window.innerWidth
+      windowHeight: window.innerWidth,
     };
   },
-  watch: {
-    loading(e) {
-      if (e) {
-        this.startTimer();
-      }
-    }
-  },
+  watch: {},
   created() {
     this.dayjs.extend(relativeTime);
   },
   computed: {
     loading() {
       return this.$store.state.loaders.loading;
-    }
+    },
   },
   methods: {
+    changePagination() {
+      this.per_page = this.per_page + 20;
+      if (this.table_name == "all-best") {
+        this.$store.dispatch("FETCH_CRYPTO_DATA", this.per_page);
+      } else if (this.table_name == "today-best") {
+        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA", this.per_page);
+      } else if (this.table_name == "audited") {
+        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA", this.per_page);
+      } else if (this.table_name == "pramoted") {
+        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA", this.per_page);
+      }
+    },
     startTimer() {
       let vm = this;
-      let timer = setInterval(function() {
+      let timer = setInterval(function () {
         vm.value += 20;
         if (vm.value >= 100) clearInterval(timer);
       }, 100);
@@ -189,10 +238,10 @@ export default {
       this.$router.push({
         path: `/details/${coin.id}`,
         params: {
-          id: coin.id
-        }
+          id: coin.id,
+        },
       });
-    }
+    },
   },
   filters: {
     diffForHumans: (date) => {
@@ -201,8 +250,8 @@ export default {
       }
 
       return dayjs(date).fromNow();
-    }
-  }
+    },
+  },
 };
 </script>
 
