@@ -56,7 +56,7 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table :table-data="cryptoDataPromoted" :table_name="'pramoted'" :total="promoted_perPage" />
+        <crypto-table :table-data="cryptoDataPromoted" :table_name="'pramoted'" :total="promoted_total" />
       </b-col>
     </b-row>
     <b-row v-if="loading" class="match-height">
@@ -76,7 +76,7 @@
         >
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table :table-data="cryptoData" :table_name="'all-best'" :total="perPage" />
+            <crypto-table :table-data="cryptoData" :table_name="'all-best'" :total="all_total" />
           </b-col>
         </b-row>
       </b-tab>
@@ -87,7 +87,7 @@
         <small>Today best perofoming coins</small>
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table :table-data="cryptoDataTodayBest" :table_name="'today-best'" :total="best_perPage" />
+            <crypto-table :table-data="cryptoDataTodayBest" :table_name="'today-best'" :total="best_total" />
           </b-col>
         </b-row>
       </b-tab>
@@ -99,7 +99,7 @@
         >
         <b-row class="match-height mt-1">
           <b-col lg="12" class="text-center pt-4">
-            <crypto-table :table-data="cryptoDataAuditedCoins" :table_name="'audited'" :total="audit_perPage" />
+            <crypto-table :table-data="cryptoDataAuditedCoins" :table_name="'audited'" :total="audit_total" />
             <!-- <h2 class="text-center">We list coins with audit reports in this section if the contract has already been audited from any recognizable firm.</h2>
             <small>Mail to </small> <b>contact@rugfreecoins.com</b> -->
           </b-col>
@@ -158,17 +158,17 @@ export default {
     api_loading() {
       return this.$store.state.loaders.apiloading;
     },
-    best_perPage() {
-      return this.$store.state.crypto.best_perPage;
+    best_total() {
+      return this.$store.state.crypto.best_total;
     },
-    promoted_perPage() {
-      return this.$store.state.crypto.promoted_perPage;
+    promoted_total() {
+      return this.$store.state.crypto.promoted_total;
     },
-    audit_perPage() {
-      return this.$store.state.crypto.audit_perPage;
+    audit_total() {
+      return this.$store.state.crypto.audit_total;
     },
-    perPage() {
-      return this.$store.state.crypto.perPage;
+    all_total() {
+      return this.$store.state.crypto.all_total;
     },
   },
   methods: {},

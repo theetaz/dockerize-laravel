@@ -8,10 +8,10 @@
         </b-link>
       </li>
       <b-link class="navbar-brand" to="/">
-          <span class="brand-logo">
-            <b-img :src="appLogoImage" alt="logo" />
-          </span>
-        </b-link>
+        <span class="brand-logo">
+          <b-img :src="appLogoImage" alt="logo" />
+        </span>
+      </b-link>
     </ul>
 
     <!-- Left Col -->
@@ -112,7 +112,7 @@ import {
   BDropdownDivider,
   BAvatar,
   BButton,
-  BImg
+  BImg,
 } from "bootstrap-vue";
 import DarkToggler from "@core/layouts/components/app-navbar/components/DarkToggler.vue";
 import Ripple from "vue-ripple-directive";
@@ -145,7 +145,7 @@ export default {
     const { appLogoImage, appName } = $themeConfig.app;
     return {
       appLogoImage,
-      appName
+      appName,
     };
   },
   directives: {
@@ -213,10 +213,9 @@ export default {
   color: #695cea;
 }
 img {
-    border-style: none;
-    width: 29px;
-    margin-top: -20px;
-    margin-left: 100px;
+  border-style: none;
+  width: 29px;
+  margin-top: -20px;
+  margin-left: 100px;
 }
-
 </style>

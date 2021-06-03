@@ -12,10 +12,10 @@ export default {
     token: null,
     profile: null,
     comments: [],
-    best_perPage: null,
-    promoted_perPage: null,
-    audit_perPage: null,
-    perPage: null
+    best_total: null,
+    promoted_total: null,
+    audit_total: null,
+    all_total: null
   },
   getters: {
 
@@ -59,17 +59,17 @@ export default {
     SET_PROFILE_DATA(state, profileData) {
       state.profile = profileData;
     },
-    ALL_BEST_SET_PAGE(state, perpageData) {
-      state.best_perPage = perpageData;
+    ALL_BEST_TOTAL(state, totalData) {
+      state.best_total = totalData;
     },
-    PROMOTED_SET_PAGE(state, perpageData) {
-      state.promoted_perPage = perpageData;
+    PROMOTED_TOTAL(state, totalData) {
+      state.promoted_total = totalData;
     },
-    AUDIT_SET_PAGE(state, perpageData) {
-      state.audit_perPage = perpageData;
+    AUDIT_TOTAL(state, totalData) {
+      state.audit_total = totalData;
     },
-    SET_PAGE(state, perpageData) {
-      state.perPage = perpageData;
+    ALL_TOTAL(state, totalData) {
+      state.all_total = totalData;
     }
   },
   actions: {
@@ -89,7 +89,7 @@ export default {
             let payload = response.data.payload.data;
             commit('SET_CRYPTO_DATA', payload);
             commit('loaders/SET_LOADING', false, { root: true })
-            commit('SET_PAGE',response.data.payload.total)
+            commit('ALL_TOTAL',response.data.payload.total)
             resolve();
           } else {
             commit('loaders/SET_LOADING', false, { root: true })
@@ -112,7 +112,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_PROMOTED', payload);
-            commit('PROMOTED_SET_PAGE',response.data.payload.total)
+            commit('PROMOTED_TOTAL',response.data.payload.total)
             resolve(payload);
           } else {
             reject();
@@ -134,7 +134,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_TODAY_BEST', payload);
-            commit('ALL_BEST_SET_PAGE',response.data.payload.total)
+            commit('ALL_BEST_TOTAL',response.data.payload.total)
             resolve(payload);
           } else {
             reject();
@@ -156,7 +156,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_AUDITED_COINS', payload);
-            commit('AUDIT_SET_PAGE',response.data.payload.total)
+            commit('AUDIT_TOTAL',response.data.payload.total)
             resolve(payload);
           } else {
             reject();
