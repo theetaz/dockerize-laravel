@@ -99,25 +99,21 @@
         </div>
       </template>
     </b-table>
-    <b-row v-if="!is_show_pagination && (total>per_page)">
-      <b-col md="5"></b-col>
-      <b-col md="2">
-        <b-button
-          v-ripple.400="'rgba(186, 191, 199, 0.15)'"
-          variant="flat-secondary"
-          @click="changePagination"
-        >
-          See More
-        </b-button>
-      </b-col>
-      <b-col md="5"></b-col>
-    </b-row>
+    <div class="text-center pb-1" v-if="!is_show_pagination && total > per_page">
+      <b-button
+        v-ripple.400="'rgba(186, 191, 199, 0.15)'"
+        variant="flat-secondary"
+        @click="changePagination"
+      >
+        See More
+      </b-button>
+    </div>
   </b-card>
 </template>
 
 <script>
 import { mixinList } from "@/mixins/mixinList";
-import Ripple from 'vue-ripple-directive'
+import Ripple from "vue-ripple-directive";
 import {
   BCard,
   BTable,
@@ -127,8 +123,6 @@ import {
   BSpinner,
   BProgress,
   BProgressBar,
-  BRow,
-  BCol,
 } from "bootstrap-vue";
 import numeral from "numeral";
 import dayjs from "dayjs";
@@ -144,8 +138,6 @@ export default {
     BSpinner,
     BProgress,
     BProgressBar,
-    BRow,
-    BCol,
   },
   props: {
     tableData: {
@@ -153,11 +145,11 @@ export default {
       default: () => [],
     },
     table_name: {
-      type: String
+      type: String,
     },
     total: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   directives: {
     Ripple,
@@ -213,18 +205,16 @@ export default {
   },
   methods: {
     changePagination() {
-      this.per_page = this.per_page+20
-      if (this.table_name == 'all-best') {
-        this.$store.dispatch("FETCH_CRYPTO_DATA",this.per_page);
-      } else if (this.table_name == 'today-best') {
-        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA",this.per_page);
-      } else if (this.table_name == 'audited') {
-        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA",this.per_page);
-      } else if (this.table_name == 'pramoted') {
-        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA",this.per_page);
+      this.per_page = this.per_page + 20;
+      if (this.table_name == "all-best") {
+        this.$store.dispatch("FETCH_CRYPTO_DATA", this.per_page);
+      } else if (this.table_name == "today-best") {
+        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA", this.per_page);
+      } else if (this.table_name == "audited") {
+        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA", this.per_page);
+      } else if (this.table_name == "pramoted") {
+        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA", this.per_page);
       }
-      
-
     },
     startTimer() {
       let vm = this;
