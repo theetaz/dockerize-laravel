@@ -6,9 +6,13 @@
     <b-card v-else>
       <b-row>
         <b-col cols="12">
-          <vue-custom-scrollbar class="scroll-area" :settings="settings"  id="commentss">
-          <!-- Account Notification -->
-          <!-- <div > -->
+          <vue-custom-scrollbar
+            class="scroll-area"
+            :settings="settings"
+            id="commentss"
+          >
+            <!-- Account Notification -->
+            <!-- <div > -->
             <div v-for="comment in commentData" :key="comment.id">
               <b-media class="py-1">
                 <template #aside>
@@ -26,7 +30,7 @@
                 <small class="notification-text">{{ comment.comment }}</small>
               </b-media>
             </div>
-          <!-- </div> -->
+            <!-- </div> -->
           </vue-custom-scrollbar>
         </b-col>
       </b-row>
@@ -83,7 +87,7 @@ import {
   BAvatar,
   BFormTextarea,
   BButton,
-  BForm,
+  BForm
 } from "bootstrap-vue";
 import Ripple from "vue-ripple-directive";
 import vueCustomScrollbar from "vue-custom-scrollbar";
@@ -100,16 +104,16 @@ export default {
     BButton,
     vueCustomScrollbar,
     BForm,
-    ValidationObserver,
+    ValidationObserver
   },
   directives: {
-    Ripple,
+    Ripple
   },
   props: {
     coinData: {
       type: null,
-      required: false,
-    },
+      required: false
+    }
   },
   data() {
     return {
@@ -117,19 +121,19 @@ export default {
       settings: {
         suppressScrollY: false,
         suppressScrollX: false,
-        wheelPropagation: false,
+        wheelPropagation: false
       },
       comment: "",
-      check_is_login: false,
+      check_is_login: false
     };
   },
   methods: {
     scrollToBottom() {
-      // 
+      //
       const commentss = this.$el.querySelector("#commentss");
-      commentss.scrollTop = (commentss.scrollHeight+10);
+      commentss.scrollTop = commentss.scrollHeight + 10;
     },
-    linked: function (e) {
+    linked: function(e) {
       this.$router.push({ path: "/" + e });
     },
     validationForm() {
@@ -169,16 +173,16 @@ export default {
       if (check_token != null) {
         this.check_is_login = true;
       }
-    },
+    }
   },
   computed: {
     commentData() {
       return this.$store.state.crypto.comments;
-    },
+    }
   },
   mounted() {
     this.checkIsLogin();
-  },
+  }
 };
 </script>
 
@@ -188,5 +192,4 @@ export default {
   margin: left;
   max-height: 300px;
 }
-
 </style>
