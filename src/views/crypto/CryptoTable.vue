@@ -9,7 +9,23 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
+    <b-row class="row-background">
+      <b-col md="9"></b-col>
+      <b-col md="3">
+        <b-input-group size="sm">
+          <b-form-input
+            id="filterInput"
+            v-model="filter"
+            type="search"
+            placeholder="Search your coin"
+          />
+        </b-input-group>
+      </b-col>
+    </b-row>
+      
+    
     <b-table
+      :filter="filter"
       id="table-crypto"
       hover
       :items="tableData"
@@ -21,8 +37,15 @@
       :tbody-transition-props="transProps"
       primary-key="id"
       @row-clicked="viewDetails"
+      empty-filter-text="asd2"
     >
       <!-- company -->
+      <template #cell(no)="data">
+        <span class="pl-1">
+          {{ data.index + 1 }}
+        </span>
+        
+      </template>
       <template #cell(name)="data">
         <div class="d-flex align-items-center">
           <b-avatar rounded size="45" variant="light-company">
@@ -40,11 +63,8 @@
                   : data.item.name.slice(0, 8) + ".."
               }}
             </div>
-            <div class="font-small-2 text-muted pl-1">
-              {{
-                !is_mobilesize
-                  ? data.item.symbol
-                  : data.item.symbol.slice(0, 8) + ".."
+            <div class="font-small-2 text-muted pl-1" v-if="!is_mobilesize">
+              {{data.item.symbol
               }}
             </div>
           </div>
@@ -108,6 +128,7 @@
         v-ripple.400="'rgba(186, 191, 199, 0.15)'"
         variant="flat-secondary"
         @click="changePagination"
+        class="font-weight-bolder"
       >
         See More
       </b-button>
@@ -133,6 +154,10 @@ import {
   BSpinner,
   BProgress,
   BProgressBar,
+  BFormInput,
+  BCol,
+  BRow,
+  BInputGroup
 } from "bootstrap-vue";
 import numeral from "numeral";
 import dayjs from "dayjs";
@@ -148,6 +173,10 @@ export default {
     BSpinner,
     BProgress,
     BProgressBar,
+    BFormInput,
+    BCol,
+    BRow,
+    BInputGroup
   },
   props: {
     tableData: {
@@ -179,6 +208,7 @@ export default {
       sortBy: "vote_count",
       sortDesc: true,
       fields: [
+        { key: "no", label: "NO" },
         { key: "name", label: "NAME" },
         { key: "actual_market_cap", label: "MARKET CAP" },
         { key: "release_date", label: "RELEASED" },
@@ -186,16 +216,18 @@ export default {
         { key: "vote_count", label: "VOTES" },
       ],
       fields_mobile: [
+        { key: "no", label: "NO" },
         { key: "name", label: "NAME" },
-        // { key: "actual_market_cap", label: "MARKET CAP" },
+        { key: "actual_market_cap", label: "MARKET CAP" },
         // { key: "release_date", label: "RELEASED" },
-        { key: "actual_price", label: "PRICE" },
+        // { key: "actual_price", label: "PRICE" },
         { key: "vote_count", label: "VOTES" },
       ],
       selectId: null,
       value: 0,
       max: 100,
       windowHeight: window.innerWidth,
+      filter: null
     };
   },
   watch: {},
@@ -278,6 +310,9 @@ table#table-crypto .flip-list-move {
 }
 .button-class {
   margin: 0;
-  width: 70px;
+  width: 75px;
+}
+.row-background {
+  background-color: #f1f1f1;
 }
 </style>
