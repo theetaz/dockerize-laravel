@@ -9,7 +9,7 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
-    <b-row v-if="table_name != 'pramoted'" align-h="end">
+    <b-row v-if="table_name == 'all-best'" align-h="end">
       <b-col md="3">
         <b-input-group size="sm">
           <b-form-input
@@ -35,7 +35,6 @@
       :tbody-transition-props="transProps"
       primary-key="id"
       @row-clicked="viewDetails"
-      empty-filter-text="asd2"
     >
       <!-- company -->
       <template #cell(no)="data">
@@ -101,7 +100,7 @@
           <b-button
             :variant="isVoted(data.item.is_voted)"
             @click="castVote(data.item)"
-            :class="is_mobilesize ? 'button-class' : ''"
+            :class="is_mobilesize ? 'button-class' : 'desktop-button'"
           >
             <div v-if="loading && data.item.id == selectId">
               <b-spinner
@@ -110,7 +109,7 @@
                 style="width: 13px; height: 13px"
               ></b-spinner>
             </div>
-            <div v-else>🚀 {{ data.item.vote_count }}</div>
+            <div v-else>{{(table_name=='most-trust') ? '🔥' : '🚀'}} {{ data.item.vote_count }}</div>
           </b-button>
         </div>
       </template>
@@ -309,6 +308,10 @@ table#table-crypto .flip-list-move {
 .button-class {
   margin: 0;
   width: 75px;
+}
+.desktop-button {
+  margin: 0;
+  width: 125px;
 }
 .row-background {
   background-color: #f1f1f1;

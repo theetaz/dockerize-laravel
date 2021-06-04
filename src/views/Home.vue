@@ -8,14 +8,24 @@
       </b-col>
     </b-row>
     <b-row class="banner-margin">
-      <div class="d-flex justify-content-center mb-3 col-12 text-center">
-        <b-link href="http://bit.ly/eject-elon" target="_blank">
-          <b-img
-            src="@/assets/images/banners/ejectElon.gif"
-            :height="is_mobilesize ? '37px' : '105px'"
-          />
-        </b-link>
-      </div>
+      <!-- <div class="d-flex justify-content-between mb-3 col-12 text-center"> -->
+      <!-- <b-col class="md-1">
+        <b-card class="pr-5 card-height">
+          <b-card-text class="pt-2">b</b-card-text>
+        </b-card>
+      </b-col>
+      <b-col class="md-10"> -->
+        <div class="d-flex justify-content-between mb-3 col-12 text-center">
+          <b-link href="http://bit.ly/eject-elon" target="_blank">
+            <b-img
+              src="@/assets/images/banners/ejectElon.gif"
+              :height="is_mobilesize ? '37px' : '105px'"
+            />
+          </b-link>
+        </div>
+      <!-- </b-col> -->
+
+      <!-- </div> -->
     </b-row>
     <!-- <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center mb-3  col-4 text-center">
@@ -56,22 +66,28 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table :table-data="cryptoDataPromoted" :table_name="'pramoted'" :total="promoted_total" />
-      </b-col>
-    </b-row>
-    <!-- <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <h2>💎 Promoted coins</h2>
-        <small
-          >Only audited coins are listed in the paid promotions section.</small
-        >
+        <crypto-table
+          :table-data="cryptoDataPromoted"
+          :table_name="'pramoted'"
+          :total="promoted_total"
+        />
       </b-col>
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table :table-data="cryptoDataPromoted" :table_name="'pramoted'" :total="promoted_total" />
+        <h2>🥇 The most trusted coin</h2>
+        <small>The most unique & legit coin today</small>
       </b-col>
-    </b-row> -->
+    </b-row>
+    <b-row class="match-height mb-1">
+      <b-col lg="12">
+        <crypto-table
+          :table-data="most_trusted"
+          :table_name="'most-trust'"
+          :total="1"
+        />
+      </b-col>
+    </b-row>
     <b-row v-if="loading" class="match-height">
       <b-col lg="12">
         <div class="d-flex justify-content-center mb-3 col-12 text-center">
@@ -89,7 +105,11 @@
         >
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table :table-data="cryptoData" :table_name="'all-best'" :total="all_total" />
+            <crypto-table
+              :table-data="cryptoData"
+              :table_name="'all-best'"
+              :total="all_total"
+            />
           </b-col>
         </b-row>
       </b-tab>
@@ -100,7 +120,11 @@
         <small>Today best perofoming coins</small>
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table :table-data="cryptoDataTodayBest" :table_name="'today-best'" :total="best_total" />
+            <crypto-table
+              :table-data="cryptoDataTodayBest"
+              :table_name="'today-best'"
+              :total="best_total"
+            />
           </b-col>
         </b-row>
       </b-tab>
@@ -112,7 +136,11 @@
         >
         <b-row class="match-height mt-1">
           <b-col lg="12" class="text-center pt-4">
-            <crypto-table :table-data="cryptoDataAuditedCoins" :table_name="'audited'" :total="audit_total" />
+            <crypto-table
+              :table-data="cryptoDataAuditedCoins"
+              :table_name="'audited'"
+              :total="audit_total"
+            />
             <!-- <h2 class="text-center">We list coins with audit reports in this section if the contract has already been audited from any recognizable firm.</h2>
             <small>Mail to </small> <b>contact@rugfreecoins.com</b> -->
           </b-col>
@@ -130,8 +158,8 @@ import {
   BTabs,
   BTab,
   BLink,
-  // BCard,
   BImg,
+  // BCard,
   // BCardText,
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
@@ -153,6 +181,40 @@ export default {
   data() {
     return {
       loading: false,
+      most_trusted: [
+        {
+          id: 64,
+          name: "BNBConnections",
+          symbol: "BNBC",
+          description:
+            "Decentralized token, with stake, and increasing burning. It has a low amount of tokens available, 40% of the tokens were burned at launch. The currency is growing more and more every day. It is worth it, the project has good fundamentals, and that is what we believe to be the differential of all the others.",
+          telegram_link: "https://t.me/bnbconnections",
+          reddit_link: null,
+          twitter_link: "https://twitter.com/bnbconnections",
+          website: "https://bnbconnections.com",
+          discord_link: null,
+          pancake_swap_link: null,
+          network: null,
+          bsc_contract_address: "0x7F1c3C069eD6829cD064c907b3C1A19081345661",
+          ethereum_contract_address: null,
+          other_links: null,
+          logo_link:
+            "https://pbs.twimg.com/profile_images/1394415907347312641/o-_iVaRk_400x400.jpg",
+          actual_price: 7.9e-10,
+          actual_market_cap: 44200,
+          release_date: "2021-05-21T00:00:00.000000Z",
+          user_id: null,
+          status: "active",
+          is_editor_picked: 0,
+          is_audited: 0,
+          remarks: null,
+          is_promoted: 1,
+          vote_count: 7986,
+          created_at: "2021-05-29T23:19:24.000000Z",
+          updated_at: "2021-06-04T19:49:23.000000Z",
+          is_voted: false,
+        },
+      ],
     };
   },
   computed: {
@@ -188,10 +250,10 @@ export default {
   created() {
     if (!this.$store.state.crypto.clientIP) {
       this.$store.dispatch("FETCH_CLIENT_IP").then(() => {
-        this.$store.dispatch("FETCH_CRYPTO_DATA",20);
-        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA",20);
-        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA",20);
-        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA",20);
+        this.$store.dispatch("FETCH_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA", 20);
       });
     }
   },
@@ -200,9 +262,18 @@ export default {
 <style>
 img {
   border-style: none;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 .banner-margin {
   margin-top: -50px;
+}
+/* .card-height {
+  height: 105px;
+  width: 450px;
+} */
+.card {
+    border: none;
+    margin-bottom: 2rem;
+    border-radius: 0px;
 }
 </style>
