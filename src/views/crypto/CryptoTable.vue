@@ -228,9 +228,13 @@ export default {
       }, 100);
     },
     castVote(coin) {
-      this.selectId = coin.id;
-      this.$store.dispatch("CAST_VOTE", coin.id);
-    },
+    this.selectId = coin.id;
+    const data = {
+      coinID: coin.id,
+      perPage: this.per_page
+    }
+    this.$store.dispatch("CAST_VOTE", (data));
+  },
     isVoted(isVoted) {
       return isVoted ? "success" : "outline-success";
     },
