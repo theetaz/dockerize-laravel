@@ -42,11 +42,52 @@ export default {
     UPDATE_VOTE_COUNT(state, coinData) {
 
       if (state.cryptoData && state.cryptoData.length > 0) {
-        let votedCoin = state.cryptoData.filter((coin) => coin.id === coinData.id);
+        if (state.cryptoData && state.cryptoData.length > 0) {
+          let index = 0;
+          state.cryptoData.forEach(coin => {
+            if (coin.id == coinData.id) {
+              state.cryptoData[index].vote_count = coinData.vote_count;
+            }
+            index++
+          });
+        }
 
-        //update the vote count
-        if (votedCoin && votedCoin.length > 0) {
-          votedCoin[0].vote_count = coinData.vote_count;
+      }
+
+      if (state.cryptoDataPromoted && state.cryptoDataPromoted.length > 0) {
+        if (state.cryptoDataPromoted && state.cryptoDataPromoted.length > 0) {
+          let index = 0;
+          state.cryptoDataPromoted.forEach(coin => {
+            if (coin.id == coinData.id) {
+              state.cryptoDataPromoted[index].vote_count = coinData.vote_count;
+            }
+            index++
+          });
+        }
+      }
+
+      if (state.cryptoDataAuditedCoins && state.cryptoDataAuditedCoins.length > 0) {
+        if (state.cryptoDataAuditedCoins && state.cryptoDataAuditedCoins.length > 0) {
+          let index = 0;
+          state.cryptoDataAuditedCoins.forEach(coin => {
+            if (coin.id == coinData.id) {
+              state.cryptoDataAuditedCoins[index].vote_count = coinData.vote_count;
+            }
+            index++
+          });
+        }
+
+      }
+
+      if (state.cryptoDataTodayBest && state.cryptoDataTodayBest.length > 0) {
+        if (state.cryptoDataTodayBest && state.cryptoDataTodayBest.length > 0) {
+          let index = 0;
+          state.cryptoDataTodayBest.forEach(coin => {
+            if (coin.id == coinData.id) {
+              state.cryptoDataTodayBest[index].vote_count = coinData.vote_count;
+            }
+            index++
+          });
         }
 
       }
