@@ -23,7 +23,7 @@ window.Echo = new Echo({
   key: process.env.VUE_APP_WEBSOCKET_KEY,
   wsHost: process.env.VUE_APP_WEBSOCKET_HOST,
   wsPort: process.env.VUE_APP_WEBSOCKET_PORT,
-  wssPort: process.env.VUE_APP_WEBSOCKET_PORT,
+  // wssPort: process.env.VUE_APP_WEBSOCKET_PORT,
   forceTLS: false,
   disableStats: true
 })
