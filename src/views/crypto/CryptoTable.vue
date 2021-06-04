@@ -9,7 +9,7 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
-    <b-row class="row-background">
+    <!-- <b-row class="row-background">
       <b-col md="9"></b-col>
       <b-col md="3">
         <b-input-group size="sm">
@@ -21,7 +21,7 @@
           />
         </b-input-group>
       </b-col>
-    </b-row>
+    </b-row> -->
       
     
     <b-table

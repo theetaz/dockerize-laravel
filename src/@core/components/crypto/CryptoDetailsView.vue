@@ -152,8 +152,12 @@ export default {
     },
     castVote(coinId) {
       this.selectId = coinId;
+      const data = {
+        coinID: this.selectId,
+        perPage: 20
+      }
       this.$store
-        .dispatch("CAST_VOTE", this.selectId)
+        .dispatch("CAST_VOTE", data)
         .then(() => {})
         .catch((error) => {
           this.$toast(
