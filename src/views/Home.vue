@@ -59,6 +59,19 @@
         <crypto-table :table-data="cryptoDataPromoted" :table_name="'pramoted'" :total="promoted_total" />
       </b-col>
     </b-row>
+    <!-- <b-row class="match-height mb-1">
+      <b-col lg="12">
+        <h2>💎 Promoted coins</h2>
+        <small
+          >Only audited coins are listed in the paid promotions section.</small
+        >
+      </b-col>
+    </b-row>
+    <b-row class="match-height mb-1">
+      <b-col lg="12">
+        <crypto-table :table-data="cryptoDataPromoted" :table_name="'pramoted'" :total="promoted_total" />
+      </b-col>
+    </b-row> -->
     <b-row v-if="loading" class="match-height">
       <b-col lg="12">
         <div class="d-flex justify-content-center mb-3 col-12 text-center">

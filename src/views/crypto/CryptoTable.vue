@@ -9,8 +9,7 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
-    <!-- <b-row class="row-background">
-      <b-col md="9"></b-col>
+    <b-row v-if="table_name != 'pramoted'" align-h="end">
       <b-col md="3">
         <b-input-group size="sm">
           <b-form-input
@@ -21,9 +20,8 @@
           />
         </b-input-group>
       </b-col>
-    </b-row> -->
-      
-    
+    </b-row>
+
     <b-table
       :filter="filter"
       id="table-crypto"
@@ -44,7 +42,6 @@
         <span class="pl-1">
           {{ data.index + 1 }}
         </span>
-        
       </template>
       <template #cell(name)="data">
         <div class="d-flex align-items-center">
@@ -64,8 +61,7 @@
               }}
             </div>
             <div class="font-small-2 text-muted pl-1" v-if="!is_mobilesize">
-              {{data.item.symbol
-              }}
+              {{ data.item.symbol }}
             </div>
           </div>
         </div>
@@ -145,6 +141,7 @@
 <script>
 import { mixinList } from "@/mixins/mixinList";
 import Ripple from "vue-ripple-directive";
+// import SearchCoin from "./SearchCoin"
 import {
   BCard,
   BTable,
@@ -154,10 +151,10 @@ import {
   BSpinner,
   BProgress,
   BProgressBar,
-  // BFormInput,
-  // BCol,
-  // BRow,
-  // BInputGroup
+  BFormInput,
+  BCol,
+  BRow,
+  BInputGroup,
 } from "bootstrap-vue";
 import numeral from "numeral";
 import dayjs from "dayjs";
@@ -173,10 +170,11 @@ export default {
     BSpinner,
     BProgress,
     BProgressBar,
-    // BFormInput,
-    // BCol,
-    // BRow,
-    // BInputGroup
+    BFormInput,
+    BCol,
+    BRow,
+    BInputGroup,
+    // SearchCoin,
   },
   props: {
     tableData: {
@@ -227,7 +225,7 @@ export default {
       value: 0,
       max: 100,
       windowHeight: window.innerWidth,
-      filter: null
+      filter: null,
     };
   },
   watch: {},
@@ -260,13 +258,13 @@ export default {
       }, 100);
     },
     castVote(coin) {
-    this.selectId = coin.id;
-    const data = {
-      coinID: coin.id,
-      perPage: this.per_page
-    }
-    this.$store.dispatch("CAST_VOTE", (data));
-  },
+      this.selectId = coin.id;
+      const data = {
+        coinID: coin.id,
+        perPage: this.per_page,
+      };
+      this.$store.dispatch("CAST_VOTE", data);
+    },
     isVoted(isVoted) {
       return isVoted ? "success" : "outline-success";
     },
