@@ -9,7 +9,23 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
+    <b-row class="row-background">
+      <b-col md="10"></b-col>
+      <b-col md="2">
+        <b-input-group size="sm">
+          <b-form-input
+            id="filterInput"
+            v-model="filter"
+            type="search"
+            placeholder="Type to Search"
+          />
+        </b-input-group>
+      </b-col>
+    </b-row>
+      
+    
     <b-table
+      :filter="filter"
       id="table-crypto"
       hover
       :items="tableData"
@@ -23,6 +39,9 @@
       @row-clicked="viewDetails"
     >
       <!-- company -->
+      <template #cell(no)="data">
+        {{ data.index + 1 }}
+      </template>
       <template #cell(name)="data">
         <div class="d-flex align-items-center">
           <b-avatar rounded size="45" variant="light-company">
@@ -133,6 +152,10 @@ import {
   BSpinner,
   BProgress,
   BProgressBar,
+  BFormInput,
+  BCol,
+  BRow,
+  BInputGroup
 } from "bootstrap-vue";
 import numeral from "numeral";
 import dayjs from "dayjs";
@@ -148,6 +171,10 @@ export default {
     BSpinner,
     BProgress,
     BProgressBar,
+    BFormInput,
+    BCol,
+    BRow,
+    BInputGroup
   },
   props: {
     tableData: {
@@ -159,6 +186,10 @@ export default {
     },
     total: {
       type: Number,
+    },
+    filter: {
+      type: String,
+      default: () => null,
     },
   },
   directives: {
@@ -179,6 +210,7 @@ export default {
       sortBy: "vote_count",
       sortDesc: true,
       fields: [
+        { key: "no", label: "NO" },
         { key: "name", label: "NAME" },
         { key: "actual_market_cap", label: "MARKET CAP" },
         { key: "release_date", label: "RELEASED" },
@@ -187,9 +219,9 @@ export default {
       ],
       fields_mobile: [
         { key: "name", label: "NAME" },
-        // { key: "actual_market_cap", label: "MARKET CAP" },
+        { key: "actual_market_cap", label: "MARKET CAP" },
         // { key: "release_date", label: "RELEASED" },
-        { key: "actual_price", label: "PRICE" },
+        // { key: "actual_price", label: "PRICE" },
         { key: "vote_count", label: "VOTES" },
       ],
       selectId: null,
@@ -229,7 +261,11 @@ export default {
     },
     castVote(coin) {
       this.selectId = coin.id;
-      this.$store.dispatch("CAST_VOTE", coin.id);
+      const data = {
+        coinID: coin.id,
+        perPage: this.per_page
+      }
+      this.$store.dispatch("CAST_VOTE", (data));
     },
     isVoted(isVoted) {
       return isVoted ? "success" : "outline-success";
@@ -275,5 +311,8 @@ table#table-crypto .flip-list-move {
 .button-class {
   margin: 0;
   width: 70px;
+}
+.row-background {
+  background-color: #f1f1f1;
 }
 </style>
