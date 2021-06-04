@@ -103,7 +103,7 @@ import {
   BFormInput,
   BInputGroupPrepend,
   BButton,
-  BCardBody,
+  BCardBody
 } from "bootstrap-vue";
 import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
@@ -119,13 +119,13 @@ export default {
     BFormInput,
     BInputGroupPrepend,
     BButton,
-    BCardBody,
+    BCardBody
   },
   props: {
     coinData: {
       type: null,
-      required: false,
-    },
+      required: false
+    }
   },
   methods: {
     doCopy(value) {
@@ -135,8 +135,8 @@ export default {
             component: ToastificationContent,
             props: {
               title: "BSC contract address copied",
-              icon: "BellIcon",
-            },
+              icon: "BellIcon"
+            }
           });
         },
         (e) => {
@@ -144,18 +144,18 @@ export default {
             component: ToastificationContent,
             props: {
               title: e + "Can not copy!",
-              icon: "BellIcon",
-            },
+              icon: "BellIcon"
+            }
           });
         }
       );
     },
     castVote(coinId) {
-      this.selectId = coinId;
       const data = {
-        coinID: this.selectId,
+        coinID: coinId,
         perPage: 20
-      }
+      };
+
       this.$store
         .dispatch("CAST_VOTE", data)
         .then(() => {})
@@ -167,16 +167,16 @@ export default {
                 title: "Notification",
                 icon: "InfoIcon",
                 text: error.response.data.message || "Something went wrong",
-                variant: "warning",
-              },
+                variant: "warning"
+              }
             },
             {
-              position: "bottom-left",
+              position: "bottom-left"
             }
           );
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -41,11 +41,58 @@ export default {
     },
     UPDATE_VOTE_COUNT(state, coinData) {
 
-      let votedCoin = state.cryptoData.filter((coin) => coin.id === coinData.id);
-      //update the vote count
-      votedCoin[0].vote_count = coinData.vote_count;
+      if (state.cryptoData && state.cryptoData.length > 0) {
+        if (state.cryptoData && state.cryptoData.length > 0) {
+          let index = 0;
+          state.cryptoData.forEach(coin => {
+            if (coin.id == coinData.id) {
+              state.cryptoData[index].vote_count = coinData.vote_count;
+            }
+            index++
+          });
+        }
 
-      if (state.coin) {
+      }
+
+      if (state.cryptoDataPromoted && state.cryptoDataPromoted.length > 0) {
+        if (state.cryptoDataPromoted && state.cryptoDataPromoted.length > 0) {
+          let index = 0;
+          state.cryptoDataPromoted.forEach(coin => {
+            if (coin.id == coinData.id) {
+              state.cryptoDataPromoted[index].vote_count = coinData.vote_count;
+            }
+            index++
+          });
+        }
+      }
+
+      if (state.cryptoDataAuditedCoins && state.cryptoDataAuditedCoins.length > 0) {
+        if (state.cryptoDataAuditedCoins && state.cryptoDataAuditedCoins.length > 0) {
+          let index = 0;
+          state.cryptoDataAuditedCoins.forEach(coin => {
+            if (coin.id == coinData.id) {
+              state.cryptoDataAuditedCoins[index].vote_count = coinData.vote_count;
+            }
+            index++
+          });
+        }
+
+      }
+
+      if (state.cryptoDataTodayBest && state.cryptoDataTodayBest.length > 0) {
+        if (state.cryptoDataTodayBest && state.cryptoDataTodayBest.length > 0) {
+          let index = 0;
+          state.cryptoDataTodayBest.forEach(coin => {
+            if (coin.id == coinData.id) {
+              state.cryptoDataTodayBest[index].vote_count = coinData.vote_count;
+            }
+            index++
+          });
+        }
+
+      }
+
+      if (state.coin && (state.coin.id == coinData.id)) {
         state.coin.vote_count = coinData.vote_count;
       }
 
@@ -89,7 +136,7 @@ export default {
             let payload = response.data.payload.data;
             commit('SET_CRYPTO_DATA', payload);
             commit('loaders/SET_LOADING', false, { root: true })
-            commit('ALL_TOTAL',response.data.payload.total)
+            commit('ALL_TOTAL', response.data.payload.total)
             resolve();
           } else {
             commit('loaders/SET_LOADING', false, { root: true })
@@ -112,7 +159,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_PROMOTED', payload);
-            commit('PROMOTED_TOTAL',response.data.payload.total)
+            commit('PROMOTED_TOTAL', response.data.payload.total)
             resolve(payload);
           } else {
             reject();
@@ -134,7 +181,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_TODAY_BEST', payload);
-            commit('ALL_BEST_TOTAL',response.data.payload.total)
+            commit('ALL_BEST_TOTAL', response.data.payload.total)
             resolve(payload);
           } else {
             reject();
@@ -156,7 +203,7 @@ export default {
           if (response) {
             let payload = response.data.payload;
             commit('SET_CRYPTO_DATA_AUDITED_COINS', payload);
-            commit('AUDIT_TOTAL',response.data.payload.total)
+            commit('AUDIT_TOTAL', response.data.payload.total)
             resolve(payload);
           } else {
             reject();
@@ -212,7 +259,7 @@ export default {
         commit('loaders/SET_LOADING', true, { root: true })
         //get the ip address from store
         let clientIP = localStorage.getItem("clientIP");
-  
+
         if (clientIP != null) {
           //send the vote request
           API.post(`coin/${data.coinID}/vote`, { client_ip: clientIP }).then((response) => {
@@ -221,11 +268,11 @@ export default {
             dispatch('FETCH_CRYPTO_DATA', data.perPage);
             dispatch('FETCH_TODAY_BEST_CRYPTO_DATA', data.perPage);
             dispatch('FETCH_PROMOTED_CRYPTO_DATA', data.perPage);
-  
+
             resolve(response);
-  
+
           }).catch((error) => {
-  
+
             reject(error);
           })
             .finally(() => {
@@ -235,9 +282,9 @@ export default {
         else {
           commit('loaders/SET_LOADING', false, { root: true })
         }
-  
+
       })
-  
+
     },
     REGISTER_USER({ commit }, userData) {
       return new Promise((resolve, reject) => {
