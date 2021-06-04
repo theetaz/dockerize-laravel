@@ -69,7 +69,7 @@
 
     <b-tabs content-class="mt-1">
       <!-- This tabs content will always be mounted -->
-      <b-tab :title="!is_mobilesize ? '👑 All time best' : 'All time'">
+      <b-tab :title="!is_mobilesize ? '👑 All time best' : '👑 All time'">
         <small
           >Won't get visibility unless voted, so make sure your community knows
           about it.</small
@@ -91,7 +91,7 @@
           </b-col>
         </b-row>
       </b-tab>
-      <b-tab :title="!is_mobilesize ? '🔥 Audited coins' : 'Audited'" lazy>
+      <b-tab :title="!is_mobilesize ? '🔥 Audited coins' : '🔥 Audited'" lazy>
         <small
           >We give 95% assurance to the public that those audited coins are rug
           pull-free and scams will not likely happen. We will keep tracking the

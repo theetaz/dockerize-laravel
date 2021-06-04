@@ -41,7 +41,10 @@
     >
       <!-- company -->
       <template #cell(no)="data">
-        {{ data.index + 1 }}
+        <span class="pl-1">
+          {{ data.index + 1 }}
+        </span>
+        
       </template>
       <template #cell(name)="data">
         <div class="d-flex align-items-center">
@@ -60,11 +63,8 @@
                   : data.item.name.slice(0, 8) + ".."
               }}
             </div>
-            <div class="font-small-2 text-muted pl-1">
-              {{
-                !is_mobilesize
-                  ? data.item.symbol
-                  : data.item.symbol.slice(0, 8) + ".."
+            <div class="font-small-2 text-muted pl-1" v-if="!is_mobilesize">
+              {{data.item.symbol
               }}
             </div>
           </div>
@@ -260,13 +260,13 @@ export default {
       }, 100);
     },
     castVote(coin) {
-      this.selectId = coin.id;
-      const data = {
-        coinID: coin.id,
-        perPage: this.per_page
-      }
-      this.$store.dispatch("CAST_VOTE", (data));
-    },
+    this.selectId = coin.id;
+    const data = {
+      coinID: coin.id,
+      perPage: this.per_page
+    }
+    this.$store.dispatch("CAST_VOTE", (data));
+  },
     isVoted(isVoted) {
       return isVoted ? "success" : "outline-success";
     },
@@ -310,7 +310,7 @@ table#table-crypto .flip-list-move {
 }
 .button-class {
   margin: 0;
-  width: 70px;
+  width: 75px;
 }
 .row-background {
   background-color: #f1f1f1;
