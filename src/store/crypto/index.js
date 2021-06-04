@@ -206,27 +206,26 @@ export default {
         });
       });
     },
-    CAST_VOTE({ dispatch, commit }, coinID) {
+    CAST_VOTE({ dispatch, commit }, data) {
 
       return new Promise((resolve, reject) => {
         commit('loaders/SET_LOADING', true, { root: true })
-
         //get the ip address from store
         let clientIP = localStorage.getItem("clientIP");
-
+  
         if (clientIP != null) {
           //send the vote request
-          API.post(`coin/${coinID}/vote`, { client_ip: clientIP }).then((response) => {
+          API.post(`coin/${data.coinID}/vote`, { client_ip: clientIP }).then((response) => {
             commit('loaders/SET_LOADING', false, { root: true })
             // let coinData = response.data.payload;
-            dispatch('FETCH_CRYPTO_DATA');
-            dispatch('FETCH_TODAY_BEST_CRYPTO_DATA');
-            dispatch('FETCH_PROMOTED_CRYPTO_DATA');
-
+            dispatch('FETCH_CRYPTO_DATA', data.perPage);
+            dispatch('FETCH_TODAY_BEST_CRYPTO_DATA', data.perPage);
+            dispatch('FETCH_PROMOTED_CRYPTO_DATA', data.perPage);
+  
             resolve(response);
-
+  
           }).catch((error) => {
-
+  
             reject(error);
           })
             .finally(() => {
@@ -236,9 +235,9 @@ export default {
         else {
           commit('loaders/SET_LOADING', false, { root: true })
         }
-
+  
       })
-
+  
     },
     REGISTER_USER({ commit }, userData) {
       return new Promise((resolve, reject) => {
