@@ -154,10 +154,10 @@ import {
   BSpinner,
   BProgress,
   BProgressBar,
-  BFormInput,
-  BCol,
-  BRow,
-  BInputGroup
+  // BFormInput,
+  // BCol,
+  // BRow,
+  // BInputGroup
 } from "bootstrap-vue";
 import numeral from "numeral";
 import dayjs from "dayjs";
@@ -173,10 +173,10 @@ export default {
     BSpinner,
     BProgress,
     BProgressBar,
-    BFormInput,
-    BCol,
-    BRow,
-    BInputGroup
+    // BFormInput,
+    // BCol,
+    // BRow,
+    // BInputGroup
   },
   props: {
     tableData: {
