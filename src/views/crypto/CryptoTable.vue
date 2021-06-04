@@ -10,14 +10,14 @@
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
     <b-row class="row-background">
-      <b-col md="10"></b-col>
-      <b-col md="2">
+      <b-col md="9"></b-col>
+      <b-col md="3">
         <b-input-group size="sm">
           <b-form-input
             id="filterInput"
             v-model="filter"
             type="search"
-            placeholder="Type to Search"
+            placeholder="Search your coin"
           />
         </b-input-group>
       </b-col>
@@ -37,6 +37,7 @@
       :tbody-transition-props="transProps"
       primary-key="id"
       @row-clicked="viewDetails"
+      empty-filter-text="asd2"
     >
       <!-- company -->
       <template #cell(no)="data">
@@ -127,6 +128,7 @@
         v-ripple.400="'rgba(186, 191, 199, 0.15)'"
         variant="flat-secondary"
         @click="changePagination"
+        class="font-weight-bolder"
       >
         See More
       </b-button>
@@ -187,10 +189,6 @@ export default {
     total: {
       type: Number,
     },
-    filter: {
-      type: String,
-      default: () => null,
-    },
   },
   directives: {
     Ripple,
@@ -218,6 +216,7 @@ export default {
         { key: "vote_count", label: "VOTES" },
       ],
       fields_mobile: [
+        { key: "no", label: "NO" },
         { key: "name", label: "NAME" },
         { key: "actual_market_cap", label: "MARKET CAP" },
         // { key: "release_date", label: "RELEASED" },
@@ -228,6 +227,7 @@ export default {
       value: 0,
       max: 100,
       windowHeight: window.innerWidth,
+      filter: null
     };
   },
   watch: {},
