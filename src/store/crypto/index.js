@@ -43,8 +43,12 @@ export default {
 
       if (state.cryptoData && state.cryptoData.length > 0) {
         let votedCoin = state.cryptoData.filter((coin) => coin.id === coinData.id);
+
         //update the vote count
-        votedCoin[0].vote_count = coinData.vote_count;
+        if (votedCoin && votedCoin.length > 0) {
+          votedCoin[0].vote_count = coinData.vote_count;
+        }
+
       }
 
       if (state.coin && (state.coin.id == coinData.id)) {
