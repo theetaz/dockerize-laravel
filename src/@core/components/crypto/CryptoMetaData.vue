@@ -101,6 +101,17 @@
           <span class="align-middle">Discord</span>
         </b-button>
       </div>
+      <div class="mt-1" v-show="coinData.is_audited == 1">
+        <b-button
+          href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
+          target="_blank"
+          block
+          variant="gradient-primary"
+        >
+          <feather-icon icon="PhoneCallIcon" class="mr-50" />
+          <span class="align-middle">Report</span>
+        </b-button>
+      </div>
     </b-card-body>
   </b-card>
 </template>
@@ -112,14 +123,14 @@ import {
   BCardBody,
   BBadge,
   BAvatar,
-  BButton
+  BButton,
 } from "bootstrap-vue";
 import Ripple from "vue-ripple-directive";
 import numeral from "numeral";
 
 export default {
   directives: {
-    Ripple
+    Ripple,
   },
   components: {
     BCard,
@@ -127,19 +138,19 @@ export default {
     BCardBody,
     BBadge,
     BAvatar,
-    BButton
+    BButton,
   },
   props: {
     coinData: {
       type: null,
-      required: false
-    }
+      required: false,
+    },
   },
   data() {
     return {
-      numeral
+      numeral,
     };
-  }
+  },
 };
 </script>
 

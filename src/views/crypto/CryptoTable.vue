@@ -28,7 +28,7 @@
       hover
       :items="tableData"
       responsive
-      :fields="!is_mobilesize ? fields : fields_mobile"
+      :fields="!is_mobilesize ? ((table_name!='audited') ? fields:fields_audited) : fields_mobile"
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       class="mb-0"
@@ -92,6 +92,20 @@
         <span class="font-weight-bolder"
           >{{ "$" + data.item.actual_price.toFixed(12) }}
         </span>
+      </template>
+
+      <!-- report -->
+      <template #cell(report)="">
+        <div class="d-flex align-items-center align-center">
+          <b-button
+            variant="outline-success"
+            :class="is_mobilesize ? 'button-class' : 'desktop-button'"
+            href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
+            target="_blank"
+          >
+            Report
+          </b-button>
+        </div>
       </template>
 
       <!-- vote_count -->
@@ -210,6 +224,15 @@ export default {
         { key: "actual_market_cap", label: "MARKET CAP" },
         { key: "release_date", label: "RELEASED" },
         { key: "actual_price", label: "PRICE" },
+        { key: "vote_count", label: "VOTES" },
+      ],
+      fields_audited: [
+        { key: "no", label: "NO" },
+        { key: "name", label: "NAME" },
+        { key: "actual_market_cap", label: "MARKET CAP" },
+        { key: "release_date", label: "RELEASED" },
+        { key: "actual_price", label: "PRICE" },
+        { key: "report", label: "Report" },
         { key: "vote_count", label: "VOTES" },
       ],
       fields_mobile: [

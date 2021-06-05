@@ -15,14 +15,14 @@
         </b-card>
       </b-col>
       <b-col class="md-10"> -->
-        <div class="d-flex justify-content-between mb-3 col-12 text-center">
-          <b-link href="http://bit.ly/eject-elon" target="_blank">
-            <b-img
-              src="@/assets/images/banners/ejectElon.gif"
-              :height="is_mobilesize ? '37px' : '105px'"
-            />
-          </b-link>
-        </div>
+      <div class="d-flex justify-content-center mb-3 col-12 text-center">
+        <b-link href="http://bit.ly/eject-elon" target="_blank">
+          <b-img
+            src="@/assets/images/banners/eject-promo.gif"
+            :height="is_mobilesize ? '37px' : '105px'"
+          />
+        </b-link>
+      </div>
       <!-- </b-col> -->
 
       <!-- </div> -->
@@ -135,7 +135,7 @@
           coins daily and make sure no suspicious activity will occur.</small
         >
         <b-row class="match-height mt-1">
-          <b-col lg="12" class="text-center pt-4">
+          <b-col lg="12" class="text-center">
             <crypto-table
               :table-data="cryptoDataAuditedCoins"
               :table_name="'audited'"
@@ -158,8 +158,8 @@ import {
   BTabs,
   BTab,
   BLink,
-  BImg,
   // BCard,
+  BImg,
   // BCardText,
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
@@ -272,8 +272,8 @@ img {
   width: 450px;
 } */
 .card {
-    border: none;
-    margin-bottom: 2rem;
-    border-radius: 0px;
+  border: none;
+  margin-bottom: 2rem;
+  border-radius: 0px;
 }
 </style>
