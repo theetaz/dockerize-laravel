@@ -11,7 +11,7 @@
       <div class="d-flex justify-content-center mb-3 col-12 text-center">
         <b-link href="http://bit.ly/eject-elon" target="_blank">
           <b-img
-            src="@/assets/images/banners/ejectElon.gif"
+            src="@/assets/images/banners/eject-promo.gif"
             :height="is_mobilesize ? '37px' : '105px'"
           />
         </b-link>
@@ -56,7 +56,11 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table :table-data="cryptoDataPromoted" :table_name="'pramoted'" :total="promoted_total" />
+        <crypto-table
+          :table-data="cryptoDataPromoted"
+          :table_name="'pramoted'"
+          :total="promoted_total"
+        />
       </b-col>
     </b-row>
     <!-- <b-row class="match-height mb-1">
@@ -89,7 +93,11 @@
         >
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table :table-data="cryptoData" :table_name="'all-best'" :total="all_total" />
+            <crypto-table
+              :table-data="cryptoData"
+              :table_name="'all-best'"
+              :total="all_total"
+            />
           </b-col>
         </b-row>
       </b-tab>
@@ -100,7 +108,11 @@
         <small>Today best perofoming coins</small>
         <b-row class="match-height mt-1">
           <b-col lg="12">
-            <crypto-table :table-data="cryptoDataTodayBest" :table_name="'today-best'" :total="best_total" />
+            <crypto-table
+              :table-data="cryptoDataTodayBest"
+              :table_name="'today-best'"
+              :total="best_total"
+            />
           </b-col>
         </b-row>
       </b-tab>
@@ -112,7 +124,11 @@
         >
         <b-row class="match-height mt-1">
           <b-col lg="12" class="text-center pt-4">
-            <crypto-table :table-data="cryptoDataAuditedCoins" :table_name="'audited'" :total="audit_total" />
+            <crypto-table
+              :table-data="cryptoDataAuditedCoins"
+              :table_name="'audited'"
+              :total="audit_total"
+            />
             <!-- <h2 class="text-center">We list coins with audit reports in this section if the contract has already been audited from any recognizable firm.</h2>
             <small>Mail to </small> <b>contact@rugfreecoins.com</b> -->
           </b-col>
@@ -131,7 +147,7 @@ import {
   BTab,
   BLink,
   // BCard,
-  BImg,
+  BImg
   // BCardText,
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
@@ -146,13 +162,13 @@ export default {
     BTabs,
     BTab,
     BLink,
-    BImg,
+    BImg
     // BCardText,
     // BCard,
   },
   data() {
     return {
-      loading: false,
+      loading: false
     };
   },
   computed: {
@@ -182,19 +198,19 @@ export default {
     },
     all_total() {
       return this.$store.state.crypto.all_total;
-    },
+    }
   },
   methods: {},
   created() {
     if (!this.$store.state.crypto.clientIP) {
       this.$store.dispatch("FETCH_CLIENT_IP").then(() => {
-        this.$store.dispatch("FETCH_CRYPTO_DATA",20);
-        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA",20);
-        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA",20);
-        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA",20);
+        this.$store.dispatch("FETCH_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA", 20);
       });
     }
-  },
+  }
 };
 </script>
 <style>
