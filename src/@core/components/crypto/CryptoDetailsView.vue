@@ -23,6 +23,7 @@
               </h3>
               <div class="mt-1 col-4" v-show="coinData.is_audited == 1">
                 <b-button
+                  v-if="coinData.name != 'Matador'"
                   href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
                   target="_blank"
                   block
@@ -32,6 +33,10 @@
                   <feather-icon icon="BookIcon" class="mr-50" />
                   <span class="align-middle">Report</span>
                 </b-button>
+                <div v-else class="d-flex align-items-center">
+                  <b-badge variant="secondary">Audit report pending</b-badge>
+                <!-- <span>Audit report pending</span> -->
+              </div>
               </div>
               <div class="card-text pt-1">
                 <small>What is {{ coinData.name }} ?</small><br />
