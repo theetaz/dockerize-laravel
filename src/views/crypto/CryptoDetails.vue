@@ -38,7 +38,6 @@ export default {
     };
   },
   mounted() {
-    console.log("this.$route.params",this.$route);
     let id = this.$route.params.id;
     this.$store.dispatch("FETCH_COIN_DATA", id).then((coinData) => {
       this.coinData = coinData;
