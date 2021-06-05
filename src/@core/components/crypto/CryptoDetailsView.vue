@@ -21,6 +21,23 @@
                 {{ coinData.name }}
                 <b-badge variant="dark">{{ coinData.symbol }}</b-badge>
               </h3>
+              <div class="mt-1 col-4" v-show="coinData.is_audited == 1">
+                <b-button
+                  v-if="coinData.name != 'Matador'"
+                  href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
+                  target="_blank"
+                  block
+                  variant="info gradient"
+                  size="sm"
+                >
+                  <feather-icon icon="BookIcon" class="mr-50" />
+                  <span class="align-middle">Report</span>
+                </b-button>
+                <div v-else class="d-flex align-items-center">
+                  <b-badge variant="secondary">Audit report pending</b-badge>
+                <!-- <span>Audit report pending</span> -->
+              </div>
+              </div>
               <div class="card-text pt-1">
                 <small>What is {{ coinData.name }} ?</small><br />
                 {{ coinData.description }}
@@ -103,7 +120,7 @@ import {
   BFormInput,
   BInputGroupPrepend,
   BButton,
-  BCardBody
+  BCardBody,
 } from "bootstrap-vue";
 import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
@@ -119,13 +136,13 @@ export default {
     BFormInput,
     BInputGroupPrepend,
     BButton,
-    BCardBody
+    BCardBody,
   },
   props: {
     coinData: {
       type: null,
-      required: false
-    }
+      required: false,
+    },
   },
   methods: {
     doCopy(value) {
@@ -135,8 +152,8 @@ export default {
             component: ToastificationContent,
             props: {
               title: "BSC contract address copied",
-              icon: "BellIcon"
-            }
+              icon: "BellIcon",
+            },
           });
         },
         (e) => {
@@ -144,8 +161,8 @@ export default {
             component: ToastificationContent,
             props: {
               title: e + "Can not copy!",
-              icon: "BellIcon"
-            }
+              icon: "BellIcon",
+            },
           });
         }
       );
@@ -153,7 +170,7 @@ export default {
     castVote(coinId) {
       const data = {
         coinID: coinId,
-        perPage: 20
+        perPage: 20,
       };
 
       this.$store
@@ -167,16 +184,16 @@ export default {
                 title: "Notification",
                 icon: "InfoIcon",
                 text: error.response.data.message || "Something went wrong",
-                variant: "warning"
-              }
+                variant: "warning",
+              },
             },
             {
-              position: "bottom-left"
+              position: "bottom-left",
             }
           );
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

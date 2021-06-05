@@ -210,7 +210,7 @@ export default {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.45;
-  color: #695cea;
+  /* color: #5e5873; */
 }
 img {
   border-style: none;

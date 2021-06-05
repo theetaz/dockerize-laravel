@@ -101,6 +101,7 @@
           <span class="align-middle">Discord</span>
         </b-button>
       </div>
+      
     </b-card-body>
   </b-card>
 </template>
@@ -112,14 +113,14 @@ import {
   BCardBody,
   BBadge,
   BAvatar,
-  BButton
+  BButton,
 } from "bootstrap-vue";
 import Ripple from "vue-ripple-directive";
 import numeral from "numeral";
 
 export default {
   directives: {
-    Ripple
+    Ripple,
   },
   components: {
     BCard,
@@ -127,19 +128,19 @@ export default {
     BCardBody,
     BBadge,
     BAvatar,
-    BButton
+    BButton,
   },
   props: {
     coinData: {
       type: null,
-      required: false
-    }
+      required: false,
+    },
   },
   data() {
     return {
-      numeral
+      numeral,
     };
-  }
+  },
 };
 </script>
 
