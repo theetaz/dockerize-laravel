@@ -28,7 +28,13 @@
       hover
       :items="tableData"
       responsive
-      :fields="!is_mobilesize ? ((table_name!='audited') ? fields:fields_audited) : fields_mobile"
+      :fields="
+        !is_mobilesize
+          ? table_name != 'audited'
+            ? fields
+            : fields_audited
+          : fields_mobile
+      "
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       class="mb-0"
@@ -98,7 +104,7 @@
       <template #cell(report)="">
         <div class="d-flex align-items-center align-center">
           <b-button
-            variant="outline-success"
+            variant="info gradient"
             :class="is_mobilesize ? 'button-class' : 'desktop-button'"
             href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
             target="_blank"
@@ -112,6 +118,7 @@
       <template #cell(vote_count)="data">
         <div class="d-flex align-items-center">
           <b-button
+            v-if="data.item.name != 'Matador'"
             :variant="isVoted(data.item.is_voted)"
             @click="castVote(data.item)"
             :class="is_mobilesize ? 'button-class' : 'desktop-button'"
@@ -123,8 +130,14 @@
                 style="width: 13px; height: 13px"
               ></b-spinner>
             </div>
-            <div v-else>{{(table_name=='most-trust') ? '🔥' : '🚀'}} {{ data.item.vote_count }}</div>
+            <div v-else>
+              {{ table_name == "most-trust" ? "🔥" : "🚀" }}
+              {{ data.item.vote_count }}
+            </div>
           </b-button>
+          <div v-else class="d-flex align-items-center">
+            <span>Pending</span>
+          </div>
         </div>
       </template>
     </b-table>
@@ -232,7 +245,7 @@ export default {
         { key: "actual_market_cap", label: "MARKET CAP" },
         { key: "release_date", label: "RELEASED" },
         { key: "actual_price", label: "PRICE" },
-        { key: "report", label: "Report" },
+        { key: "report", label: "Audit" },
         { key: "vote_count", label: "VOTES" },
       ],
       fields_mobile: [
