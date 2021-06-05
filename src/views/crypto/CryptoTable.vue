@@ -9,7 +9,7 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
-    <b-row v-if="table_name != 'pramoted'" align-h="end">
+    <b-row v-if="table_name == 'all-best'" align-h="end">
       <b-col md="3">
         <b-input-group size="sm">
           <b-form-input
@@ -28,14 +28,13 @@
       hover
       :items="tableData"
       responsive
-      :fields="!is_mobilesize ? fields : fields_mobile"
+      :fields="!is_mobilesize ? ((table_name!='audited') ? fields:fields_audited) : fields_mobile"
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       class="mb-0"
       :tbody-transition-props="transProps"
       primary-key="id"
       @row-clicked="viewDetails"
-      empty-filter-text="asd2"
     >
       <!-- company -->
       <template #cell(no)="data">
@@ -95,13 +94,27 @@
         </span>
       </template>
 
+      <!-- report -->
+      <template #cell(report)="">
+        <div class="d-flex align-items-center align-center">
+          <b-button
+            variant="outline-success"
+            :class="is_mobilesize ? 'button-class' : 'desktop-button'"
+            href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
+            target="_blank"
+          >
+            Report
+          </b-button>
+        </div>
+      </template>
+
       <!-- vote_count -->
       <template #cell(vote_count)="data">
         <div class="d-flex align-items-center">
           <b-button
             :variant="isVoted(data.item.is_voted)"
             @click="castVote(data.item)"
-            :class="is_mobilesize ? 'button-class' : ''"
+            :class="is_mobilesize ? 'button-class' : 'desktop-button'"
           >
             <div v-if="loading && data.item.id == selectId">
               <b-spinner
@@ -110,7 +123,7 @@
                 style="width: 13px; height: 13px"
               ></b-spinner>
             </div>
-            <div v-else>🚀 {{ data.item.vote_count }}</div>
+            <div v-else>{{(table_name=='most-trust') ? '🔥' : '🚀'}} {{ data.item.vote_count }}</div>
           </b-button>
         </div>
       </template>
@@ -213,6 +226,15 @@ export default {
         { key: "actual_price", label: "PRICE" },
         { key: "vote_count", label: "VOTES" },
       ],
+      fields_audited: [
+        { key: "no", label: "NO" },
+        { key: "name", label: "NAME" },
+        { key: "actual_market_cap", label: "MARKET CAP" },
+        { key: "release_date", label: "RELEASED" },
+        { key: "actual_price", label: "PRICE" },
+        { key: "report", label: "Report" },
+        { key: "vote_count", label: "VOTES" },
+      ],
       fields_mobile: [
         { key: "no", label: "NO" },
         { key: "name", label: "NAME" },
@@ -309,6 +331,10 @@ table#table-crypto .flip-list-move {
 .button-class {
   margin: 0;
   width: 75px;
+}
+.desktop-button {
+  margin: 0;
+  width: 125px;
 }
 .row-background {
   background-color: #f1f1f1;
