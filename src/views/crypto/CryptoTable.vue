@@ -101,9 +101,10 @@
       </template>
 
       <!-- report -->
-      <template #cell(report)="">
+      <template #cell(report)="data">
         <div class="d-flex align-items-center align-center">
           <b-button
+            v-if="data.item.name != 'Matador'"
             variant="info gradient"
             :class="is_mobilesize ? 'button-class' : 'desktop-button'"
             href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
@@ -111,6 +112,9 @@
           >
             Report
           </b-button>
+          <div v-else class="d-flex align-items-center">
+            <span>Pending</span>
+          </div>
         </div>
       </template>
 
@@ -118,7 +122,6 @@
       <template #cell(vote_count)="data">
         <div class="d-flex align-items-center">
           <b-button
-            v-if="data.item.name != 'Matador'"
             :variant="isVoted(data.item.is_voted)"
             @click="castVote(data.item)"
             :class="is_mobilesize ? 'button-class' : 'desktop-button'"
@@ -135,9 +138,6 @@
               {{ data.item.vote_count }}
             </div>
           </b-button>
-          <div v-else class="d-flex align-items-center">
-            <span>Pending</span>
-          </div>
         </div>
       </template>
     </b-table>
