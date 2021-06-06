@@ -28,14 +28,14 @@
       <!-- </div> -->
     </b-row>
     <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
-      <div class="d-flex justify-content-center mb-3 col-4 text-center">
+      <div class="d-flex justify-content-center mb-2 col-4 text-center">
         <!-- <b-card height="125px"> -->
         <b-link href="https://t.me/staminttoken" target="_blank">
           <b-img src="@/assets/images/banners/stamint.png" height="145px" />
         </b-link>
         <!-- </b-card> -->
       </div>
-      <div class="d-flex justify-content-center mb-3 col-4 text-center">
+      <div class="d-flex justify-content-center mb-2 col-4 text-center">
         <b-link href="#" target="_blank">
           <b-card height="125px">
             <b-card-text
@@ -45,7 +45,7 @@
           </b-card>
         </b-link>
       </div>
-      <div class="d-flex justify-content-center mb-3 col-4 text-center">
+      <div class="d-flex justify-content-center mb-2 col-4 text-center">
         <b-link href="#" target="_blank">
           <b-card>
             <b-card-text
@@ -56,8 +56,8 @@
         </b-link>
       </div>
     </b-row>
-    <b-row class="banner-margin pt-2 pl-4" v-else>
-      <div class="d-flex justify-content-center mb-3 col-10 text-center">
+    <b-row class="banner-margin pt-2" v-else>
+      <div class="d-flex justify-content-center mb-2 col-12 text-center">
         <b-link href="https://t.me/staminttoken" target="_blank">
           <b-img src="@/assets/images/banners/stamint.png" height="130px" />
         </b-link>
@@ -237,6 +237,12 @@ export default {
 };
 </script>
 <style>
+@media (max-width: 1024px) {
+    img {
+    border-style: none;
+    border-radius: 10px;
+  }
+}
 img {
   border-style: none;
   /* border-radius: 10px; */
