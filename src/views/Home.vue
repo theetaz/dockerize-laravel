@@ -27,38 +27,45 @@
 
       <!-- </div> -->
     </b-row>
-    <!-- <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
-      <div class="d-flex justify-content-center mb-3  col-4 text-center">
-        <b-card>
-          <b-card-text><h1>POST YOUR ADD HERE</h1>
-          <h2>366*146</h2> </b-card-text>
-        </b-card>
+    <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
+      <div class="d-flex justify-content-center col-4 text-center">
+        <!-- <b-card height="125px"> -->
+        <b-link href="https://t.me/staminttoken" target="_blank">
+          <b-img src="@/assets/images/banners/stamint.png" height="145px" />
+        </b-link>
+        <!-- </b-card> -->
       </div>
-      <div class="d-flex justify-content-center mb-3 col-4 text-center">
-        <b-card>
-          <b-card-text><h1>POST YOUR ADD HERE</h1>
-          <h2>366*146</h2> </b-card-text>
-        </b-card>
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="#" target="_blank">
+          <b-card height="125px">
+            <b-card-text
+              ><h1 class="pt-2">ADVERTISE HERE</h1>
+              <!-- <h2>366*146</h2> -->
+            </b-card-text>
+          </b-card>
+        </b-link>
       </div>
-      <div class="d-flex justify-content-center mb-3 col-4 text-center">
-        <b-card>
-          <b-card-text><h1>POST YOUR ADD HERE</h1>
-          <h2>366*146</h2> </b-card-text>
-        </b-card>
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="#" target="_blank">
+          <b-card>
+            <b-card-text
+              ><h1 class="pt-2">ADVERTISE HERE</h1>
+              <!-- <h2>366*146</h2> -->
+            </b-card-text>
+          </b-card>
+        </b-link>
       </div>
     </b-row>
-    <b-row class="banner-margin pt-1" v-else>
-      <div class="d-flex justify-content-center col-12 text-center">
-        <b-card>
-          <b-card-text><h2>POST YOUR ADD </h2>
-          <h2>366*146</h2> </b-card-text>
-        </b-card>
+    <b-row class="banner-margin pt-2" v-else>
+      <div class="d-flex justify-content-center mb-2 col-12 text-center">
+        <b-link href="https://t.me/staminttoken" target="_blank">
+          <b-img src="@/assets/images/banners/stamint.png" height="130px" />
+        </b-link>
       </div>
-      
-    </b-row> -->
+    </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <h2>💎 Promoted coins</h2>
+        <span :class="is_mobilesize?'h3':'h2'">💎 Promoted coins</span>
         <small
           >Only audited coins are listed in the paid promotions section.</small
         >
@@ -75,7 +82,7 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <h2>🥇 The most trusted coin</h2>
+        <span :class="is_mobilesize?'h3':'h2'">🥇 The most trusted coin</span>
         <small>The most unique & legit coin today</small>
       </b-col>
     </b-row>
@@ -158,9 +165,9 @@ import {
   BTabs,
   BTab,
   BLink,
-  // BCard,
   BImg,
-  // BCardText,
+  BCard,
+  BCardText,
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
@@ -175,8 +182,8 @@ export default {
     BTab,
     BLink,
     BImg,
-    // BCardText,
-    // BCard,
+    BCardText,
+    BCard,
   },
   data() {
     return {
@@ -230,6 +237,12 @@ export default {
 };
 </script>
 <style>
+@media (max-width: 1024px) {
+    img {
+    border-style: none;
+    border-radius: 10px;
+  }
+}
 img {
   border-style: none;
   /* border-radius: 10px; */
@@ -245,5 +258,10 @@ img {
   border: none;
   margin-bottom: 2rem;
   border-radius: 0px;
+}
+[dir] .card-body {
+  padding: 1.5rem;
+  height: 145px !important;
+  width: 364px !important;
 }
 </style>
