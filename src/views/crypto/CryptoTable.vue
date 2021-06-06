@@ -28,13 +28,7 @@
       hover
       :items="tableData"
       responsive
-      :fields="
-        !is_mobilesize
-          ? table_name != 'audited'
-            ? fields
-            : fields_audited
-          : fields_mobile
-      "
+      :fields="!is_mobilesize ? (table_name != 'audited' ? ((table_name == 'most-trust')&&(tableData[0].is_audited == 1) ? fields_audited : fields) : fields_audited) : fields_mobile"
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       class="mb-0"
@@ -107,7 +101,7 @@
             v-if="data.item.name != 'Matador'"
             variant="info gradient"
             :class="is_mobilesize ? 'button-class' : 'desktop-button'"
-            href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
+            :href="data.item.report_link"
             target="_blank"
           >
             Report
