@@ -65,7 +65,7 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <h2>💎 Promoted coins</h2>
+        <span :class="is_mobilesize?'h3':'h2'">💎 Promoted coins</span>
         <small
           >Only audited coins are listed in the paid promotions section.</small
         >
@@ -82,7 +82,7 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <h2>🥇 The most trusted coin</h2>
+        <span :class="is_mobilesize?'h3':'h2'">🥇 The most trusted coin</span>
         <small>The most unique & legit coin today</small>
       </b-col>
     </b-row>
