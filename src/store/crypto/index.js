@@ -15,7 +15,8 @@ export default {
     best_total: null,
     promoted_total: null,
     audit_total: null,
-    all_total: null
+    all_total: null,
+    cryptoDataTrusted: []
   },
   getters: {
 
@@ -117,6 +118,9 @@ export default {
     },
     ALL_TOTAL(state, totalData) {
       state.all_total = totalData;
+    },
+    SET_CRYPTO_DATA_TRUSTED(state, cryptoData ) {
+      state.cryptoDataTrusted = cryptoData;
     }
   },
   actions: {
@@ -247,6 +251,27 @@ export default {
             commit('SET_COIN_DATA', coinData);
             commit('SET_COMMENTS', coinData.comments);
             resolve(coinData);
+          } else {
+            reject();
+          }
+        });
+      });
+    },
+    FETCH_MOST_TRUST_DATA({ commit, state }) {
+      return new Promise((resolve, reject) => {
+        API.get("coins/trusted", {
+          params: {
+            per_page: 20,
+            direction: "DESC",
+            sort_key: "vote_count",
+            ip_address: state.clientIP,
+            page: 1
+          }
+        }).then((response) => {
+          if (response) {
+            let payload = response.data.payload;
+            commit('SET_CRYPTO_DATA_TRUSTED', payload);
+            resolve(payload);
           } else {
             reject();
           }

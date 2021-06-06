@@ -12,35 +12,38 @@
     </b-card-header>
 
     <b-card-body>
-      <div class="d-flex align-items-center mt-2">
-        <div class="d-flex align-items-center mr-2">
-          <b-avatar variant="light-primary" rounded>
-            <feather-icon icon="DollarSignIcon" size="18" />
-          </b-avatar>
-          <div class="ml-1">
-            <h5 class="mb-0">
-              $ {{ numeral(coinData.actual_market_cap).format("0,0") }}
-            </h5>
-            <small>Market Cap</small>
+      <b-row class="pt-2">
+        <b-col md="6">
+          <div class="d-flex align-items-center mr-2">
+            <b-avatar variant="light-primary" rounded>
+              <feather-icon icon="DollarSignIcon" size="18" />
+            </b-avatar>
+            <div class="ml-1">
+              <h5 class="mb-0">
+                $ {{ numeral(coinData.actual_market_cap).format("0,0") }}
+              </h5>
+              <small>Market Cap</small>
+            </div>
+          </div></b-col
+        >
+        <b-col md="6">
+          <div class="d-flex align-items-center">
+            <b-avatar variant="light-success" rounded>
+              <feather-icon icon="TrendingUpIcon" size="18" />
+            </b-avatar>
+            <div class="ml-1">
+              <h5 class="mb-0">
+                {{
+                  coinData.actual_price
+                    ? coinData.actual_price.toFixed(12)
+                    : "N/A"
+                }}
+              </h5>
+              <small>Price</small>
+            </div>
           </div>
-        </div>
-
-        <div class="d-flex align-items-center">
-          <b-avatar variant="light-success" rounded>
-            <feather-icon icon="TrendingUpIcon" size="18" />
-          </b-avatar>
-          <div class="ml-1">
-            <h5 class="mb-0">
-              {{
-                coinData.actual_price
-                  ? coinData.actual_price.toFixed(12)
-                  : "N/A"
-              }}
-            </h5>
-            <small>Price</small>
-          </div>
-        </div>
-      </div>
+        </b-col>
+      </b-row>
 
       <div class="mt-1" v-show="coinData.website">
         <b-button
@@ -101,7 +104,6 @@
           <span class="align-middle">Discord</span>
         </b-button>
       </div>
-      
     </b-card-body>
   </b-card>
 </template>
@@ -114,6 +116,8 @@ import {
   BBadge,
   BAvatar,
   BButton,
+  BRow,
+  BCol,
 } from "bootstrap-vue";
 import Ripple from "vue-ripple-directive";
 import numeral from "numeral";
@@ -129,6 +133,8 @@ export default {
     BBadge,
     BAvatar,
     BButton,
+    BRow,
+    BCol,
   },
   props: {
     coinData: {
@@ -144,4 +150,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@media (max-width: 1024px) {
+  .market-cap {
+    display: block;
+  }
+}
+</style>
