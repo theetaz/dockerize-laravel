@@ -82,7 +82,7 @@
     <b-row class="match-height mb-1">
       <b-col lg="12">
         <crypto-table
-          :table-data="most_trusted"
+          :table-data="cryptoDataTrusted"
           :table_name="'most-trust'"
           :total="1"
         />
@@ -181,41 +181,6 @@ export default {
   data() {
     return {
       loading: false,
-      most_trusted: [
-        {
-          actual_market_cap: 71578077,
-          actual_price: 2e-9,
-          bsc_contract_address: "0xacfc95585d80ab62f67a14c566c1b7a49fe91167",
-          created_at: "2021-05-30T07:00:56.000000Z",
-          description:
-            "The main idea behind FEG is to provide a decentralized transaction network which operates on the Ethereum blockchain and the Binance smart chain (BSC). The path forward for FEG is determined by market fluctuations, but the model it runs on begs FEG to succeed. FEG is a deflationary token with a max circulating supply of 100 Quadrillion. On each transaction, a tax of 1% will be distributed to the holders and a further 1% will be burnt, hence incentivizing holders to hodl and decreasing the supply over time. As the supply decreases, the scarcity of the token increases. This inversely proportional relationship constitutes a supply and demand model. Furthermore, there is no limit as to how many tokens can be burnt. Without a burning limit, you know what happens next.",
-          discord_link: "https://discord.com/invite/X4TwbKqDek",
-          ethereum_contract_address:
-            "0x389999216860AB8E0175387A0c90E5c52522C945",
-          id: 73,
-          is_audited: 0,
-          is_editor_picked: 0,
-          is_promoted: 0,
-          is_voted: false,
-          logo_link:
-            "https://pbs.twimg.com/profile_images/1358369033821835264/C8OaEgUx_400x400.png",
-          name: "FEG Token",
-          network: null,
-          other_links: "null",
-          pancake_swap_link: null,
-          reddit_link: "https://www.reddit.com/r/FegToken_Official",
-          release_date: "2021-01-29T00:00:00.000000Z",
-          remarks: null,
-          status: "active",
-          symbol: "$FEG",
-          telegram_link: "https://t.me/fegchat",
-          twitter_link: "https://twitter.com/fegtoken",
-          updated_at: "2021-06-05T22:09:12.000000Z",
-          user_id: null,
-          vote_count: 27200,
-          website: "https://fegtoken.com/",
-        },
-      ],
     };
   },
   computed: {
@@ -246,6 +211,9 @@ export default {
     all_total() {
       return this.$store.state.crypto.all_total;
     },
+    cryptoDataTrusted() {
+      return this.$store.state.crypto.cryptoDataTrusted;
+    },
   },
   methods: {},
   created() {
@@ -255,6 +223,7 @@ export default {
         this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA", 20);
         this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA", 20);
         this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_MOST_TRUST_DATA", 20);
       });
     }
   },
