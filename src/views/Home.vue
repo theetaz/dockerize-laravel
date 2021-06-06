@@ -37,7 +37,7 @@
       </div>
       <div class="d-flex justify-content-center col-4 text-center">
         <b-link href="#" target="_blank">
-          <b-card height="125px">
+          <b-card height="125px" class="cards-body">
             <b-card-text
               ><h1 class="pt-2">ADVERTISE HERE</h1>
               <!-- <h2>366*146</h2> -->
@@ -47,7 +47,7 @@
       </div>
       <div class="d-flex justify-content-center col-4 text-center">
         <b-link href="#" target="_blank">
-          <b-card>
+          <b-card class="cards-body">
             <b-card-text
               ><h1 class="pt-2">ADVERTISE HERE</h1>
               <!-- <h2>366*146</h2> -->
@@ -259,7 +259,7 @@ img {
   margin-bottom: 2rem;
   border-radius: 0px;
 }
-[dir] .card-body {
+.cards-body {
   padding: 1.5rem;
   height: 145px !important;
   width: 364px !important;
