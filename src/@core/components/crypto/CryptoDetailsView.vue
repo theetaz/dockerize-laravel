@@ -21,7 +21,11 @@
                 {{ coinData.name }}
                 <b-badge variant="dark">{{ coinData.symbol }}</b-badge>
               </h3>
-              <div class="mt-1 col-4" v-show="coinData.is_audited == 1">
+              <div
+                class="mt-1"
+                :class="!is_mobilesize ? 'col-3' : 'col-8'"
+                v-show="coinData.is_audited == 1"
+              >
                 <b-button
                   v-if="coinData.name != 'Matador'"
                   href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
@@ -35,15 +39,19 @@
                 </b-button>
                 <div v-else class="d-flex align-items-center">
                   <b-badge variant="secondary">Audit report pending</b-badge>
-                <!-- <span>Audit report pending</span> -->
+                  <!-- <span>Audit report pending</span> -->
+                </div>
               </div>
-              </div>
-              <div class="card-text pt-1">
+              <div class="card-text pt-1" v-if="!is_mobilesize">
                 <small>What is {{ coinData.name }} ?</small><br />
                 {{ coinData.description }}
               </div>
             </div>
           </div>
+        </div>
+        <div class="card-text pt-1" v-if="is_mobilesize">
+          <small>What is {{ coinData.name }} ?</small><br />
+          {{ coinData.description }}
         </div>
       </b-col>
     </b-row>
@@ -79,13 +87,13 @@
       <b-col class="pt-2">
         <h3 class="mb-0">
           Status :
-          <b-badge variant="success">{{ coinData.status }}</b-badge>
+          <b-badge variant="success" class="coin-status">{{ coinData.status }}</b-badge>
         </h3>
       </b-col>
       <b-col class="pt-2">
         <h3 class="mb-0">
           Total votes :
-          <b-badge variant="success">{{ coinData.vote_count }}</b-badge>
+          <b-badge variant="success" class="coin-status">{{ coinData.vote_count }}</b-badge>
         </h3>
       </b-col>
     </b-row>
@@ -110,6 +118,7 @@
 </template>
 
 <script>
+import { mixinList } from "@/mixins/mixinList";
 import {
   BCard,
   BAvatar,
@@ -125,6 +134,7 @@ import {
 import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
 export default {
+  mixins: [mixinList],
   components: {
     // ToastificationContent,
     BCard,
@@ -198,6 +208,11 @@ export default {
 </script>
 
 <style>
+@media (max-width: 456px) {
+  .coin-status {
+    display: block;
+  }
+}
 .btn .badge {
   position: relative;
   top: 1px;
