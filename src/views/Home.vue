@@ -27,6 +27,7 @@
 
       <!-- </div> -->
     </b-row>
+    <Carousel />
     <!-- <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center mb-3  col-4 text-center">
         <b-card>
@@ -162,6 +163,7 @@ import {
   BImg,
   // BCardText,
 } from "bootstrap-vue";
+import Carousel from "@core/components/carousel/Carousel.vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
 export default {
@@ -175,6 +177,7 @@ export default {
     BTab,
     BLink,
     BImg,
+    Carousel
     // BCardText,
     // BCard,
   },

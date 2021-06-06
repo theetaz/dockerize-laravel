@@ -87,13 +87,17 @@
       <b-col class="pt-2">
         <h3 class="mb-0">
           Status :
-          <b-badge variant="success" class="coin-status">{{ coinData.status }}</b-badge>
+          <b-badge variant="success" class="coin-status">{{
+            coinData.status
+          }}</b-badge>
         </h3>
       </b-col>
       <b-col class="pt-2">
         <h3 class="mb-0">
           Total votes :
-          <b-badge variant="success" class="coin-status">{{ coinData.vote_count }}</b-badge>
+          <b-badge variant="success" class="coin-status">{{
+            coinData.vote_count
+          }}</b-badge>
         </h3>
       </b-col>
     </b-row>
@@ -204,6 +208,7 @@ export default {
         });
     },
   },
+  
 };
 </script>
 
@@ -220,4 +225,5 @@ export default {
 .pointer {
   cursor: pointer;
 }
+
 </style>
