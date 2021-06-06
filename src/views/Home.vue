@@ -29,24 +29,29 @@
     </b-row>
     <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center mb-3 col-4 text-center">
+        <!-- <b-card height="125px"> -->
         <b-link href="https://t.me/staminttoken" target="_blank">
-          <b-img src="@/assets/images/banners/stamint.png" height="125px" />
+          <b-img src="@/assets/images/banners/stamint.png" height="145px" />
         </b-link>
+        <!-- </b-card> -->
       </div>
       <div class="d-flex justify-content-center mb-3 col-4 text-center">
         <b-link href="#" target="_blank">
           <b-card height="125px">
-            <!-- <b-img src="@/assets/images/banners/pure-white.jpg" height="100px"/> -->
+            <b-card-text
+              ><h1 class="pt-2">ADVERTISE HERE</h1>
+              <!-- <h2>366*146</h2> -->
+            </b-card-text>
           </b-card>
         </b-link>
       </div>
       <div class="d-flex justify-content-center mb-3 col-4 text-center">
         <b-link href="#" target="_blank">
           <b-card>
-            <!-- <b-img
-              src="@/assets/images/banners/pure-white.jpg"
-              height="125px"
-            /> -->
+            <b-card-text
+              ><h1 class="pt-2">ADVERTISE HERE</h1>
+              <!-- <h2>366*146</h2> -->
+            </b-card-text>
           </b-card>
         </b-link>
       </div>
@@ -162,7 +167,7 @@ import {
   BLink,
   BImg,
   BCard,
-  // BCardText,
+  BCardText,
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
@@ -177,7 +182,7 @@ export default {
     BTab,
     BLink,
     BImg,
-    // BCardText,
+    BCardText,
     BCard,
   },
   data() {
@@ -249,8 +254,8 @@ img {
   border-radius: 0px;
 }
 [dir] .card-body {
-    padding: 1.5rem;
-    height: 125px !important;
-    width: 313px !important;
+  padding: 1.5rem;
+  height: 145px !important;
+  width: 364px !important;
 }
 </style>
