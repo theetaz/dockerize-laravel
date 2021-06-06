@@ -30,7 +30,7 @@
     <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center col-4 text-center">
         <!-- <b-card height="125px"> -->
-        <b-link href="https://t.me/staminttoken" target="_blank">
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
           <b-img src="@/assets/images/banners/stamint.png" height="145px" />
         </b-link>
         <!-- </b-card> -->
@@ -58,7 +58,7 @@
     </b-row>
     <b-row class="banner-margin pt-2" v-else>
       <div class="d-flex justify-content-center mb-2 col-12 text-center">
-        <b-link href="https://t.me/staminttoken" target="_blank">
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
           <b-img src="@/assets/images/banners/stamint.png" height="130px" />
         </b-link>
       </div>
