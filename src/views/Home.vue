@@ -8,13 +8,6 @@
       </b-col>
     </b-row>
     <b-row class="banner-margin">
-      <!-- <div class="d-flex justify-content-between mb-3 col-12 text-center"> -->
-      <!-- <b-col class="md-1">
-        <b-card class="pr-5 card-height">
-          <b-card-text class="pt-2">b</b-card-text>
-        </b-card>
-      </b-col>
-      <b-col class="md-10"> -->
       <div class="d-flex justify-content-center mb-3 col-12 text-center">
         <b-link href="http://bit.ly/eject-elon" target="_blank">
           <b-img
@@ -23,49 +16,49 @@
           />
         </b-link>
       </div>
-      <!-- </b-col> -->
-
-      <!-- </div> -->
     </b-row>
     <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center col-4 text-center">
-        <!-- <b-card height="125px"> -->
         <b-link href="https://bit.ly/3cp4IU9" target="_blank">
           <b-img src="@/assets/images/banners/stamint.png" height="145px" />
         </b-link>
-        <!-- </b-card> -->
       </div>
       <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="#" target="_blank">
-          <b-card height="125px" class="cards-body">
-            <b-card-text
-              ><h1 class="pt-2">ADVERTISE HERE</h1>
-              <!-- <h2>366*146</h2> -->
-            </b-card-text>
-          </b-card>
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
+          <b-img src="@/assets/images/banners/bnb.gif" height="145px" />
         </b-link>
       </div>
       <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="#" target="_blank">
-          <b-card class="cards-body">
-            <b-card-text
-              ><h1 class="pt-2">ADVERTISE HERE</h1>
-              <!-- <h2>366*146</h2> -->
-            </b-card-text>
-          </b-card>
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
+          <b-img src="@/assets/images/banners/karen.png" height="145px" />
         </b-link>
       </div>
     </b-row>
     <b-row class="banner-margin pt-2" v-else>
       <div class="d-flex justify-content-center mb-2 col-12 text-center">
-        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
-          <b-img src="@/assets/images/banners/stamint.png" height="130px" />
-        </b-link>
+        <b-carousel id="carousel-interval" :interval="3000" align-center>
+          <b-link href="https://bit.ly/3cp4IU9" target="_blank">
+            <b-carousel-slide
+              :img-src="require('@/assets/images/banners/stamint.png')"
+              height="130px"
+            />
+          </b-link>
+          <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+            <b-carousel-slide
+              :img-src="require('@/assets/images/banners/bnb.gif')"
+            />
+          </b-link>
+          <b-link href="https://bit.ly/3z1vxHH" target="_blank">
+            <b-carousel-slide
+              :img-src="require('@/assets/images/banners/karen.png')"
+            />
+          </b-link>
+        </b-carousel>
       </div>
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <span :class="is_mobilesize?'h3':'h2'">💎 Promoted coins</span>
+        <span :class="is_mobilesize ? 'h3' : 'h2'">💎 Promoted coins</span>
         <small
           >Only audited coins are listed in the paid promotions section.</small
         >
@@ -82,7 +75,9 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <span :class="is_mobilesize?'h3':'h2'">🥇 The most trusted coin</span>
+        <span :class="is_mobilesize ? 'h3' : 'h2'"
+          >🥇 The most trusted coin</span
+        >
         <small>The most unique & legit coin today</small>
       </b-col>
     </b-row>
@@ -166,8 +161,10 @@ import {
   BTab,
   BLink,
   BImg,
-  BCard,
-  BCardText,
+  BCarousel,
+  BCarouselSlide,
+  // BCard,
+  // BCardText,
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
@@ -182,8 +179,10 @@ export default {
     BTab,
     BLink,
     BImg,
-    BCardText,
-    BCard,
+    BCarousel,
+    BCarouselSlide,
+    // BCardText,
+    // BCard,
   },
   data() {
     return {
@@ -238,7 +237,7 @@ export default {
 </script>
 <style>
 @media (max-width: 1024px) {
-    img {
+  img {
     border-style: none;
     border-radius: 10px;
   }
@@ -263,5 +262,13 @@ img {
   padding: 1.5rem;
   height: 145px !important;
   width: 364px !important;
+}
+.d-block {
+  display: inline-block !important;
+}
+@media (max-width: 1024px) {
+  .img-fluid {
+    max-width: 100% !important;
+  }
 }
 </style>
