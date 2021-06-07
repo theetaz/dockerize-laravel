@@ -67,39 +67,9 @@
         </b-carousel>
       </div>
     </b-row>
-    <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <h3>💎 Promoted coins</h3>
-        <small
-          >Only audited coins are listed in the paid promotions section.</small
-        >
-      </b-col>
-    </b-row>
-    <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <!-- <crypto-table
-          :table-data="cryptoDataPromoted"
-          :table_name="'pramoted'"
-          :total="promoted_total"
-        /> -->
-        <div class="d-flex justify-content-center col-10 text-center">
-          <div class="d-flex justify-content-center col-4 text-center" v-for="(promoted, index) in cryptoDataPromoted"
-            :key="index">
-          <b-card
-            height="125px"
-            class="cards-body"
-            
-          ><div class="d-flex justify-content-center col-4 text-center">
-            <b-card-text
-              ><h1 class="pt-2">ADVERTISE HERE</h1>
-              <!-- <h2>366*146</h2> -->
-            </b-card-text>
-            </div>
-          </b-card>
-          </div>
-        </div>
-      </b-col>
-    </b-row>
+
+    <promote-card />
+
     <b-row class="match-height mb-1">
       <b-col lg="12">
         <h3>🥇 The most trusted coin</h3>
@@ -188,14 +158,17 @@ import {
   BImg,
   BCarousel,
   BCarouselSlide,
-  BCard,
-  BCardText,
+  // BCard,
+  // BCardText,
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
+import PromoteCard from "../views/crypto/PromoteCard";
+
 export default {
   mixins: [mixinList],
   components: {
+    PromoteCard,
     BRow,
     BCol,
     BSpinner,
@@ -206,8 +179,8 @@ export default {
     BImg,
     BCarousel,
     BCarouselSlide,
-    BCardText,
-    BCard,
+    // BCardText,
+    // BCard,
   },
   data() {
     return {
