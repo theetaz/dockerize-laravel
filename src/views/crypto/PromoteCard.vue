@@ -66,7 +66,15 @@
 </template>
 
 <script>
-import { BButton, BSpinner, BCol, BRow } from "bootstrap-vue";
+import {
+  BButton,
+  BSpinner,
+  BCol,
+  BRow,
+  BImgLazy,
+  BAvatar,
+  BBadge,
+} from "bootstrap-vue";
 import numeral from "numeral";
 import { mixinList } from "@/mixins/mixinList";
 
@@ -77,6 +85,9 @@ export default {
     BSpinner,
     BCol,
     BRow,
+    BImgLazy,
+    BAvatar,
+    BBadge,
     // SearchCoin,
   },
   data() {
@@ -120,3 +131,8 @@ export default {
   },
 };
 </script>
+<style>
+.pointer {
+    cursor: pointer;
+}
+</style>
