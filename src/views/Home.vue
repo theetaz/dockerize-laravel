@@ -20,18 +20,18 @@
     <b-row class="banner-margin pt-3 pb-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center col-4 text-center">
         <b-link href="https://bit.ly/3cp4IU9" target="_blank">
-          <b-img src="@/assets/images/banners/stamint.png" height="145px" />
+          <b-img src="@/assets/images/banners/stamint.png" height="140px" />
         </b-link>
       </div>
 
-      <div class="d-flex justify-content-center col-4 text-center">
+      <div class="d-flex justify-content-center col-4 text-center pl-2">
         <b-link href="https://bit.ly/3cp4IU9" target="_blank">
-          <b-img src="@/assets/images/banners/karen.png" height="145px" />
+          <b-img src="@/assets/images/banners/karen.png" height="140px" />
         </b-link>
       </div>
-      <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
-          <b-img src="@/assets/images/banners/bnb.gif" height="145px" />
+      <div class="d-flex justify-content-center col-4 text-center pl-3">
+        <b-link href="#" target="_blank">
+          <b-img src="@/assets/images/banners/your-ad-here.jpg" height="140px" />
         </b-link>
       </div>
     </b-row>
@@ -59,7 +59,7 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <span :class="is_mobilesize ? 'h3' : 'h2'">💎 Promoted coins</span>
+        <h3>💎 Promoted coins</h3>
         <small
           >Only audited coins are listed in the paid promotions section.</small
         >
@@ -76,8 +76,8 @@
     </b-row>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <span :class="is_mobilesize ? 'h3' : 'h2'"
-          >🥇 The most trusted coin</span
+        <h3
+          >🥇 The most trusted coin</h3
         >
         <small>The most unique & legit coin today</small>
       </b-col>
