@@ -44,11 +44,11 @@
     </b-row>
     <b-row class="banner-margin pt-2 pb-2" v-else>
       <div class="d-flex justify-content-center mb-1 col-12 text-center">
-        <b-carousel id="carousel-interval" :interval="4000">
+        <b-carousel id="carousel-interval" :interval="4000" class="corosole">
           <b-link href="https://bit.ly/3cp4IU9" target="_blank">
             <b-carousel-slide
               :img-src="require('@/assets/images/banners/stamint.png')"
-              height="130px" 
+              height="130px"
             />
           </b-link>
           <b-link href="https://bit.ly/3z1vxHH" target="_blank">
@@ -281,5 +281,9 @@ img {
   .img-fluid {
     max-width: 100% !important;
   }
+}
+.corosole {
+  height: 146px !important;
+  width: 366px !important;
 }
 </style>
