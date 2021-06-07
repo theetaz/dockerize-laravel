@@ -17,7 +17,7 @@
         </b-link>
       </div>
     </b-row>
-    <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
+    <b-row class="banner-margin pt-3 pb-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center col-4 text-center">
         <b-link href="https://bit.ly/3cp4IU9" target="_blank">
           <b-img src="@/assets/images/banners/stamint.png" height="145px" />
@@ -263,9 +263,9 @@ img {
   height: 145px !important;
   width: 364px !important;
 }
-.d-block {
+/* .d-block {
   display: inline-block !important;
-}
+} */
 @media (max-width: 1024px) {
   .img-fluid {
     max-width: 100% !important;
