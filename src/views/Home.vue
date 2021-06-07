@@ -38,7 +38,10 @@
       </div>
       <div class="d-flex justify-content-center col-4 text-center pl-3">
         <b-link href="#" target="_blank">
-          <b-img src="@/assets/images/banners/your-ad-here.jpg" height="140px" />
+          <b-img
+            src="@/assets/images/banners/your-ad-here.jpg"
+            height="140px"
+          />
         </b-link>
       </div>
     </b-row>
@@ -64,28 +67,12 @@
         </b-carousel>
       </div>
     </b-row>
+
+    <promote-card />
+
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <h3>💎 Promoted coins</h3>
-        <small
-          >Only audited coins are listed in the paid promotions section.</small
-        >
-      </b-col>
-    </b-row>
-    <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <crypto-table
-          :table-data="cryptoDataPromoted"
-          :table_name="'pramoted'"
-          :total="promoted_total"
-        />
-      </b-col>
-    </b-row>
-    <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <h3
-          >🥇 The most trusted coin</h3
-        >
+        <h3>🥇 The most trusted coin</h3>
         <small>The most unique & legit coin today</small>
       </b-col>
     </b-row>
@@ -176,9 +163,12 @@ import {
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
+import PromoteCard from "../views/crypto/PromoteCard";
+
 export default {
   mixins: [mixinList],
   components: {
+    PromoteCard,
     BRow,
     BCol,
     BSpinner,
@@ -275,7 +265,7 @@ img {
   display: inline-block !important;
 } */
 .b-carousel {
-  height:"140px" !important;
+  height: "140px" !important;
 }
 @media (max-width: 1024px) {
   .img-fluid {
