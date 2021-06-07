@@ -28,7 +28,7 @@
       hover
       :items="tableData"
       responsive
-      :fields="!is_mobilesize ? (table_name != 'audited' ? ((table_name == 'most-trust')&&(tableData[0].is_audited == 1) ? fields_audited : fields) : fields_audited) : fields_mobile"
+      :fields="!is_mobilesize ? (table_name != 'audited' ? ((table_name == 'most-trust')&&((tableData[0].is_audited) != 0) ? fields_audited : fields) : fields_audited) : fields_mobile"
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       class="mb-0"
