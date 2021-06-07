@@ -50,6 +50,7 @@
               fluid
               :src="data.item.logo_link"
               alt="avatar img"
+              class="image-size"
           /></b-avatar>
           <div>
             <div class="font-weight-bolder pl-1">
@@ -345,5 +346,10 @@ table#table-crypto .flip-list-move {
 }
 .row-background {
   background-color: #f1f1f1;
+}
+@media (max-width: 1024px) {
+  .image-size {
+    max-width: 60% !important;
+  }
 }
 </style>
