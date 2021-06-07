@@ -23,29 +23,25 @@
           <b-img src="@/assets/images/banners/stamint.png" height="145px" />
         </b-link>
       </div>
-      <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
-          <b-img src="@/assets/images/banners/bnb.gif" height="145px" />
-        </b-link>
-      </div>
+
       <div class="d-flex justify-content-center col-4 text-center">
         <b-link href="https://bit.ly/3cp4IU9" target="_blank">
           <b-img src="@/assets/images/banners/karen.png" height="145px" />
         </b-link>
       </div>
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
+          <b-img src="@/assets/images/banners/bnb.gif" height="145px" />
+        </b-link>
+      </div>
     </b-row>
-    <b-row class="banner-margin pt-2" v-else>
-      <div class="d-flex justify-content-center mb-2 col-12 text-center">
-        <b-carousel id="carousel-interval" :interval="3000" align-center>
+    <b-row class="banner-margin pt-2 pb-2" v-else>
+      <div class="d-flex justify-content-center mb-1 col-12 text-center">
+        <b-carousel id="carousel-interval" :interval="3000" img-height="130px">
           <b-link href="https://bit.ly/3cp4IU9" target="_blank">
             <b-carousel-slide
               :img-src="require('@/assets/images/banners/stamint.png')"
               height="130px"
-            />
-          </b-link>
-          <b-link href="https://bit.ly/2T6QvUN" target="_blank">
-            <b-carousel-slide
-              :img-src="require('@/assets/images/banners/bnb.gif')"
             />
           </b-link>
           <b-link href="https://bit.ly/3z1vxHH" target="_blank">
@@ -53,6 +49,11 @@
               :img-src="require('@/assets/images/banners/karen.png')"
             />
           </b-link>
+          <!-- <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+            <b-carousel-slide
+              :img-src="require('@/assets/images/banners/bnb2.png')"
+            />
+          </b-link> -->
         </b-carousel>
       </div>
     </b-row>
@@ -266,6 +267,9 @@ img {
 /* .d-block {
   display: inline-block !important;
 } */
+.b-carousel {
+  height:"140px" !important;
+}
 @media (max-width: 1024px) {
   .img-fluid {
     max-width: 100% !important;
