@@ -48,7 +48,7 @@
           <b-link href="https://bit.ly/3cp4IU9" target="_blank">
             <b-carousel-slide
               :img-src="require('@/assets/images/banners/stamint.png')"
-              height="130px"
+              height="130px" 
             />
           </b-link>
           <b-link href="https://bit.ly/3z1vxHH" target="_blank">
