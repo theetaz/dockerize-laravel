@@ -67,6 +67,7 @@
         </b-carousel>
       </div>
     </b-row>
+
     <b-tabs content-class="mt-1">
       <b-tab :title="!is_mobilesize ? '💎 Promoted coins' : '💎 Promoted'">
         <small
@@ -98,6 +99,7 @@
         </b-row>
       </b-tab>
     </b-tabs>
+
     <b-row class="match-height mb-1">
       <b-col lg="12">
         <h3>🥇 The most trusted coin</h3>
@@ -191,6 +193,8 @@ import {
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
+
+
 export default {
   mixins: [mixinList],
   components: {
