@@ -9,7 +9,7 @@
     >
       <b-progress-bar :value="value" variant="primary"> </b-progress-bar>
     </b-progress>
-    <b-row v-if="tableName == 'all-best'" align-h="end">
+    <b-row v-if="table_name == 'all-best'" align-h="end">
       <b-col md="3">
         <b-input-group size="sm">
           <b-form-input
@@ -28,7 +28,7 @@
       hover
       :items="tableData"
       responsive
-      :fields="!is_mobilesize ? (tableName != 'audited' ? ((tableName == 'most-trust')&&((tableData[0].is_audited) != 0) ? fields_audited : fields) : fields_audited) : fields_mobile"
+      :fields="!is_mobilesize ? (table_name != 'audited' ? ((table_name == 'most-trust')&&((tableData[0].is_audited) != 0) ? fields_audited : fields) : fields_audited) : fields_mobile"
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       class="mb-0"
@@ -129,7 +129,7 @@
               ></b-spinner>
             </div>
             <div v-else>
-              {{ tableName == "most-trust" ? "🔥" : "🚀" }}
+              {{ table_name == "most-trust" ? "🔥" : "🚀" }}
               {{ data.item.vote_count }}
             </div>
           </b-button>
@@ -202,7 +202,7 @@ export default {
       type: Array,
       default: () => [],
     },
-    tableName: {
+    table_name: {
       type: String,
     },
     total: {
@@ -270,13 +270,13 @@ export default {
   methods: {
     changePagination() {
       this.per_page = this.per_page + 20;
-      if (this.tableName == "all-best") {
+      if (this.table_name == "all-best") {
         this.$store.dispatch("FETCH_CRYPTO_DATA", this.per_page);
-      } else if (this.tableName == "today-best") {
+      } else if (this.table_name == "today-best") {
         this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA", this.per_page);
-      } else if (this.tableName == "audited") {
+      } else if (this.table_name == "audited") {
         this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA", this.per_page);
-      } else if (this.tableName == "pramoted") {
+      } else if (this.table_name == "pramoted") {
         this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA", this.per_page);
       }
     },
