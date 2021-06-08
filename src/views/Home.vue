@@ -82,17 +82,10 @@
         </b-row>
       </b-tab>
       <b-tab :title="!is_mobilesize ? '🎉 Upcoming Gems' : '🎉 Upcoming'" lazy>
-        <small>Upcoming Gems</small>
-        <b-row class="match-height mt-1">
-          <b-col lg="12">
-            <!-- <crypto-table
-              :table-data="cryptoDataTrusted"
-              :table_name="'upoming-jems'"
-              :total="best_total"
-            /> -->
-            <div class="d-flex justify-content-center mb-3 col-12 text-center">
-              <h3>Coming Soon</h3>
-            </div>
+        <b-row class="match-height mb-1">
+          <b-col lg="12" class="text-center">
+            <h2 class="text-center">For upcoming launches</h2>
+            <small>Mail to </small> <b>contact@rugfreecoins.com</b>
           </b-col>
         </b-row>
       </b-tab>
