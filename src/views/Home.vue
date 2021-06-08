@@ -190,9 +190,12 @@ import {
 } from "bootstrap-vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
+// import PromoteCard from "../views/crypto/PromoteCard";
+
 export default {
   mixins: [mixinList],
   components: {
+    // PromoteCard,
     BRow,
     BCol,
     BSpinner,
