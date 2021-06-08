@@ -38,7 +38,10 @@
       </div>
       <div class="d-flex justify-content-center col-4 text-center pl-3">
         <b-link href="#" target="_blank">
-          <b-img src="@/assets/images/banners/your-ad-here.jpg" height="140px" />
+          <b-img
+            src="@/assets/images/banners/your-ad-here.jpg"
+            height="140px"
+          />
         </b-link>
       </div>
     </b-row>
@@ -64,28 +67,40 @@
         </b-carousel>
       </div>
     </b-row>
-    <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <h3>💎 Promoted coins</h3>
+    <b-tabs content-class="mt-1">
+      <b-tab :title="!is_mobilesize ? '💎 Promoted coins' : '💎 Promoted'">
         <small
           >Only audited coins are listed in the paid promotions section.</small
         >
-      </b-col>
-    </b-row>
+        <b-row class="match-height mt-1">
+          <b-col lg="12">
+            <crypto-table
+              :table-data="cryptoDataPromoted"
+              :table_name="'pramoted'"
+              :total="promoted_total"
+            />
+          </b-col>
+        </b-row>
+      </b-tab>
+      <b-tab :title="!is_mobilesize ? '🎉 Upcoming Gems' : '🎉 Upcoming'" lazy>
+        <small>Upcoming Gems</small>
+        <b-row class="match-height mt-1">
+          <b-col lg="12">
+            <!-- <crypto-table
+              :table-data="cryptoDataTrusted"
+              :table_name="'upoming-jems'"
+              :total="best_total"
+            /> -->
+            <div class="d-flex justify-content-center mb-3 col-12 text-center">
+              <h3>Coming Soon</h3>
+            </div>
+          </b-col>
+        </b-row>
+      </b-tab>
+    </b-tabs>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table
-          :table-data="cryptoDataPromoted"
-          :table_name="'pramoted'"
-          :total="promoted_total"
-        />
-      </b-col>
-    </b-row>
-    <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <h3
-          >🥇 The most trusted coin</h3
-        >
+        <h3>🥇 The most trusted coin</h3>
         <small>The most unique & legit coin today</small>
       </b-col>
     </b-row>
@@ -275,7 +290,7 @@ img {
   display: inline-block !important;
 } */
 .b-carousel {
-  height:"140px" !important;
+  height: "140px" !important;
 }
 @media (max-width: 1024px) {
   .img-fluid {
