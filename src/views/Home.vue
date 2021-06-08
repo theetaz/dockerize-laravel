@@ -27,43 +27,42 @@
     <b-row class="banner-margin pt-3 pb-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center col-4 text-center">
         <b-link href="https://bit.ly/3cp4IU9" target="_blank">
-          <b-img src="@/assets/images/banners/stamint.png" height="140px" />
+          <b-img src="@/assets/images/banners/stamint.png" class="corosole" />
         </b-link>
       </div>
 
       <div class="d-flex justify-content-center col-4 text-center pl-2">
         <b-link href="https://bit.ly/3z1vxHH" target="_blank">
-          <b-img src="@/assets/images/banners/karen.png" height="140px" />
+          <b-img src="@/assets/images/banners/karen.png" class="corosole" />
         </b-link>
       </div>
       <div class="d-flex justify-content-center col-4 text-center pl-3">
-        <b-link href="#" target="_blank">
-          <b-img
-            src="@/assets/images/banners/your-ad-here.jpg"
-            height="140px"
-          />
+        <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+          <b-img src="@/assets/images/banners/bnbc.gif" class="corosole" />
         </b-link>
       </div>
     </b-row>
     <b-row class="banner-margin pt-2 pb-2" v-else>
       <div class="d-flex justify-content-center mb-1 col-12 text-center">
-        <b-carousel id="carousel-interval" :interval="4000" class="corosole">
+        <b-carousel id="carousel-interval" :interval="4000">
           <b-link href="https://bit.ly/3cp4IU9" target="_blank">
             <b-carousel-slide
               :img-src="require('@/assets/images/banners/stamint.png')"
-              height="130px"
+              class="corosole"
             />
           </b-link>
           <b-link href="https://bit.ly/3z1vxHH" target="_blank">
             <b-carousel-slide
+              class="corosole"
               :img-src="require('@/assets/images/banners/karen.png')"
             />
           </b-link>
-          <!-- <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+          <b-link href="https://bit.ly/2T6QvUN" target="_blank">
             <b-carousel-slide
-              :img-src="require('@/assets/images/banners/bnb2.png')"
+              class="corosole"
+              :img-src="require('@/assets/images/banners/bnbc.gif')"
             />
-          </b-link> -->
+          </b-link>
         </b-carousel>
       </div>
     </b-row>
@@ -300,5 +299,9 @@ img {
 .corosole {
   height: 146px !important;
   width: 366px !important;
+}
+.testing {
+  height: 100px;
+  width: 100px;
 }
 </style>
