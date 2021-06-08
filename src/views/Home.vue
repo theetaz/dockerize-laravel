@@ -67,7 +67,10 @@
       </div>
     </b-row>
     <b-tabs content-class="mt-1">
-      <b-tab :title="!is_mobilesize ? '💎 Promoted coins' : '💎 Promoted'">
+      <b-tab
+        class="tab-class"
+        :title="!is_mobilesize ? '💎 Promoted coins' : '💎 Promoted'"
+      >
         <small
           >Only audited coins are listed in the paid promotions section.</small
         >
@@ -81,7 +84,14 @@
           </b-col>
         </b-row>
       </b-tab>
-      <b-tab :title="!is_mobilesize ? '🎉 Upcoming Gems' : '🎉 Upcoming'" lazy>
+      <b-tab
+        class="tab-class"
+        :title="!is_mobilesize ? '🎉 Upcoming Gems' : '🎉 Upcoming'"
+        lazy
+      >
+        <small
+          >Only scanned projects are listed in the upcoming gems section</small
+        >
         <b-row class="match-height mb-1">
           <b-col lg="12" class="text-center">
             <h2 class="text-center">For upcoming launches</h2>
@@ -297,5 +307,11 @@ img {
 .testing {
   height: 100px;
   width: 100px;
+}
+@media (min-width: 1024px) {
+  .nav-tabs .nav-link {
+    font-weight: 600;
+    font-size: large;
+  }
 }
 </style>
