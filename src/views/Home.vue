@@ -38,7 +38,7 @@
       </div>
       <div class="d-flex justify-content-center col-4 text-center pl-3">
         <b-link href="https://bit.ly/2T6QvUN" target="_blank">
-          <b-img src="@/assets/images/banners/bnb.gif" class="corosole" />
+          <b-img src="@/assets/images/banners/bnbs.gif" class="corosole" />
         </b-link>
       </div>
     </b-row>
@@ -60,7 +60,7 @@
           <b-link href="https://bit.ly/2T6QvUN" target="_blank">
             <b-carousel-slide
               class="corosole"
-              :img-src="require('@/assets/images/banners/bnb.gif')"
+              :img-src="require('@/assets/images/banners/bnbs.gif')"
             />
           </b-link>
         </b-carousel>
