@@ -24,25 +24,43 @@
         </b-carousel>
       </div>
     </b-row>
-    <b-row class="banner-margin pt-3 pb-3" v-if="!is_mobilesize">
-      <div class="d-flex justify-content-center col-4 text-center">
+    <!-- <swiper :options="swiperOptions" v-if="!is_mobilesize">
+      <swiper-slide>
         <b-link href="https://bit.ly/3cp4IU9" target="_blank">
           <b-img src="@/assets/images/banners/stamint.png" class="corosole" />
         </b-link>
-      </div>
-
-      <div class="d-flex justify-content-center col-4 text-center pl-2">
+      </swiper-slide>
+      <swiper-slide>
         <b-link href="https://bit.ly/3z1vxHH" target="_blank">
           <b-img src="@/assets/images/banners/karen.png" class="corosole" />
         </b-link>
-      </div>
-      <div class="d-flex justify-content-center col-4 text-center pl-3">
+      </swiper-slide>
+      <swiper-slide>
         <b-link href="https://bit.ly/2T6QvUN" target="_blank">
           <b-img src="@/assets/images/banners/bnbs.gif" class="corosole" />
         </b-link>
+      </swiper-slide>
+    </swiper> -->
+    <!-- <Carousel /> -->
+    <b-row class="banner-margin pt-2 pb-2" v-if="!is_mobilesize">
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
+          <b-img src="@/assets/images/banners/stamint.png" class="corosoleDesktop" />
+        </b-link>
+      </div>
+
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="https://bit.ly/3z1vxHH" target="_blank">
+          <b-img src="@/assets/images/banners/karen.png" class="corosoleDesktop" />
+        </b-link>
+      </div>
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+          <b-img src="@/assets/images/banners/bnbs.gif" class="corosoleDesktop" />
+        </b-link>
       </div>
     </b-row>
-    <b-row class="banner-margin pt-2 pb-2" v-else>
+    <b-row class="banner-margin pt-2 pb-1" v-else>
       <div class="d-flex justify-content-center mb-1 col-12 text-center">
         <b-carousel id="carousel-interval" :interval="4000">
           <b-link href="https://bit.ly/3cp4IU9" target="_blank">
@@ -123,8 +141,9 @@
       </b-col>
     </b-row>
 
+    <!-- <b-tabs content-class="mt-1"> -->
+    <!-- This tabs content will always be mounted -->
     <b-tabs content-class="mt-1">
-      <!-- This tabs content will always be mounted -->
       <b-tab :title="!is_mobilesize ? '👑 All time best' : '👑 All time'">
         <small
           >Won't get visibility unless voted, so make sure your community knows
@@ -191,6 +210,7 @@ import {
   // BCard,
   // BCardText,
 } from "bootstrap-vue";
+// import Carousel from "@core/components/carousel/Carousel.vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
 
@@ -213,8 +233,23 @@ export default {
   data() {
     return {
       loading: false,
+      // swiperOptions: {
+      //   slidesPerView: 3,
+      //   spaceBetween: 50,
+      //   freeMode: true,
+      //   loop: true,
+      //   navigation: {
+      //     nextEl: ".swiper-button-next",
+      //     prevEl: ".swiper-button-prev",
+      //   },
+      //   // autoplay: {
+      //   //   delay: 2500,
+      //   //   disableOnInteraction: false,
+      //   // },
+      // },
     };
   },
+  mounted() {},
   computed: {
     cryptoData() {
       return this.$store.state.crypto.cryptoData;
@@ -284,6 +319,15 @@ img {
   margin-bottom: 2rem;
   border-radius: 0px;
 }
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.swiper-container {
+  height: 450px;
+  width: 100%;
+}
 .cards-body {
   padding: 1.5rem;
   height: 145px !important;
@@ -301,8 +345,13 @@ img {
   }
 }
 .corosole {
-  height: 146px !important;
-  width: 366px !important;
+  height: 135px !important;
+  width: 350px !important;
+}
+.corosoleDesktop {
+  height: 150px !important;
+  width: 390px !important;
+  border-radius: 10px;
 }
 .testing {
   height: 100px;

@@ -250,6 +250,7 @@ export default {
         });
     },
   },
+  
 };
 </script>
 
@@ -266,4 +267,5 @@ export default {
 .pointer {
   cursor: pointer;
 }
+
 </style>
