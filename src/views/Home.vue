@@ -27,7 +27,37 @@
 
       <!-- </div> -->
     </b-row>
-    <Carousel />
+    <swiper :options="swiperOptions">
+        <swiper-slide>
+          <b-img
+            src="http://res.cloudinary.com/og-tech/image/upload/s--4NgMf3RF--/v1521804358/avengers.jpg" title="Avengers : Infinity War" description="Thanos is around" duration="2hrs"/>
+        </swiper-slide>
+        <swiper-slide>
+          <b-img
+            src="http://res.cloudinary.com/og-tech/image/upload/s--BmgguRnX--/v1521804402/thor.jpg" title="Thor : Ragnarok" description="Thor lost his hair" duration="2hrs30mins"/>
+        </swiper-slide>
+        <swiper-slide>
+          <b-img
+            src="http://res.cloudinary.com/og-tech/image/upload/s--4NgMf3RF--/v1521804358/avengers.jpg" title="Avengers : Infinity War" description="Thanos is around" duration="2hrs"/>
+        </swiper-slide>
+        <swiper-slide>
+          <b-img
+            src="http://res.cloudinary.com/og-tech/image/upload/s--BmgguRnX--/v1521804402/thor.jpg" title="Thor : Ragnarok" description="Thor lost his hair" duration="2hrs30mins"/>
+        </swiper-slide>
+        <swiper-slide>
+          <b-img
+            src="http://res.cloudinary.com/og-tech/image/upload/s--4NgMf3RF--/v1521804358/avengers.jpg" title="Avengers : Infinity War" description="Thanos is around" duration="2hrs"/>
+        </swiper-slide>
+        <swiper-slide>
+          <b-img
+            src="http://res.cloudinary.com/og-tech/image/upload/s--BmgguRnX--/v1521804402/thor.jpg" title="Thor : Ragnarok" description="Thor lost his hair" duration="2hrs30mins"/>
+        </swiper-slide>
+        
+        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-button-prev" slot="button-prev"></div>
+        <div class="swiper-button-next" slot="button-next"></div>
+    </swiper>
+    <!-- <Carousel /> -->
     <!-- <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center mb-3  col-4 text-center">
         <b-card>
@@ -163,7 +193,7 @@ import {
   BImg,
   // BCardText,
 } from "bootstrap-vue";
-import Carousel from "@core/components/carousel/Carousel.vue";
+// import Carousel from "@core/components/carousel/Carousel.vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
 export default {
@@ -177,15 +207,32 @@ export default {
     BTab,
     BLink,
     BImg,
-    Carousel
+    // swiper,
+    // swiperSlide
+    // Carousel,
     // BCardText,
     // BCard,
   },
   data() {
     return {
       loading: false,
+      swiperOptions : {
+        slidesPerView: 5,
+        spaceBetween: 5,
+        freeMode: true,
+        loop: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false
+          },
+      }
     };
   },
+  mounted() {},
   computed: {
     cryptoData() {
       return this.$store.state.crypto.cryptoData;
@@ -248,5 +295,14 @@ img {
   border: none;
   margin-bottom: 2rem;
   border-radius: 0px;
+}
+.swiper-slide{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.swiper-container {
+  height : 450px;
+  width : 100%;
 }
 </style>
