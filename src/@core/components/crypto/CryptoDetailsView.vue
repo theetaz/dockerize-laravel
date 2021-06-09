@@ -56,11 +56,11 @@
       </b-col>
     </b-row>
 
-    <b-row>
+    <b-row v-if="coinData.bsc_contract_address != null">
       <b-col cols="10" xl="10">
-        <!-- User Stats -->
         <div class="mt-1">
           <div class="m-0">
+            <small>BSC contract address</small>
             <div class="mr-1">
               <b-input-group>
                 <b-input-group-prepend is-text>
@@ -76,14 +76,46 @@
         </div>
       </b-col>
       <b-col cols="2" xl="2" class="mt-1">
-        <b-avatar variant="light-primary" rounded class="pointer">
+        <b-avatar variant="light-primary" rounded class="pointer mt-2">
           <feather-icon
             icon="CopyIcon"
             size="18"
-            @click="doCopy(coinData.bsc_contract_address)"
+            @click="doCopy(coinData.bsc_contract_address, 'bsc')"
           />
         </b-avatar>
       </b-col>
+    </b-row>
+    <b-row v-if="coinData.ethereum_contract_address != null">
+      <b-col cols="10" xl="10">
+        <!-- User Stats -->
+        <div class="mt-1">
+          <div class="m-0">
+            <small>Ethereum contract address</small>
+            <div class="mr-1">
+              <b-input-group>
+                <b-input-group-prepend is-text>
+                  <feather-icon icon="PackageIcon" />
+                </b-input-group-prepend>
+                <b-form-input
+                  placeholder=" Ethereum contract address"
+                  :value="coinData.ethereum_contract_address"
+                />
+              </b-input-group>
+            </div>
+          </div>
+        </div>
+      </b-col>
+      <b-col cols="2" xl="2" class="mt-1">
+        <b-avatar variant="light-primary" rounded class="pointer mt-2">
+          <feather-icon
+            icon="CopyIcon"
+            size="18"
+            @click="doCopy(coinData.bsc_contract_address, 'etn')"
+          />
+        </b-avatar>
+      </b-col>
+    </b-row>
+    <b-row>
       <b-col class="pt-2">
         <h3 class="mb-0">
           Status :
@@ -159,16 +191,26 @@ export default {
     },
   },
   methods: {
-    doCopy(value) {
+    doCopy(value, name) {
       navigator.clipboard.writeText(value).then(
         () => {
-          this.$toast({
-            component: ToastificationContent,
-            props: {
-              title: "BSC contract address copied",
-              icon: "BellIcon",
-            },
-          });
+          if (name == "bsc") {
+            this.$toast({
+              component: ToastificationContent,
+              props: {
+                title: "BSC contract address copied",
+                icon: "BellIcon",
+              },
+            });
+          } else {
+            this.$toast({
+              component: ToastificationContent,
+              props: {
+                title: " Ethereum contract address copied",
+                icon: "BellIcon",
+              },
+            });
+          }
         },
         (e) => {
           this.$toast({

@@ -28,7 +28,7 @@
       hover
       :items="tableData"
       responsive
-      :fields="!is_mobilesize ? (table_name != 'audited' ? ((table_name == 'most-trust')&&(tableData[0].is_audited == 1) ? fields_audited : fields) : fields_audited) : fields_mobile"
+      :fields="!is_mobilesize ? (table_name != 'audited' ? ((table_name == 'most-trust')&&((tableData[0].is_audited) != 0) ? fields_audited : fields) : fields_audited) : fields_mobile"
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       class="mb-0"
@@ -50,6 +50,7 @@
               fluid
               :src="data.item.logo_link"
               alt="avatar img"
+              class="image-size"
           /></b-avatar>
           <div>
             <div class="font-weight-bolder pl-1">
@@ -345,5 +346,10 @@ table#table-crypto .flip-list-move {
 }
 .row-background {
   background-color: #f1f1f1;
+}
+@media (max-width: 1024px) {
+  .image-size {
+    max-width: 60% !important;
+  }
 }
 </style>

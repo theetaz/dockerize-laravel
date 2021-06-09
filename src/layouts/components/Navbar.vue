@@ -7,6 +7,7 @@
           <feather-icon icon="MenuIcon" size="21" />
         </b-link>
       </li>
+      <dark-Toggler />
       <b-link class="navbar-brand" to="/">
         <span class="brand-logo">
           <b-img :src="appLogoImage" alt="logo" />

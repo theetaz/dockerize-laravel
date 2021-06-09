@@ -8,105 +8,119 @@
       </b-col>
     </b-row>
     <b-row class="banner-margin">
-      <!-- <div class="d-flex justify-content-between mb-3 col-12 text-center"> -->
-      <!-- <b-col class="md-1">
-        <b-card class="pr-5 card-height">
-          <b-card-text class="pt-2">b</b-card-text>
-        </b-card>
-      </b-col>
-      <b-col class="md-10"> -->
       <div class="d-flex justify-content-center mb-3 col-12 text-center">
-        <b-link href="http://bit.ly/eject-elon" target="_blank">
+        <!-- <b-link href="http://bit.ly/eject-elon" target="_blank">
           <b-img
             src="@/assets/images/banners/eject-promo.gif"
-            :height="is_mobilesize ? '37px' : '105px'"
+            :height="is_mobilesize ? '38px' : '105px'"
           />
+        </b-link> -->
+        <b-carousel id="carousel-interval" :interval="4000">
+          <b-link href="http://bit.ly/eject-elon" target="_blank">
+            <b-carousel-slide
+              :img-src="require('@/assets/images/banners/eject-promo.gif')"
+            />
+          </b-link>
+        </b-carousel>
+      </div>
+    </b-row>
+    <!-- <swiper :options="swiperOptions" v-if="!is_mobilesize">
+      <swiper-slide>
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
+          <b-img src="@/assets/images/banners/stamint.png" class="corosole" />
+        </b-link>
+      </swiper-slide>
+      <swiper-slide>
+        <b-link href="https://bit.ly/3z1vxHH" target="_blank">
+          <b-img src="@/assets/images/banners/karen.png" class="corosole" />
+        </b-link>
+      </swiper-slide>
+      <swiper-slide>
+        <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+          <b-img src="@/assets/images/banners/bnbs.gif" class="corosole" />
+        </b-link>
+      </swiper-slide>
+    </swiper> -->
+    <!-- <Carousel /> -->
+    <b-row class="banner-margin pt-2 pb-2" v-if="!is_mobilesize">
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
+          <b-img src="@/assets/images/banners/stamint.png" class="corosoleDesktop" />
         </b-link>
       </div>
-      <!-- </b-col> -->
 
-      <!-- </div> -->
-    </b-row>
-    <swiper :options="swiperOptions">
-        <swiper-slide>
-          <b-img
-            src="http://res.cloudinary.com/og-tech/image/upload/s--4NgMf3RF--/v1521804358/avengers.jpg" title="Avengers : Infinity War" description="Thanos is around" duration="2hrs"/>
-        </swiper-slide>
-        <swiper-slide>
-          <b-img
-            src="http://res.cloudinary.com/og-tech/image/upload/s--BmgguRnX--/v1521804402/thor.jpg" title="Thor : Ragnarok" description="Thor lost his hair" duration="2hrs30mins"/>
-        </swiper-slide>
-        <swiper-slide>
-          <b-img
-            src="http://res.cloudinary.com/og-tech/image/upload/s--4NgMf3RF--/v1521804358/avengers.jpg" title="Avengers : Infinity War" description="Thanos is around" duration="2hrs"/>
-        </swiper-slide>
-        <swiper-slide>
-          <b-img
-            src="http://res.cloudinary.com/og-tech/image/upload/s--BmgguRnX--/v1521804402/thor.jpg" title="Thor : Ragnarok" description="Thor lost his hair" duration="2hrs30mins"/>
-        </swiper-slide>
-        <swiper-slide>
-          <b-img
-            src="http://res.cloudinary.com/og-tech/image/upload/s--4NgMf3RF--/v1521804358/avengers.jpg" title="Avengers : Infinity War" description="Thanos is around" duration="2hrs"/>
-        </swiper-slide>
-        <swiper-slide>
-          <b-img
-            src="http://res.cloudinary.com/og-tech/image/upload/s--BmgguRnX--/v1521804402/thor.jpg" title="Thor : Ragnarok" description="Thor lost his hair" duration="2hrs30mins"/>
-        </swiper-slide>
-        
-        <div class="swiper-pagination" slot="pagination"></div>
-        <div class="swiper-button-prev" slot="button-prev"></div>
-        <div class="swiper-button-next" slot="button-next"></div>
-    </swiper>
-    <!-- <Carousel /> -->
-    <!-- <b-row class="banner-margin pt-3" v-if="!is_mobilesize">
-      <div class="d-flex justify-content-center mb-3  col-4 text-center">
-        <b-card>
-          <b-card-text><h1>POST YOUR ADD HERE</h1>
-          <h2>366*146</h2> </b-card-text>
-        </b-card>
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="https://bit.ly/3z1vxHH" target="_blank">
+          <b-img src="@/assets/images/banners/karen.png" class="corosoleDesktop" />
+        </b-link>
       </div>
-      <div class="d-flex justify-content-center mb-3 col-4 text-center">
-        <b-card>
-          <b-card-text><h1>POST YOUR ADD HERE</h1>
-          <h2>366*146</h2> </b-card-text>
-        </b-card>
-      </div>
-      <div class="d-flex justify-content-center mb-3 col-4 text-center">
-        <b-card>
-          <b-card-text><h1>POST YOUR ADD HERE</h1>
-          <h2>366*146</h2> </b-card-text>
-        </b-card>
+      <div class="d-flex justify-content-center col-4 text-center">
+        <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+          <b-img src="@/assets/images/banners/bnbs.gif" class="corosoleDesktop" />
+        </b-link>
       </div>
     </b-row>
-    <b-row class="banner-margin pt-1" v-else>
-      <div class="d-flex justify-content-center col-12 text-center">
-        <b-card>
-          <b-card-text><h2>POST YOUR ADD </h2>
-          <h2>366*146</h2> </b-card-text>
-        </b-card>
+    <b-row class="banner-margin pt-2 pb-1" v-else>
+      <div class="d-flex justify-content-center mb-1 col-12 text-center">
+        <b-carousel id="carousel-interval" :interval="4000">
+          <b-link href="https://bit.ly/3cp4IU9" target="_blank">
+            <b-carousel-slide
+              :img-src="require('@/assets/images/banners/stamint.png')"
+              class="corosole"
+            />
+          </b-link>
+          <b-link href="https://bit.ly/3z1vxHH" target="_blank">
+            <b-carousel-slide
+              class="corosole"
+              :img-src="require('@/assets/images/banners/karen.png')"
+            />
+          </b-link>
+          <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+            <b-carousel-slide
+              class="corosole"
+              :img-src="require('@/assets/images/banners/bnbs.gif')"
+            />
+          </b-link>
+        </b-carousel>
       </div>
-      
-    </b-row> -->
-    <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <h2>💎 Promoted coins</h2>
+    </b-row>
+    <b-tabs content-class="mt-1">
+      <b-tab
+        class="tab-class"
+        :title="!is_mobilesize ? '💎 Promoted coins' : '💎 Promoted'"
+      >
         <small
           >Only audited coins are listed in the paid promotions section.</small
         >
-      </b-col>
-    </b-row>
+        <b-row class="match-height mt-1">
+          <b-col lg="12">
+            <crypto-table
+              :table-data="cryptoDataPromoted"
+              :table_name="'pramoted'"
+              :total="promoted_total"
+            />
+          </b-col>
+        </b-row>
+      </b-tab>
+      <b-tab
+        class="tab-class"
+        :title="!is_mobilesize ? '🎉 Upcoming Gems' : '🎉 Upcoming'"
+        lazy
+      >
+        <small
+          >Only scanned projects are listed in the upcoming gems section</small
+        >
+        <b-row class="match-height mb-1">
+          <b-col lg="12" class="text-center">
+            <h2 class="text-center">For upcoming launches</h2>
+            <small>Mail to </small> <b>contact@rugfreecoins.com</b>
+          </b-col>
+        </b-row>
+      </b-tab>
+    </b-tabs>
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table
-          :table-data="cryptoDataPromoted"
-          :table_name="'pramoted'"
-          :total="promoted_total"
-        />
-      </b-col>
-    </b-row>
-    <b-row class="match-height mb-1">
-      <b-col lg="12">
-        <h2>🥇 The most trusted coin</h2>
+        <h3>🥇 The most trusted coin</h3>
         <small>The most unique & legit coin today</small>
       </b-col>
     </b-row>
@@ -127,8 +141,9 @@
       </b-col>
     </b-row>
 
+    <!-- <b-tabs content-class="mt-1"> -->
+    <!-- This tabs content will always be mounted -->
     <b-tabs content-class="mt-1">
-      <!-- This tabs content will always be mounted -->
       <b-tab :title="!is_mobilesize ? '👑 All time best' : '👑 All time'">
         <small
           >Won't get visibility unless voted, so make sure your community knows
@@ -189,13 +204,16 @@ import {
   BTabs,
   BTab,
   BLink,
-  // BCard,
   BImg,
+  BCarousel,
+  BCarouselSlide,
+  // BCard,
   // BCardText,
 } from "bootstrap-vue";
 // import Carousel from "@core/components/carousel/Carousel.vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
+
 export default {
   mixins: [mixinList],
   components: {
@@ -207,29 +225,28 @@ export default {
     BTab,
     BLink,
     BImg,
-    // swiper,
-    // swiperSlide
-    // Carousel,
+    BCarousel,
+    BCarouselSlide,
     // BCardText,
     // BCard,
   },
   data() {
     return {
       loading: false,
-      swiperOptions : {
-        slidesPerView: 5,
-        spaceBetween: 5,
-        freeMode: true,
-        loop: true,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false
-          },
-      }
+      // swiperOptions: {
+      //   slidesPerView: 3,
+      //   spaceBetween: 50,
+      //   freeMode: true,
+      //   loop: true,
+      //   navigation: {
+      //     nextEl: ".swiper-button-next",
+      //     prevEl: ".swiper-button-prev",
+      //   },
+      //   // autoplay: {
+      //   //   delay: 2500,
+      //   //   disableOnInteraction: false,
+      //   // },
+      // },
     };
   },
   mounted() {},
@@ -280,6 +297,12 @@ export default {
 };
 </script>
 <style>
+@media (max-width: 1024px) {
+  img {
+    border-style: none;
+    border-radius: 10px;
+  }
+}
 img {
   border-style: none;
   /* border-radius: 10px; */
@@ -296,13 +319,48 @@ img {
   margin-bottom: 2rem;
   border-radius: 0px;
 }
-.swiper-slide{
+.swiper-slide {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 .swiper-container {
-  height : 450px;
-  width : 100%;
+  height: 450px;
+  width: 100%;
+}
+.cards-body {
+  padding: 1.5rem;
+  height: 145px !important;
+  width: 364px !important;
+}
+/* .d-block {
+  display: inline-block !important;
+} */
+.b-carousel {
+  height: "140px" !important;
+}
+@media (max-width: 1024px) {
+  .img-fluid {
+    max-width: 100% !important;
+  }
+}
+.corosole {
+  height: 135px !important;
+  width: 350px !important;
+}
+.corosoleDesktop {
+  height: 150px !important;
+  width: 390px !important;
+  border-radius: 10px;
+}
+.testing {
+  height: 100px;
+  width: 100px;
+}
+@media (min-width: 1024px) {
+  .nav-tabs .nav-link {
+    font-weight: 600;
+    font-size: large;
+  }
 }
 </style>

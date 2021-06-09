@@ -293,6 +293,7 @@ export default {
             dispatch('FETCH_CRYPTO_DATA', data.perPage);
             dispatch('FETCH_TODAY_BEST_CRYPTO_DATA', data.perPage);
             dispatch('FETCH_PROMOTED_CRYPTO_DATA', data.perPage);
+            dispatch('FETCH_MOST_TRUST_DATA', data.perPage);
 
             resolve(response);
 
