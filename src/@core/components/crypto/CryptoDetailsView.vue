@@ -27,8 +27,7 @@
                 v-show="coinData.is_audited == 1"
               >
                 <b-button
-                  v-if="coinData.name != 'Matador'"
-                  href="https://github.com/Rugfreecoins/Smart-Contract-Audits/blob/main/Queef%20Token%20Audit.pdf"
+                  :href="coinData.report_link"
                   target="_blank"
                   block
                   variant="info gradient"
@@ -37,10 +36,6 @@
                   <feather-icon icon="BookIcon" class="mr-50" />
                   <span class="align-middle">Report</span>
                 </b-button>
-                <div v-else class="d-flex align-items-center">
-                  <b-badge variant="secondary">Audit report pending</b-badge>
-                  <!-- <span>Audit report pending</span> -->
-                </div>
               </div>
               <div class="card-text pt-1" v-if="!is_mobilesize">
                 <small>What is {{ coinData.name }} ?</small><br />
@@ -136,7 +131,7 @@
     <b-row>
       <b-card-body>
         <div class="mt-1" v-show="!coinData.is_voted">
-          <b-button
+          <!-- <b-button
             target="_blank"
             block
             variant="gradient-primary"
@@ -146,7 +141,28 @@
               >Vote for
               <b-badge variant="dark">{{ coinData.name }}</b-badge></span
             >
-          </b-button>
+          </b-button> -->
+          <div class="d-flex justify-content-center mb-3 col-12 text-center">
+            <b-button
+              :variant="isVoted(coinData.is_voted)"
+              @click="castVote(coinData.id)"
+              :class="is_mobilesize ? 'button-class' : 'desktop-button'"
+            >
+              <div v-if="loading">
+                <b-spinner
+                  label="Loading..."
+                  class="mr-2 mx-1"
+                  style="width: 13px; height: 13px"
+                ></b-spinner>
+              </div>
+              <div v-else>
+                🔥
+                <span class="align-middle"
+                  >Vote for
+                  <b-badge variant="dark">{{ coinData.name }}</b-badge></span>
+              </div>
+            </b-button>
+          </div>
         </div>
       </b-card-body>
     </b-row>
@@ -166,6 +182,7 @@ import {
   BInputGroupPrepend,
   BButton,
   BCardBody,
+  BSpinner,
 } from "bootstrap-vue";
 import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
@@ -183,11 +200,17 @@ export default {
     BInputGroupPrepend,
     BButton,
     BCardBody,
+    BSpinner,
   },
   props: {
     coinData: {
       type: null,
       required: false,
+    },
+  },
+  computed: {
+    loading() {
+      return this.$store.state.loaders.loading;
     },
   },
   methods: {
@@ -224,33 +247,25 @@ export default {
       );
     },
     castVote(coinId) {
-      const data = {
-        coinID: coinId,
-        perPage: 20,
-      };
-
+      
       this.$store
-        .dispatch("CAST_VOTE", data)
-        .then(() => {})
-        .catch((error) => {
-          this.$toast(
-            {
-              component: ToastificationContent,
-              props: {
-                title: "Notification",
-                icon: "InfoIcon",
-                text: error.response.data.message || "Something went wrong",
-                variant: "warning",
-              },
-            },
-            {
-              position: "bottom-left",
-            }
-          );
-        });
+        .dispatch("CAST_ONE_VOTE", coinId)
+        .then((response) => {
+          if (response.status == 201) {
+            //make the success toast message and rest the data fields
+            this.makeToast(
+              "success",
+              "Congratulations 🏆",
+              "Voted"
+            );
+          }
+        })
+        .catch(() => {});
+    },
+    isVoted(isVoted) {
+      return isVoted ? "success" : "outline-success";
     },
   },
-  
 };
 </script>
 
@@ -267,5 +282,12 @@ export default {
 .pointer {
   cursor: pointer;
 }
-
+.button-class {
+  margin: 0;
+  width: 200px;
+}
+.desktop-button {
+  margin: 0;
+  width: 275px;
+}
 </style>
