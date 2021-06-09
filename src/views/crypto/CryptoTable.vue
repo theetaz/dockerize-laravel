@@ -99,7 +99,6 @@
       <template #cell(report)="data">
         <div class="d-flex align-items-center align-center">
           <b-button
-            v-if="data.item.name != 'Matador'"
             variant="info gradient"
             :class="is_mobilesize ? 'button-class' : 'desktop-button'"
             :href="data.item.report_link"
@@ -107,9 +106,6 @@
           >
             Report
           </b-button>
-          <div v-else class="d-flex align-items-center">
-            <span>Pending</span>
-          </div>
         </div>
       </template>
 

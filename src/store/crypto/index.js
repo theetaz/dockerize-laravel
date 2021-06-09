@@ -3,6 +3,7 @@ import AXIOS from '@/services/api';
 
 export default {
   state: {
+    oneCoinData: [],
     cryptoData: [],
     cryptoDataPromoted: [],
     cryptoDataTodayBest: [],
@@ -22,6 +23,9 @@ export default {
 
   },
   mutations: {
+    SET_ONE_COIN_DATA(state, oneCoinData) {
+      state.oneCoinData = oneCoinData;
+    },
     SET_CRYPTO_DATA(state, cryptoData) {
       state.cryptoData = cryptoData;
     },
@@ -294,6 +298,40 @@ export default {
             dispatch('FETCH_TODAY_BEST_CRYPTO_DATA', data.perPage);
             dispatch('FETCH_PROMOTED_CRYPTO_DATA', data.perPage);
             dispatch('FETCH_MOST_TRUST_DATA', data.perPage);
+
+            resolve(response);
+
+          }).catch((error) => {
+
+            reject(error);
+          })
+            .finally(() => {
+              commit('loaders/SET_LOADING', false, { root: true })
+            });
+        }
+        else {
+          commit('loaders/SET_LOADING', false, { root: true })
+        }
+
+      })
+
+    },
+    CAST_ONE_VOTE({ dispatch, commit }, coinId) {
+
+      return new Promise((resolve, reject) => {
+        commit('loaders/SET_LOADING', true, { root: true })
+        //get the ip address from store
+        let clientIP = localStorage.getItem("clientIP");
+
+        if (clientIP != null) {
+          //send the vote request
+          API.post(`coin/${coinId}/vote`, { client_ip: clientIP }).then((response) => {
+            commit('loaders/SET_LOADING', false, { root: true })
+            // let coinData = response.data.payload;
+            dispatch('FETCH_COIN_DATA', coinId)
+            .then((response) => {
+              commit('SET_ONE_COIN_DATA', response.data);
+            })
 
             resolve(response);
 
