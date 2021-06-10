@@ -285,7 +285,12 @@
 
               <b-col md="6">
                 <b-form-group label="Website" label-for="iv-website">
-                  <b-input-group class="input-group-merge">
+                  <validation-provider
+                    #default="{ errors }"
+                    name="Token Actual Price"
+                    rules="required|url"
+                  >
+                  <b-input-group class="input-group-merge" :class="errors.length > 0 ? 'is-invalid' : ''">
                     <b-input-group-prepend is-text>
                       <feather-icon icon="LinkIcon" />
                     </b-input-group-prepend>
@@ -294,8 +299,10 @@
                       v-model="website"
                       type="text"
                       placeholder="Expl: https://www.bitcoin.org"
+                      :state="errors.length > 0 ? false : null"
                     />
                   </b-input-group>
+                  </validation-provider>
                 </b-form-group>
               </b-col>
               <b-col md="6">
@@ -388,7 +395,7 @@
 
 <script>
 import { ValidationProvider, ValidationObserver } from "vee-validate";
-import { required } from "@validations";
+import { required, url } from "@validations";
 import {
   BRow,
   BCol,
@@ -439,6 +446,7 @@ export default {
       loading: false,
       state: "",
       required,
+      url,
       tokenName: "",
       tokenSymbol: "",
       tokenDescription: "",
@@ -449,7 +457,7 @@ export default {
       ethAddress: "",
       tokenActualMarketCap: "",
       otherLinks: "",
-      website: "",
+      website: "https://",
       telegram: "",
       twitter: "",
       reddit: "",
