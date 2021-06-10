@@ -3,7 +3,7 @@
     <section id="profile-info">
       <b-row>
         <b-col lg="8" cols="12" order="1" order-lg="1">
-          <crypto-details-view :coin-data="coinData" />
+          <crypto-details-view :coin-data="coinData" @callApiAgain="getCoinData" />
           <crypto-comments v-if="!is_mobilesize" :coin-data="coinData" />
         </b-col>
 
@@ -30,21 +30,25 @@ export default {
     BCol,
     CryptoDetailsView,
     CryptoMetaData,
-    CryptoComments
+    CryptoComments,
   },
   data() {
     return {
-      coinData: {}
+      coinData: {},
     };
   },
   mounted() {
-    let id = this.$route.params.id;
-    this.$store.dispatch("FETCH_COIN_DATA", id).then((coinData) => {
-      this.coinData = coinData;
-    });
+    this.getCoinData();
     this.onResize();
   },
-  
+  methods: {
+    getCoinData() {
+      let id = this.$route.params.id;
+      this.$store.dispatch("FETCH_COIN_DATA", id).then((coinData) => {
+        this.coinData = coinData;
+      });
+    },
+  },
 };
 </script>
 
