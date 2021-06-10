@@ -7,82 +7,7 @@
         </div>
       </b-col>
     </b-row>
-    <b-row class="banner-margin">
-      <div class="d-flex justify-content-center mb-3 col-12 text-center">
-        <!-- <b-link href="http://bit.ly/eject-elon" target="_blank">
-          <b-img
-            src="@/assets/images/banners/eject-promo.gif"
-            :height="is_mobilesize ? '38px' : '105px'"
-          />
-        </b-link> -->
-        <b-carousel id="carousel-interval" :interval="4000">
-          <b-link href="http://bit.ly/eject-elon" target="_blank">
-            <b-carousel-slide
-              :img-src="require('@/assets/images/banners/eject-promo.gif')"
-            />
-          </b-link>
-        </b-carousel>
-      </div>
-    </b-row>
-    <!-- <swiper :options="swiperOptions" v-if="!is_mobilesize">
-      <swiper-slide>
-        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
-          <b-img src="@/assets/images/banners/stamint.png" class="corosole" />
-        </b-link>
-      </swiper-slide>
-      <swiper-slide>
-        <b-link href="https://bit.ly/3cuH6gY" target="_blank">
-          <b-img src="@/assets/images/banners/karen.png" class="corosole" />
-        </b-link>
-      </swiper-slide>
-      <swiper-slide>
-        <b-link href="https://bit.ly/2T6QvUN" target="_blank">
-          <b-img src="@/assets/images/banners/bnbs.gif" class="corosole" />
-        </b-link>
-      </swiper-slide>
-    </swiper> -->
-    <!-- <Carousel /> -->
-    <b-row class="banner-margin pt-3 pb-3" v-if="!is_mobilesize">
-      <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="https://bit.ly/3cuH6gY" target="_blank">
-          <b-img src="@/assets/images/banners/sherbert.png" class="corosoleDesktop" />
-        </b-link>
-      </div>
-
-      <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="https://bit.ly/2T6QvUN" target="_blank">
-          <b-img src="@/assets/images/banners/bnbs.gif" class="corosoleDesktop" />
-        </b-link>
-      </div>
-      <div class="d-flex justify-content-center col-4 text-center pl-3">
-        <b-link href="#" target="_blank">
-          <b-img src="@/assets/images/banners/your-ad-here.jpg" height="140px" />
-        </b-link>
-      </div>
-    </b-row>
-    <b-row class="banner-margin pt-2 pb-2" v-else>
-      <div class="d-flex justify-content-center mb-1 col-12 text-center">
-        <b-carousel id="carousel-interval" :interval="4000" class="corosole">
-          <b-link href="https://bit.ly/3cuH6gY" target="_blank">
-            <b-carousel-slide
-              class="corosole"
-              :img-src="require('@/assets/images/banners/sherbert.png')"
-            />
-          </b-link>
-          <b-link href="https://bit.ly/2T6QvUN" target="_blank">
-            <b-carousel-slide
-              class="corosole"
-              :img-src="require('@/assets/images/banners/bnbs.gif')"
-            />
-          </b-link>
-          <!-- <b-link href="https://bit.ly/2T6QvUN" target="_blank">
-            <b-carousel-slide
-              :img-src="require('@/assets/images/banners/bnb2.png')"
-            />
-          </b-link> -->
-        </b-carousel>
-      </div>
-    </b-row>
+    <swap-carousel />
     <b-tabs content-class="mt-1">
       <b-tab
         class="tab-class"
@@ -140,7 +65,6 @@
       </b-col>
     </b-row>
 
-    <!-- <b-tabs content-class="mt-1"> -->
     <!-- This tabs content will always be mounted -->
     <b-tabs content-class="mt-1">
       <b-tab :title="!is_mobilesize ? '👑 All time best' : '👑 All time'">
@@ -202,16 +126,11 @@ import {
   BSpinner,
   BTabs,
   BTab,
-  BLink,
-  BImg,
-  BCarousel,
-  BCarouselSlide,
-  // BCard,
-  // BCardText,
 } from "bootstrap-vue";
 // import Carousel from "@core/components/carousel/Carousel.vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
+import SwapCarousel from "@/@core/components/carousel/SwapCarousel.vue";
 
 export default {
   mixins: [mixinList],
@@ -222,33 +141,13 @@ export default {
     CryptoTable,
     BTabs,
     BTab,
-    BLink,
-    BImg,
-    BCarousel,
-    BCarouselSlide,
-    // BCardText,
-    // BCard,
+    SwapCarousel
   },
   data() {
     return {
       loading: false,
-      // swiperOptions: {
-      //   slidesPerView: 3,
-      //   spaceBetween: 50,
-      //   freeMode: true,
-      //   loop: true,
-      //   navigation: {
-      //     nextEl: ".swiper-button-next",
-      //     prevEl: ".swiper-button-prev",
-      //   },
-      //   // autoplay: {
-      //   //   delay: 2500,
-      //   //   disableOnInteraction: false,
-      //   // },
-      // },
     };
   },
-  mounted() {},
   computed: {
     cryptoData() {
       return this.$store.state.crypto.cryptoData;
@@ -306,55 +205,16 @@ img {
   border-style: none;
   /* border-radius: 10px; */
 }
-.banner-margin {
-  margin-top: -50px;
-}
-/* .card-height {
-  height: 105px;
-  width: 450px;
-} */
 .card {
   border: none;
   margin-bottom: 2rem;
   border-radius: 0px;
 }
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-.swiper-container {
-  height: 450px;
-  width: 100%;
-}
-.cards-body {
-  padding: 1.5rem;
-  height: 145px !important;
-  width: 364px !important;
-}
-/* .d-block {
-  display: inline-block !important;
-} */
-.b-carousel {
-  height: "140px" !important;
-}
+
 @media (max-width: 1024px) {
   .img-fluid {
     max-width: 100% !important;
   }
-}
-.corosole {
-  height: 135px !important;
-  width: 350px !important;
-}
-.corosoleDesktop {
-  height: 150px !important;
-  width: 390px !important;
-  border-radius: 10px;
-}
-.testing {
-  height: 100px;
-  width: 100px;
 }
 @media (min-width: 1024px) {
   .nav-tabs .nav-link {
