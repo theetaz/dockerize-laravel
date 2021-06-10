@@ -66,7 +66,7 @@
 
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table :table-data="cryptoDataAuditedCoins" />
+        <crypto-table :table-data="cryptoDataAuditedCoins" :table_name="'audited'" />
       </b-col>
     </b-row>
 
