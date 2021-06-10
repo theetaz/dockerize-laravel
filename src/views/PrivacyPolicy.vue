@@ -32,7 +32,7 @@
         <span class="span-class">Company </span>
         <span
           >(referred to as either "the Company", "We", "Us" or "Our" in this
-          Agreement) refers to FreshCoins.</span
+          Agreement) refers to Rugfreecoins.</span
         >
       </li>
       <li>
@@ -88,7 +88,7 @@
       <li>
         <span class="span-class">Website </span>
         <span
-          >refers to FreshCoins, accessible from
+          >refers to Rugfreecoins, accessible from
           <a
             href="https://www.rugfreecoins.com/
 "
