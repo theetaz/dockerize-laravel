@@ -121,10 +121,11 @@ export default {
   created() {
     if (!this.$store.state.crypto.clientIP) {
       this.$store.dispatch("FETCH_CLIENT_IP").then(() => {
-        this.$store.dispatch("FETCH_CRYPTO_DATA");
-        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA");
-        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA");
-        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA");
+        this.$store.dispatch("FETCH_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_PROMOTED_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_TODAY_BEST_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_AUDITED_CRYPTO_DATA", 20);
+        this.$store.dispatch("FETCH_MOST_TRUST_DATA", 20);
       });
     }
   },
