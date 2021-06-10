@@ -31,7 +31,7 @@
         </b-link>
       </swiper-slide>
       <swiper-slide>
-        <b-link href="https://bit.ly/3z1vxHH" target="_blank">
+        <b-link href="https://bit.ly/3cuH6gY" target="_blank">
           <b-img src="@/assets/images/banners/karen.png" class="corosole" />
         </b-link>
       </swiper-slide>
@@ -44,8 +44,8 @@
     <!-- <Carousel /> -->
     <b-row class="banner-margin pt-3 pb-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="https://bit.ly/3z1vxHH" target="_blank">
-          <b-img src="@/assets/images/banners/karen.png" class="corosoleDesktop" />
+        <b-link href="https://bit.ly/3cuH6gY" target="_blank">
+          <b-img src="@/assets/images/banners/sherbertbanner.png" class="corosoleDesktop" />
         </b-link>
       </div>
 
@@ -63,10 +63,10 @@
     <b-row class="banner-margin pt-2 pb-2" v-else>
       <div class="d-flex justify-content-center mb-1 col-12 text-center">
         <b-carousel id="carousel-interval" :interval="4000" class="corosole">
-          <b-link href="https://bit.ly/3z1vxHH" target="_blank">
+          <b-link href="https://bit.ly/3cuH6gY" target="_blank">
             <b-carousel-slide
               class="corosole"
-              :img-src="require('@/assets/images/banners/karen.png')"
+              :img-src="require('@/assets/images/banners/sherbertbanner.png')"
             />
           </b-link>
           <b-link href="https://bit.ly/2T6QvUN" target="_blank">
