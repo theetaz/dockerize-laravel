@@ -45,7 +45,7 @@
     <b-row class="banner-margin pt-3 pb-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center col-4 text-center">
         <b-link href="https://bit.ly/3cuH6gY" target="_blank">
-          <b-img src="@/assets/images/banners/sherbertbanner.png" class="corosoleDesktop" />
+          <b-img src="@/assets/images/banners/sherbert.png" class="corosoleDesktop" />
         </b-link>
       </div>
 
@@ -66,7 +66,7 @@
           <b-link href="https://bit.ly/3cuH6gY" target="_blank">
             <b-carousel-slide
               class="corosole"
-              :img-src="require('@/assets/images/banners/sherbertbanner.png')"
+              :img-src="require('@/assets/images/banners/sherbert.png')"
             />
           </b-link>
           <b-link href="https://bit.ly/2T6QvUN" target="_blank">
