@@ -23,7 +23,7 @@
               </h3>
               <div
                 class="mt-1"
-                :class="!is_mobilesize ? 'col-3' : 'col-8'"
+                :class="!is_mobilesize ? 'col-5' : 'col-8'"
                 v-show="coinData.is_audited == 1"
               >
                 <b-button
@@ -36,6 +36,7 @@
                   <feather-icon icon="BookIcon" class="mr-50" />
                   <span class="align-middle">Report</span>
                 </b-button>
+                
               </div>
               <div class="card-text pt-1" v-if="!is_mobilesize">
                 <small>What is {{ coinData.name }} ?</small><br />
@@ -130,21 +131,10 @@
     </b-row>
     <b-row>
       <b-card-body>
-        <div class="mt-1" v-show="!coinData.is_voted">
-          <!-- <b-button
-            target="_blank"
-            block
-            variant="gradient-primary"
-            @click="castVote(coinData.id)"
-          >
-            <span class="align-middle"
-              >Vote for
-              <b-badge variant="dark">{{ coinData.name }}</b-badge></span
-            >
-          </b-button> -->
-          <div class="d-flex justify-content-center mb-3 col-12 text-center">
+        <div class="mt-1" v-if="!coinData.is_voted">
+          <div class="d-flex justify-content-center col-12 text-center">
             <b-button
-              :variant="isVoted(coinData.is_voted)"
+              variant="outline-success"
               @click="castVote(coinData.id)"
               :class="is_mobilesize ? 'button-class' : 'desktop-button'"
             >
@@ -159,7 +149,8 @@
                 🔥
                 <span class="align-middle"
                   >Vote for
-                  <b-badge variant="dark">{{ coinData.name }}</b-badge></span>
+                  <b-badge variant="dark">{{ coinData.name }}</b-badge></span
+                >
               </div>
             </b-button>
           </div>
@@ -182,7 +173,7 @@ import {
   BInputGroupPrepend,
   BButton,
   BCardBody,
-  BSpinner,
+  BSpinner
 } from "bootstrap-vue";
 import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
@@ -200,7 +191,7 @@ export default {
     BInputGroupPrepend,
     BButton,
     BCardBody,
-    BSpinner,
+    BSpinner
   },
   props: {
     coinData: {
@@ -247,23 +238,37 @@ export default {
       );
     },
     castVote(coinId) {
-      
+      const data = {
+        coinID: coinId,
+        perPage: 20,
+      };
+
       this.$store
-        .dispatch("CAST_ONE_VOTE", coinId)
+        .dispatch("CAST_VOTE", data)
         .then((response) => {
           if (response.status == 201) {
-            //make the success toast message and rest the data fields
-            this.makeToast(
-              "success",
-              "Congratulations 🏆",
-              "Voted"
-            );
+            // this.callApiAgain();
           }
         })
-        .catch(() => {});
+        .catch((error) => {
+          this.$toast(
+            {
+              component: ToastificationContent,
+              props: {
+                title: "Notification",
+                icon: "InfoIcon",
+                text: error.response.data.message || "Something went wrong",
+                variant: "warning",
+              },
+            },
+            {
+              position: "bottom-left",
+            }
+          );
+        });
     },
-    isVoted(isVoted) {
-      return isVoted ? "success" : "outline-success";
+    callApiAgain() {
+      this.$emit("callApiAgain");
     },
   },
 };
