@@ -27,6 +27,7 @@
                 v-show="coinData.is_audited == 1"
               >
                 <b-button
+                  v-if="coinData.report_link != null"
                   :href="coinData.report_link"
                   target="_blank"
                   block
@@ -36,7 +37,10 @@
                   <feather-icon icon="BookIcon" class="mr-50" />
                   <span class="align-middle">Report</span>
                 </b-button>
-                
+                <div v-else class="d-flex align-items-center">
+                  <b-badge variant="secondary">Audit report pending</b-badge>
+                  <!-- <span>Audit report pending</span> -->
+                </div>
               </div>
               <div class="card-text pt-1" v-if="!is_mobilesize">
                 <small>What is {{ coinData.name }} ?</small><br />
@@ -149,7 +153,7 @@
                 🔥
                 <span class="align-middle"
                   >Vote for
-                  <b-badge variant="dark">{{ coinData.name }}</b-badge></span
+                  <b-badge variant="dark">{{ coinData.symbol }}</b-badge></span
                 >
               </div>
             </b-button>
@@ -173,7 +177,7 @@ import {
   BInputGroupPrepend,
   BButton,
   BCardBody,
-  BSpinner
+  BSpinner,
 } from "bootstrap-vue";
 import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
@@ -191,7 +195,7 @@ export default {
     BInputGroupPrepend,
     BButton,
     BCardBody,
-    BSpinner
+    BSpinner,
   },
   props: {
     coinData: {
