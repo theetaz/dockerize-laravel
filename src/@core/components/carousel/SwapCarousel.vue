@@ -13,9 +13,9 @@
     </b-row>
     <b-row class="banner-margin pt-3 pb-3" v-if="!is_mobilesize">
       <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="https://bit.ly/3cuH6gY" target="_blank">
+        <b-link href="https://bit.ly/2TQtHcm" target="_blank">
           <b-img
-            src="@/assets/images/banners/sherbert.png"
+            src="@/assets/images/banners/wintoken.gif"
             class="corosoleDesktop"
           />
         </b-link>
@@ -29,11 +29,11 @@
           />
         </b-link>
       </div>
-      <div class="d-flex justify-content-center col-4 text-center pl-3">
+      <div class="d-flex justify-content-center col-4 text-center">
         <b-link href="#" target="_blank">
           <b-img
             src="@/assets/images/banners/your-ad-here.jpg"
-            height="140px"
+            class="corosoleDesktop"
           />
         </b-link>
       </div>
@@ -41,10 +41,10 @@
     <b-row class="banner-margin pt-2 pb-2" v-else>
       <div class="d-flex justify-content-center mb-1 col-12 text-center">
         <b-carousel id="carousel-interval" :interval="4000" class="corosole">
-          <b-link href="https://bit.ly/3cuH6gY" target="_blank">
+          <b-link href="https://bit.ly/2TQtHcm" target="_blank">
             <b-carousel-slide
               class="corosole"
-              :img-src="require('@/assets/images/banners/sherbert.png')"
+              :img-src="require('@/assets/images/banners/wintoken.gif')"
             />
           </b-link>
           <b-link href="https://bit.ly/2T6QvUN" target="_blank">
