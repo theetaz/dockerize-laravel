@@ -7,7 +7,6 @@
         </div>
       </b-col>
     </b-row>
-
     <swap-carousel />
     <b-tabs content-class="mt-1">
       <b-tab
@@ -117,7 +116,18 @@
         </b-row>
       </b-tab>
     </b-tabs>
-    <ul class="social-networks spin-icon">
+
+    <div class="justify-content-center col-10 text-center fixed_button" v-if="!is_show_marketing">
+      <b-button
+        size="lg"
+        class="chat-us-button"
+        >We are looking for grow our marketing team. Contact live chat if
+        iterested 🙏
+        <feather-icon icon="XCircleIcon" size="20" class="icon-class" @click="closeIcon" />
+      </b-button>
+    </div>
+    <div class="d-flex justify-content-end col-10 text-end fixed_button" v-else>
+      <ul class="social-networks spin-icon">
       <li>
         <a
           href="https://twitter.com/rugfreecoins"
@@ -128,24 +138,12 @@
         >
       </li>
     </ul>
-    <!-- <div class="translucent-wrap bg-primary rounded-bottom p-1"> -->
-    <div class="d-flex justify-content-left text-center">
-      <b-toast v-model="visible" static no-auto-hide>
-        <template #toast-title>
-          <div class="d-flex align-items-center  test-toast">
-            <strong class="mr-auto"
-              >We are looking for grow our marketing team. Contact live chat if
-              iterested 🙏</strong
-            >
-          </div>
-        </template>
-      </b-toast>
     </div>
   </div>
 </template>
 
 <script>
-import { BRow, BCol, BSpinner, BTabs, BTab, BToast } from "bootstrap-vue";
+import { BRow, BCol, BSpinner, BTabs, BTab, BButton } from "bootstrap-vue";
 // import Carousel from "@core/components/carousel/Carousel.vue";
 import CryptoTable from "../views/crypto/CryptoTable";
 import { mixinList } from "@/mixins/mixinList";
@@ -161,12 +159,12 @@ export default {
     BTabs,
     BTab,
     SwapCarousel,
-    BToast,
+    BButton,
   },
   data() {
     return {
       loading: false,
-      visible: true,
+      is_show_marketing: false
     };
   },
   computed: {
@@ -201,7 +199,11 @@ export default {
       return this.$store.state.crypto.cryptoDataTrusted;
     },
   },
-  methods: {},
+  methods: {
+    closeIcon() {
+      this.is_show_marketing = !this.is_show_marketing
+    }
+  },
   created() {
     if (!this.$store.state.crypto.clientIP) {
       this.$store.dispatch("FETCH_CLIENT_IP").then(() => {
@@ -216,17 +218,30 @@ export default {
 };
 </script>
 <style>
-.b-toast .toast-header {
-    background-color: #0057b1 !important;
-    width: 831px !important;
-    font-size: large !important;
-    border-radius: 10px !important;
+.icon-class {
+  margin-left: 20px;
+}
+.fixed_button {
+  position: fixed;
+  bottom: 10px;
+}
+.chat-us-button {
+  background-color: #0057b1 !important;
+  border-color: #0057b1 !important;
+}
+.login-button {
+  position: fixed;
+  height: 100px;
 }
 @media (max-width: 1024px) {
   img {
     border-style: none;
     border-radius: 10px;
   }
+  .fixed_button {
+  position: fixed;
+  bottom: 35px;
+}
 }
 img {
   border-style: none;
@@ -251,14 +266,6 @@ img {
 }
 </style>
 <style lang="scss" scoped>
-
-
-// .test-toast {
-//   background-color: #007af9 !important;
-//     width: 831px !important;
-//     font-size: large !important;
-//     border-radius: 10px !important;
-// }
 .translucent-wrap {
   height: 110px;
   position: relative;
