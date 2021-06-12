@@ -30,9 +30,9 @@
         </b-link>
       </div>
       <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="#" target="_blank">
+        <b-link href="https://bit.ly/3vfPrvr" target="_blank">
           <b-img
-            src="@/assets/images/banners/your-ad-here.jpg"
+            src="@/assets/images/banners/VRC_currency.gif"
             class="corosoleDesktop"
           />
         </b-link>
