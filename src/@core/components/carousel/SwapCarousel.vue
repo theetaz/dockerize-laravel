@@ -53,11 +53,11 @@
               :img-src="require('@/assets/images/banners/bnbs.gif')"
             />
           </b-link>
-          <!-- <b-link href="https://bit.ly/2T6QvUN" target="_blank">
+          <b-link href="https://bit.ly/3vfPrvr" target="_blank">
             <b-carousel-slide
-              :img-src="require('@/assets/images/banners/bnb2.png')"
+              :img-src="require('@/assets/images/banners/VRC_currency.gif')"
             />
-          </b-link> -->
+          </b-link>
         </b-carousel>
       </div>
     </b-row>
