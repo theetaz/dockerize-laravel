@@ -4,22 +4,22 @@
       <b-col lg="2"></b-col>
       <b-col lg="8">
         <h1 class="text-center">Hi {{ profileName }}</h1>
-        <p class="text-center">These are the coins added by you</p>
+        <!-- <p class="text-center">These are the coins added by you</p> -->
       </b-col>
       <b-col lg="2">
         <b-form-group>
-          <v-select
+          <!-- <v-select
             v-model="selected"
             label="title"
             :options="option"
-          />
+          /> -->
         </b-form-group>
       </b-col>
     </b-row>
 
     <b-row class="match-height mb-1">
       <b-col lg="12">
-        <crypto-table :table-data="cryptoDataPromoted" />
+        <!-- <crypto-table :table-data="cryptoDataPromoted" /> -->
       </b-col>
     </b-row>
 
@@ -42,17 +42,17 @@
 
 <script>
 import { BCol, BRow, BButton, BFormGroup } from "bootstrap-vue";
-import CryptoTable from "../crypto/CryptoTable";
+// import CryptoTable from "../crypto/CryptoTable";
 import Ripple from "vue-ripple-directive";
-import vSelect from "vue-select";
+// import vSelect from "vue-select";
 export default {
   components: {
     BCol,
     BRow,
-    CryptoTable,
+    // CryptoTable,
     BButton,
     BFormGroup,
-    vSelect,
+    // vSelect,
   },
   directives: {
     Ripple,

@@ -117,27 +117,41 @@
       </b-tab>
     </b-tabs>
 
-    <div class="justify-content-center col-10 text-center fixed_button" v-if="!is_show_marketing">
-      <b-button
-        size="lg"
-        class="chat-us-button"
+    <div
+      class="justify-content-center col-10 text-center fixed_button"
+      v-if="!is_show_marketing"
+    >
+      <b-button size="lg" class="chat-us-button"
         >We are looking for grow our marketing team. Contact live chat if
-        iterested 🙏
-        <feather-icon icon="XCircleIcon" size="20" class="icon-class" @click="closeIcon" />
+        interested 🙏
+        <feather-icon
+          icon="XCircleIcon"
+          size="20"
+          class="icon-class"
+          @click="closeIcon"
+        />
       </b-button>
     </div>
-    <div class="d-flex justify-content-end col-10 text-end fixed_button" v-else>
+    <div
+      :class="
+        !is_mobilesize
+          ? 'd-flex justify-content-end col-10 text-end'
+          : 'd-flex justify-content-start col-10 text-start'
+      "
+      class="fixed_button"
+      v-else
+    >
       <ul class="social-networks spin-icon">
-      <li>
-        <a
-          href="https://twitter.com/rugfreecoins"
-          class="icon-twitter"
-          target="_blank"
-          title="Join us on Twitter"
-          >Twitter</a
-        >
-      </li>
-    </ul>
+        <li>
+          <a
+            href="https://twitter.com/rugfreecoins"
+            class="icon-twitter"
+            target="_blank"
+            title="Join us on Twitter"
+            >Twitter</a
+          >
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -164,7 +178,7 @@ export default {
   data() {
     return {
       loading: false,
-      is_show_marketing: false
+      is_show_marketing: false,
     };
   },
   computed: {
@@ -201,8 +215,8 @@ export default {
   },
   methods: {
     closeIcon() {
-      this.is_show_marketing = !this.is_show_marketing
-    }
+      this.is_show_marketing = !this.is_show_marketing;
+    },
   },
   created() {
     if (!this.$store.state.crypto.clientIP) {
@@ -238,10 +252,6 @@ export default {
     border-style: none;
     border-radius: 10px;
   }
-  .fixed_button {
-  position: fixed;
-  bottom: 35px;
-}
 }
 img {
   border-style: none;
