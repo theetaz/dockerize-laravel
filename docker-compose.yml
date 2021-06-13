@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  rugfreecoin-web:
+    build: .
+    environment:
+      - VUE_APP_BASE_URL=http://localhost:9000/api/v1/
+      - VUE_APP_WEBSOCKET_HOST=127.0.0.1
+      - VUE_APP_WEBSOCKET_PORT=6001
+      - VUE_APP_WEBSOCKET_KEY='coinhuntkey'
+    ports:
+      - 9001:80
