@@ -30,9 +30,9 @@
         </b-link>
       </div>
       <div class="d-flex justify-content-center col-4 text-center">
-        <b-link href="https://bit.ly/3vfPrvr" target="_blank">
+        <b-link href="https://bit.ly/3cp4IU9" target="_blank">
           <b-img
-            src="@/assets/images/banners/VRC_currency.gif"
+            src="@/assets/images/banners/stamint.png"
             class="corosoleDesktop"
           />
         </b-link>
@@ -53,9 +53,9 @@
               :img-src="require('@/assets/images/banners/bnbs.gif')"
             />
           </b-link>
-          <b-link href="https://bit.ly/3vfPrvr" target="_blank">
+          <b-link href="https://bit.ly/3cp4IU9" target="_blank">
             <b-carousel-slide
-              :img-src="require('@/assets/images/banners/VRC_currency.gif')"
+              :img-src="require('@/assets/images/banners/stamint.png')"
             />
           </b-link>
         </b-carousel>
